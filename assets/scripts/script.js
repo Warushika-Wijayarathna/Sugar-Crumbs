@@ -31,20 +31,17 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    const customerButton = document.getElementById('customer-add-btn');
-    const customerModal = new bootstrap.Modal(document.querySelector('.customer-form .modal'));
-
-    customerButton.addEventListener('click', function () {
-        customerModal.show();
-    });
-
     const tableRows = document.querySelectorAll('.customer-table tbody tr');
+    const customerModal = new bootstrap.Modal(document.querySelector('.customer-form-edit .modal'));
+
     tableRows.forEach(function (row) {
         row.addEventListener('click', function () {
             customerModal.show();
         });
     });
 });
+
+
 
 
 
