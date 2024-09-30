@@ -1,10 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Home</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <!-- normalize.css -->
+    <link rel="stylesheet" href="assets/styles/normalize.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/styles/style.css">
+
+    <!-- Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
 </head>
 <body>
-$END$
+    <!-- Header-->
+    <div class="header">
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    Bootstrap
+                </a>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+    <!--    Navigation-->
+    <div class="dashboard">
+        <div class="aside-navigation">
+            <div class="profile-picture">
+                <img src="assets/images/profile.jpeg" alt="Profile Image">
+                <span>John Doe</span>
+            </div>
+            <div class="card text-center">
+                <ul class="nav nav-pills card-header-pills">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://getbootstrap.com/docs/5.3/components/card/#navigation">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://getbootstrap.com/docs/5.3/components/card/#navigation">Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="customerBtn">Customer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://getbootstrap.com/docs/5.3/components/card/#navigation">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://getbootstrap.com/docs/5.3/components/card/#navigation">User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://getbootstrap.com/docs/5.3/components/card/#navigation">Supplier</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://getbootstrap.com/docs/5.3/components/card/#navigation">Inventory</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://getbootstrap.com/docs/5.3/components/card/#navigation">Supply</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://getbootstrap.com/docs/5.3/components/card/#navigation">Invoice</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-content"></div>
+    </div>
+
+    <section class="customer" style="display: none">
+        <form>
+            <div class="form-title">
+                <nav class="navbar" style="background-color: gray">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">
+                            <i class="fas fa-users"></i>
+                            Customer
+                        </a>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="form-search">
+                <nav class="navbar bg-body-tertiary">
+                    <div class="container">
+                        <form class="d-flex" role="search">
+                            <div>
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            </div>
+                            <div>
+                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-primary" id="customer-add-btn">+ Add Customer</button>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="customer-table">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Ashani Warushika</td>
+                        <td>Colombo</td>
+                        <td>warushikawijayarathna@gmail.com</td>
+                        <td>
+                            <button type="button" class="btn btn-primary">Edit</button>
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Hashani Warushika</td>
+                        <td>Colombo</td>
+                        <td>warushikawijayarathna@gmail.com</td>
+                        <td>
+                            <button type="button" class="btn btn-primary">Edit</button>
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Ushani Warushika</td>
+                        <td>Colombo</td>
+                        <td>warushikawijayarathna@gmail.com</td>
+                        <td>
+                            <button type="button" class="btn btn-primary">Edit</button>
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>Heshani Warushika</td>
+                        <td>Colombo</td>
+                        <td>warushikawijayarathna@gmail.com</td>
+                        <td>
+                            <button type="button" class="btn btn-primary">Edit</button>
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </section>
+
+    <section class="customer-form">
+        <div class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">New Customer</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail2" class="form-label">Customer Id : </label>
+                                <br>
+                                <label for="exampleInputEmail2" class="form-label">Customer Id</label>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail2" class="form-label">Name</label>
+                                <input class="form-control" type="text" aria-label="default input example">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail2" class="form-label">Address</label>
+                                <input class="form-control" type="text" aria-label="default input example">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail2" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp">
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!--    Bootstrap script-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <!-- Custom JS -->
+    <script src="assets/scripts/script.js"></script>
 </body>
 </html>
