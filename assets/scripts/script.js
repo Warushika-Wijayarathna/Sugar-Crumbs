@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const customerButton = document.getElementById('customerBtn');
     const mainContent = document.querySelector('.main-content');
     const customerSection = document.querySelector('.customer');
-    const customerModal = new bootstrap.Modal(document.querySelector('.customer-form .modal'));
 
     customerButton.addEventListener('click', function (event) {
         event.preventDefault();
@@ -29,41 +28,6 @@ document.addEventListener('DOMContentLoaded', function () {
         mainContent.appendChild(customerSection);
         customerSection.style.display = 'block';
     });
-
-    const closeModalButtons = document.querySelectorAll('[data-bs-dismiss="modal"]');
-    closeModalButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
-            customerModal.hide();
-            mainContent.innerHTML = '';
-            mainContent.appendChild(customerSection);
-            customerSection.style.display = 'block';
-        });
-    });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    const customerButton = document.getElementById('customer-add-btn');
-    const customerModal = new bootstrap.Modal(document.querySelector('.customer-form .modal'));
-
-    customerButton.addEventListener('click', function () {
-        customerModal.show();
-    });
-
-    const closeModalButtons = document.querySelectorAll('[data-bs-dismiss="modal"]');
-    closeModalButtons.forEach(function (button) {
-        button.addEventListener('click', function () {
-            customerModal.hide();
-        });
-    });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    const customerButton = document.getElementById('customer-add-btn');
-    const customerModal = new bootstrap.Modal(document.querySelector('.customer-form .modal'));
-
-    customerButton.addEventListener('click', function () {
-        customerModal.show();
-    });
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -82,49 +46,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    const customerButton = document.getElementById('customer-add-btn');
-    const customerModal = new bootstrap.Modal(document.querySelector('.customer-form .modal'));
 
-    customerButton.addEventListener('click', function () {
-        customerModal.show();
-    });
 
-    const tableRows = document.querySelectorAll('.customer-table tbody tr');
-    tableRows.forEach(function (row) {
-        row.addEventListener('click', function () {
-            customerModal.show();
-            addUpdateAndDeleteButtons();
-        });
-    });
 
-    function addUpdateAndDeleteButtons() {
-        const modalFooter = document.querySelector('.customer-form .modal-footer');
-        if (!document.getElementById('update-btn')) {
-            const updateButton = document.createElement('button');
-            updateButton.type = 'button';
-            updateButton.className = 'btn btn-success';
-            updateButton.id = 'update-btn';
-            updateButton.textContent = 'Update';
-            updateButton.addEventListener('click', function () {
-                // Add your update logic here
-                alert('Update button clicked');
-            });
-            modalFooter.appendChild(updateButton);
-        }
-
-        if (!document.getElementById('delete-btn')) {
-            const deleteButton = document.createElement('button');
-            deleteButton.type = 'button';
-            deleteButton.className = 'btn btn-danger';
-            deleteButton.id = 'delete-btn';
-            deleteButton.textContent = 'Delete';
-            deleteButton.addEventListener('click', function () {
-                // Add your delete logic here
-                alert('Delete button clicked');
-            });
-            modalFooter.appendChild(deleteButton);
-        }
-    }
-});
 
