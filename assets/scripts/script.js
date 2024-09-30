@@ -50,11 +50,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     tableRows.forEach(function (row) {
         row.addEventListener('click', function () {
-            const customer_id = row.querySelector('.cust-row-id').textContent;
-            const customer_name = row.querySelector('.cust-row-name').textContent;
-            const customer_email = row.querySelector('.cust-row-email').textContent;
-            const customer_phone = row.querySelector('.cust-row-phone').textContent;
-            const customer_address = row.querySelector('.cust-row-address').textContent;
+            const customer_id = row.querySelector('.row-id').textContent;
+            const customer_name = row.querySelector('.row-name').textContent;
+            const customer_email = row.querySelector('.row-email').textContent;
+            const customer_phone = row.querySelector('.row-phone').textContent;
+            const customer_address = row.querySelector('.row-address').textContent;
 
             id.textContent = customer_id;
             name.value = customer_name;
@@ -66,6 +66,61 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const userButton = document.getElementById('userBtn');
+    const mainContent = document.querySelector('.main-content');
+    const userSection = document.querySelector('.user');
+
+    userButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        mainContent.innerHTML = '';
+        mainContent.appendChild(userSection);
+        userSection.style.display = 'block';
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const customerButton = document.getElementById('user-add-btn');
+    const customerModal = new bootstrap.Modal(document.querySelector('.user-form .modal'));
+
+    customerButton.addEventListener('click', function () {
+        customerModal.show();
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const tableRows = document.querySelectorAll('.user-table tbody tr');
+    const customerModal = new bootstrap.Modal(document.querySelector('.user-form-edit .modal'));
+    const id = document.getElementById('user-id');
+    const name = document.getElementById('user-name');
+    const email = document.getElementById('user-email');
+    const phone = document.getElementById('user-phone');
+    const address = document.getElementById('user-address');
+    const salary = document.getElementById('user-salary');
+
+    tableRows.forEach(function (row) {
+        row.addEventListener('click', function () {
+            const user_id = row.querySelector('.row-id').textContent;
+            const user_name = row.querySelector('.row-name').textContent;
+            const user_email = row.querySelector('.row-email').textContent;
+            const user_phone = row.querySelector('.row-phone').textContent;
+            const user_address = row.querySelector('.row-address').textContent;
+            const user_salary = row.querySelector('.row-salary').textContent;
+
+            id.textContent = user_id;
+            name.value = user_name;
+            email.value = user_email;
+            phone.value = user_phone;
+            address.value = user_address;
+            salary.value = user_salary;
+
+
+            customerModal.show();
+        });
+    });
+});
+
 
 
 

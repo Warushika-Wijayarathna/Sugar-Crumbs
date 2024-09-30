@@ -13,13 +13,13 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/styles/style.css">
 
-    <!-- Font Awesome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 
 </head>
 <body>
-    <!-- Header-->
+    <!-- Header -->
     <div class="header">
         <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
@@ -53,19 +53,10 @@
                         <a class="nav-link" href="#" id="customerBtn">Customer</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://getbootstrap.com/docs/5.3/components/card/#navigation">Register</a>
+                        <a class="nav-link" href="#">Register</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://getbootstrap.com/docs/5.3/components/card/#navigation">User</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://getbootstrap.com/docs/5.3/components/card/#navigation">Supplier</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://getbootstrap.com/docs/5.3/components/card/#navigation">Inventory</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://getbootstrap.com/docs/5.3/components/card/#navigation">Supply</a>
+                        <a class="nav-link" href="#" id="userBtn">User</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="https://getbootstrap.com/docs/5.3/components/card/#navigation">Invoice</a>
@@ -76,6 +67,7 @@
         <div class="main-content"></div>
     </div>
 
+    <!-- Customer Section -->
     <section class="customer" style="display: none">
         <form>
             <div class="form-title">
@@ -121,41 +113,41 @@
                     </thead>
                     <tbody class="table-group-divider">
                     <tr>
-                        <th scope="row" class="cust-row-id">1</th>
-                        <td class="cust-row-name">Ashani Warushika</td>
-                        <td class="cust-row-address">Colombo</td>
-                        <td class="cust-row-phone">0714437961</td>
-                        <td class="cust-row-email">warushikawijayarathna@gmail.com</td>
+                        <th scope="row" class="row-id">1</th>
+                        <td class="row-name">Ashani Warushika</td>
+                        <td class="row-address">Colombo</td>
+                        <td class="row-phone">0714437961</td>
+                        <td class="row-email">warushikawijayarathna@gmail.com</td>
                         <td>
                             <button type="button" class="btn btn-danger">Delete</button>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" class="cust-row-id">1</th>
-                        <td class="cust-row-name">Ashani Warushika</td>
-                        <td class="cust-row-address">Colombo</td>
-                        <td class="cust-row-phone">0714437961</td>
-                        <td class="cust-row-email">warushikawijayarathna@gmail.com</td>
+                        <th scope="row" class="row-id">1</th>
+                        <td class="row-name">Ashani Warushika</td>
+                        <td class="row-address">Colombo</td>
+                        <td class="row-phone">0714437961</td>
+                        <td class="row-email">warushikawijayarathna@gmail.com</td>
                         <td>
                             <button type="button" class="btn btn-danger">Delete</button>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" class="cust-row-id">1</th>
-                        <td class="cust-row-name">Ashani Warushika</td>
-                        <td class="cust-row-address">Colombo</td>
-                        <td class="cust-row-phone">0714437961</td>
-                        <td class="cust-row-email">warushikawijayarathna@gmail.com</td>
+                        <th scope="row" class="row-id">1</th>
+                        <td class="row-name">Ashani Warushika</td>
+                        <td class="row-address">Colombo</td>
+                        <td class="row-phone">0714437961</td>
+                        <td class="row-email">warushikawijayarathna@gmail.com</td>
                         <td>
                             <button type="button" class="btn btn-danger">Delete</button>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" class="cust-row-id">1</th>
-                        <td class="cust-row-name">Ashani Warushika</td>
-                        <td class="cust-row-address">Colombo</td>
-                        <td class="cust-row-phone">0714437961</td>
-                        <td class="cust-row-email">warushikawijayarathna@gmail.com</td>
+                        <th scope="row" class="row-id">1</th>
+                        <td class="row-name">Ashani Warushika</td>
+                        <td class="row-address">Colombo</td>
+                        <td class="row-phone">0714437961</td>
+                        <td class="row-email">warushikawijayarathna@gmail.com</td>
                         <td>
                             <button type="button" class="btn btn-danger">Delete</button>
                         </td>
@@ -166,6 +158,105 @@
         </form>
     </section>
 
+    <!-- User Section -->
+    <section class="user" style="display: none">
+        <form>
+            <div class="form-title">
+                <nav class="navbar" style="background-color: gray">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">
+                            <i class="fa-solid fa-user-tie"></i>
+                            User
+                        </a>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="form-search">
+                <nav class="navbar bg-body-tertiary">
+                    <div class="container">
+                        <form class="d-flex" role="search">
+                            <div>
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            </div>
+                            <div>
+                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-primary" id="user-add-btn">+ Add Customer</button>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="user-table">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Contact</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Salary</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                    <tr>
+                        <th scope="row" class="row-id">1</th>
+                        <td class="row-name">Ashani Warushika</td>
+                        <td class="row-address">Colombo</td>
+                        <td class="row-phone">0714437961</td>
+                        <td class="row-email">warushikawijayarathna@gmail.com</td>
+                        <td class="row-salary">50,000</td>
+                        <td>
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="row-id">1</th>
+                        <td class="row-name">Ashani Warushika</td>
+                        <td class="row-address">Colombo</td>
+                        <td class="row-phone">0714437961</td>
+                        <td class="row-email">warushikawijayarathna@gmail.com</td>
+                        <td class="row-salary">50,000</td>
+                        <td>
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="row-id">1</th>
+                        <td class="row-name">Ashani Warushika</td>
+                        <td class="row-address">Colombo</td>
+                        <td class="row-phone">0714437961</td>
+                        <td class="row-email">warushikawijayarathna@gmail.com</td>
+                        <td class="row-salary">50,000</td>
+                        <td>
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="row-id">1</th>
+                        <td class="row-name">Ashani Warushika</td>
+                        <td class="row-address">Colombo</td>
+                        <td class="row-phone">0714437961</td>
+                        <td class="row-email">warushikawijayarathna@gmail.com</td>
+                        <td class="row-salary">50,000</td>
+                        <td>
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </section>
+
+    <!-- Forms -->
+
+    <!--Customer Form -->
     <section class="customer-form">
         <div class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -211,6 +302,7 @@
         </div>
     </section>
 
+    <!--Customer Form Edit -->
     <section class="customer-form-edit">
         <div class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -244,6 +336,109 @@
                             <div class="mb-3">
                                 <label for="customer-email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="customer-email" aria-describedby="emailHelp">
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-success">Update</button>
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--User Form -->
+    <section class="user-form">
+        <div class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">New Customer</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail2" class="form-label">User Id : </label>
+                                <br>
+                                <label for="exampleInputEmail2" class="form-label">User Id</label>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail2" class="form-label">Name</label>
+                                <input class="form-control" type="text" aria-label="default input example">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Address</label>
+                                <input class="form-control" type="text" aria-label="default input example">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control"
+                                       placeholder="(123) 456-7890"
+                                       pattern="^\(\d{3}\) \d{3}-\d{4}$"
+                                       title="Phone number should be in the format (123) 456-7890">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Salary</label>
+                                <input class="form-control" type="text" aria-label="default input example">
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--User Form Edit -->
+    <section class="user-form-edit">
+        <div class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Customer</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="user-id" class="form-label">Customer Id : </label>
+                                <br>
+                                <label for="exampleInputEmail2" class="form-label" id="user-id">Customer Id</label>
+                            </div>
+                            <div class="mb-3">
+                                <label for="user-name" class="form-label">Name</label>
+                                <input class="form-control" id="user-name"type="text" aria-label="default input example">
+                            </div>
+                            <div class="mb-3">
+                                <label for="customer-address" class="form-label">Address</label>
+                                <input class="form-control" id="user-address" type="text" aria-label="default input example">
+                            </div>
+                            <div class="mb-3">
+                                <label for="customer-phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="user-phone"
+                                       placeholder="(123) 456-7890"
+                                       pattern="^\(\d{3}\) \d{3}-\d{4}$"
+                                       title="Phone number should be in the format (123) 456-7890">
+                            </div>
+                            <div class="mb-3">
+                                <label for="customer-email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="user-email" aria-describedby="emailHelp">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="user-salary" class="form-label">Salary</label>
+                                <input class="form-control" id="user-salary" type="text" aria-label="default input example">
                             </div>
                         </form>
                     </div>
