@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const customer_phone = row.querySelector('.cust-row-phone').textContent;
             const customer_address = row.querySelector('.cust-row-address').textContent;
 
-            id.value = customer_id;
+            id.textContent = customer_id;
             name.value = customer_name;
             email.value = customer_email;
             phone.value = customer_phone;
