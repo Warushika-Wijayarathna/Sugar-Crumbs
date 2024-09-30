@@ -31,8 +31,23 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
+    const customerButton = document.getElementById('customer-add-btn');
+    const customerModal = new bootstrap.Modal(document.querySelector('.customer-form .modal'));
+
+    customerButton.addEventListener('click', function () {
+        customerModal.show();
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
     const tableRows = document.querySelectorAll('.customer-table tbody tr');
     const customerModal = new bootstrap.Modal(document.querySelector('.customer-form-edit .modal'));
+
+    const id = document.getElementById('customer-id');
+    const name = document.getElementById('customer-name');
+    const email = document.getElementById('customer-email');
+    const phone = document.getElementById('customer-phone');
+    const address = document.getElementById('customer-address');
 
     tableRows.forEach(function (row) {
         row.addEventListener('click', function () {
@@ -40,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-
 
 
 

@@ -182,7 +182,14 @@
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail2" class="form-label">Address</label>
-                                <input class="form-control" type="text" aria-label="default input example">
+                                <input class="form-control" id="customer-address2" type="text" aria-label="default input example">
+                            </div>
+                            <div class="mb-3">
+                                <label for="customerPhone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="customerPhone"
+                                       placeholder="(123) 456-7890"
+                                       pattern="^\(\d{3}\) \d{3}-\d{4}$"
+                                       title="Phone number should be in the format (123) 456-7890">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail2" class="form-label">Email</label>
@@ -210,21 +217,28 @@
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="exampleInputEmail2" class="form-label">Customer Id : </label>
+                                <label for="customer-id" class="form-label">Customer Id : </label>
                                 <br>
-                                <label for="exampleInputEmail2" class="form-label">Customer Id</label>
+                                <label for="exampleInputEmail2" class="form-label" id="customer-id">Customer Id</label>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail2" class="form-label">Name</label>
-                                <input class="form-control" type="text" aria-label="default input example">
+                                <label for="customer-name" class="form-label">Name</label>
+                                <input class="form-control" id="customer-name"type="text" aria-label="default input example">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail2" class="form-label">Address</label>
-                                <input class="form-control" type="text" aria-label="default input example">
+                                <label for="customer-address" class="form-label">Address</label>
+                                <input class="form-control" id="customer-address" type="text" aria-label="default input example">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                <label for="customerPhone2" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="customerPhone2"
+                                       placeholder="(123) 456-7890"
+                                       pattern="^\(\d{3}\) \d{3}-\d{4}$"
+                                       title="Phone number should be in the format (123) 456-7890">
+                            </div>
+                            <div class="mb-3">
+                                <label for="customer-email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="customer-email" aria-describedby="emailHelp">
                             </div>
                         </form>
                     </div>
@@ -246,5 +260,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
     <!-- Custom JS -->
     <script src="assets/scripts/script.js"></script>
+
 </body>
 </html>
