@@ -1,0 +1,17 @@
+/*fonts-import*/
+/*Poppins*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.aside-navigation div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.aside-navigation ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
