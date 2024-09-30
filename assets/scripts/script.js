@@ -1,4 +1,3 @@
-//call nav-link active when hovering whlie hovering nav nav-pills card-header-pills ul items
 document.addEventListener('DOMContentLoaded', function() {
     const navItems = document.querySelectorAll('.nav-item');
 
@@ -51,6 +50,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     tableRows.forEach(function (row) {
         row.addEventListener('click', function () {
+            const customer_id = row.querySelector('.cust-row-id').textContent;
+            const customer_name = row.querySelector('.cust-row-name').textContent;
+            const customer_email = row.querySelector('.cust-row-email').textContent;
+            const customer_phone = row.querySelector('.cust-row-phone').textContent;
+            const customer_address = row.querySelector('.cust-row-address').textContent;
+
+            id.value = customer_id;
+            name.value = customer_name;
+            email.value = customer_email;
+            phone.value = customer_phone;
+            address.value = customer_address;
+
             customerModal.show();
         });
     });
