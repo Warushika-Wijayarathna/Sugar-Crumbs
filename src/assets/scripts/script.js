@@ -1,3 +1,4 @@
+////////////////////////////////////////////////////// Sidebar Toggle //////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', function() {
     const navItems = document.querySelectorAll('.nav-item');
 
@@ -16,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+////////////////////////////////////////////////////// Customer Section Load //////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', function () {
     const customerButton = document.getElementById('customerBtn');
     const mainContent = document.querySelector('.main-content');
@@ -29,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+////////////////////////////////////////////////////// Customer Add Form Load //////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', function () {
     const customerButton = document.getElementById('customer-add-btn');
     const customerModal = new bootstrap.Modal(document.querySelector('.customer-form .modal'));
@@ -38,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+////////////////////////////////////////////////////// Data load for Edit Customer Form //////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', function () {
     const tableRows = document.querySelectorAll('.customer-table tbody tr');
     const customerModal = new bootstrap.Modal(document.querySelector('.customer-form-edit .modal'));
@@ -67,6 +71,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+////////////////////////////////////////////////////// User Section Load //////////////////////////////////////////////////////////
+
 document.addEventListener('DOMContentLoaded', function () {
     const userButton = document.getElementById('userBtn');
     const mainContent = document.querySelector('.main-content');
@@ -80,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+////////////////////////////////////////////////////// User Add Form Load //////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', function () {
     const customerButton = document.getElementById('user-add-btn');
     const customerModal = new bootstrap.Modal(document.querySelector('.user-form .modal'));
@@ -89,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+////////////////////////////////////////////////////// Data load for Edit User Form //////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', function () {
     const tableRows = document.querySelectorAll('.user-table tbody tr');
     const customerModal = new bootstrap.Modal(document.querySelector('.user-form-edit .modal'));
@@ -121,6 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+////////////////////////////////////////////////////// Product Section Load //////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', function () {
     const productButton = document.getElementById('productBtn');
     const mainContent = document.querySelector('.main-content');
@@ -134,9 +143,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+////////////////////////////////////////////////////// Product Add Form Load //////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', function () {
     const customerButton = document.getElementById('product-add-btn');
-    const customerModal = new bootstrap.Modal(document.querySelector('.product-form .modal'));
+    const customerModal = new bootstrap.Modal(document.querySelector('.product-form-new .modal'));
 
     customerButton.addEventListener('click', function () {
         customerModal.show();
@@ -144,55 +154,48 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-////////////////////////////////////////////////////// Image Upload//////////////////////////////////////////////////////////
+////////////////////////////////////////////////////// Image Upload for New Product Form //////////////////////////////////////////////////////////
 
-const uploadBox = document.getElementById('uploadBox');
-const fileInput = document.getElementById('fileInput');
-const browseFileButton = document.getElementById('browseFileButton');
+const uploadBoxNew = document.getElementById('uploadBoxNew');
+const fileInputNew = document.getElementById('fileInputNew');
+const browseFileButtonNew = document.getElementById('browseFileButtonNew');
 
-// Open file dialog when clicking the browse button
-browseFileButton.addEventListener('click', () => {
-    fileInput.click();
+browseFileButtonNew.addEventListener('click', () => {
+    fileInputNew.click();
 });
 
-// Handle file drag & drop
-uploadBox.addEventListener('dragover', (event) => {
+uploadBoxNew.addEventListener('dragover', (event) => {
     event.preventDefault();
-    uploadBox.style.borderColor = '#fff';
+    uploadBoxNew.style.borderColor = '#fff';
 });
 
-uploadBox.addEventListener('dragleave', () => {
-    uploadBox.style.borderColor = '#ffffff';
+uploadBoxNew.addEventListener('dragleave', () => {
+    uploadBoxNew.style.borderColor = '#ffffff';
 });
 
-uploadBox.addEventListener('drop', (event) => {
+uploadBoxNew.addEventListener('drop', (event) => {
     event.preventDefault();
     const file = event.dataTransfer.files[0];
-    handleFile(file);
-    uploadBox.style.borderColor = '#ffffff';
+    handleFileNew(file);
+    uploadBoxNew.style.borderColor = '#ffffff';
 });
 
-// Handle file input change
-fileInput.addEventListener('change', (event) => {
+fileInputNew.addEventListener('change', (event) => {
     const file = event.target.files[0];
-    handleFile(file);
+    handleFileNew(file);
 });
 
-function handleFile(file) {
-    // Check if the file is an image
+function handleFileNew(file) {
     if (file && file.type.startsWith('image/')) {
         const reader = new FileReader();
 
         reader.onload = function (event) {
-            // Replace the content inside the upload box with image preview and delete button
-            uploadBox.innerHTML = `
+            uploadBoxNew.innerHTML = `
                 <img src="${event.target.result}" alt="Image Preview" class="preview">
-                <button class="delete-button" id="deleteButton">Delete Image</button>
+                <button class="delete-button" id="deleteButtonNew">Delete Image</button>
             `;
 
-            // Add event listener for delete button
-            const deleteButton = document.getElementById('deleteButton');
-            deleteButton.addEventListener('click', resetUploadBox);
+            document.getElementById('deleteButtonNew').addEventListener('click', resetUploadBoxNew);
         };
 
         reader.readAsDataURL(file);
@@ -201,22 +204,98 @@ function handleFile(file) {
     }
 }
 
-function resetUploadBox() {
-    // Restore the original drag-and-drop interface
-    uploadBox.innerHTML = `
+function resetUploadBoxNew() {
+    uploadBoxNew.innerHTML = `
         <i class="fa-solid fa-cloud-arrow-up"></i>
         <p>Drag & Drop to Upload File</p>
         <p>OR</p>
-        <button id="browseFileButton">Browse File</button>
-        <input type="file" id="fileInput" hidden>
+        <button id="browseFileButtonNew">Browse File</button>
+        <input type="file" id="fileInputNew" hidden>
     `;
 
-    // Re-attach event listeners for new elements
-    const browseFileButton = document.getElementById('browseFileButton');
-    const fileInput = document.getElementById('fileInput');
+    const browseFileButtonNew = document.getElementById('browseFileButtonNew');
+    const fileInputNew = document.getElementById('fileInputNew');
 
-    browseFileButton.addEventListener('click', () => fileInput.click());
-    fileInput.addEventListener('change', (event) => handleFile(event.target.files[0]));
+    browseFileButtonNew.addEventListener('click', () => fileInputNew.click());
+    fileInputNew.addEventListener('change', (event) => handleFileNew(event.target.files[0]));
 }
 
+////////////////////////////////////////// Product Edit Form Load //////////////////////////////////////////
+
+document.addEventListener('DOMContentLoaded', function () {
+    const tableRows = document.querySelectorAll('.product-table tbody tr');
+    const productModalEdit = new bootstrap.Modal(document.querySelector('.product-form-edit .modal'));
+    const code = document.getElementById('editProductCode');
+    const description = document.getElementById('editProductDesc');
+    const unitPrice = document.getElementById('editProductUnitPrice');
+    const qtyOnHand = document.getElementById('editProductQtyOnHand');
+    const uploadBoxEdit = document.getElementById('uploadBoxEdit');
+    const imagePreviewEdit = document.getElementById('imagePreviewEdit');
+    const uploadTextEdit = document.getElementById('uploadTextEdit');
+    const fileInputEdit = document.getElementById('fileInputEdit');
+
+    function resetUploadBoxEdit() {
+        imagePreviewEdit.style.display = 'none';
+        imagePreviewEdit.src = '';
+        uploadTextEdit.style.display = 'block';
+    }
+
+    tableRows.forEach(function (row) {
+        row.addEventListener('click', function () {
+            const item_code = row.querySelector('.row-id').textContent;
+            const item_description = row.querySelector('.row-desc').textContent;
+            const item_unit_price = row.querySelector('.row-price').textContent;
+            const item_qty_on_hand = row.querySelector('.row-qty').textContent;
+            const item_image = row.querySelector('.row-image img')?.getAttribute('src');
+
+            code.value = item_code;
+            description.value = item_description;
+            unitPrice.value = item_unit_price;
+            qtyOnHand.value = item_qty_on_hand;
+
+            if (item_image) {
+                imagePreviewEdit.src = item_image;
+                imagePreviewEdit.style.display = 'block';
+                uploadTextEdit.style.display = 'none';
+            } else {
+                resetUploadBoxEdit();
+            }
+
+            productModalEdit.show();
+        });
+    });
+
+    fileInputEdit.addEventListener('change', function () {
+        const file = fileInputEdit.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                imagePreviewEdit.src = e.target.result;
+                imagePreviewEdit.style.display = 'block';
+                uploadTextEdit.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            resetUploadBoxEdit();
+        }
+    });
+
+    document.getElementById('browseFileButtonEdit').addEventListener('click', function () {
+        fileInputEdit.click();
+    });
+});
+
+////////////////////////////////////////////////////// Product Section Load //////////////////////////////////////////////////////////
+document.addEventListener('DOMContentLoaded', function () {
+    const registerButton = document.getElementById('registerBtn');
+    const mainContent = document.querySelector('.main-content');
+    const registerSection = document.querySelector('.cash-register');
+
+    registerButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        mainContent.innerHTML = '';
+        mainContent.appendChild(registerSection);
+        registerSection.style.display = 'block';
+    });
+});
 

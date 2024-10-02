@@ -106,7 +106,7 @@ body
     padding: 20px;
 }
 
-.customer, .user, .product
+.customer, .user, .product, .cash-register
 {
     margin-top: 1%;
 }

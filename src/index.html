@@ -35,7 +35,7 @@
         </nav>
     </div>
 
-    <!--    Navigation-->
+    <!-- Navigation -->
     <div class="dashboard">
         <div class="aside-navigation">
             <div class="profile-picture">
@@ -54,7 +54,7 @@
                         <a class="nav-link" href="#" id="customerBtn">Customer</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Register</a>
+                        <a class="nav-link" href="#" id="registerBtn">Register</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" id="userBtn">User</a>
@@ -287,7 +287,7 @@
                 </nav>
             </div>
 
-            <div class="user-table">
+            <div class="product-table">
                 <table class="table">
                     <thead>
                     <tr>
@@ -304,7 +304,7 @@
                         <th scope="row" class="row-id">1</th>
                         <td class="row-desc">Butter Cake 1kg</td>
                         <td class="row-image">
-                            <img src="https://p16-va.lemon8cdn.com/tos-alisg-v-a3e477-sg/64485364429546b1b1ab4090730b0c60~tplv-tej9nj120t-origin.webp" alt="Butter cake">
+                            <img src="https://p16-va.lemon8cdn.com/tos-alisg-v-a3e477-sg/64485364429546b1b1ab4090730b0c60~tplv-tej9nj120t-origin.webp" alt="Butter cake" class="preview">
                         </td>
                         <td class="row-price">Rs.500.00</td>
                         <td class="row-qty">10</td>
@@ -316,7 +316,7 @@
                         <th scope="row" class="row-id">1</th>
                         <td class="row-desc">Chocolate 1kg</td>
                         <td class="row-image">
-                            <img src="https://www.cookingclassy.com/wp-content/uploads/2022/04/easy-chocolate-cake-2-600x900.jpg" alt="Chocolate cake">
+                            <img src="https://www.cookingclassy.com/wp-content/uploads/2022/04/easy-chocolate-cake-2-600x900.jpg" alt="Chocolate cake" class="preview">
                         </td>
                         <td class="row-price">Rs.800.00</td>
                         <td class="row-qty">15</td>
@@ -328,7 +328,7 @@
                         <th scope="row" class="row-id">1</th>
                         <td class="row-desc">Ribbon Cake 1kg</td>
                         <td class="row-image">
-                            <img src="https://www.wishque.com/data/images/products/5178/15559498_781637321743_0.27734600-1596597953.jpg" alt="Ribbon cake">
+                            <img src="https://www.wishque.com/data/images/products/5178/15559498_781637321743_0.27734600-1596597953.jpg" alt="Ribbon cake" class="preview">
                         </td>
                         <td class="row-price">Rs.600.00</td>
                         <td class="row-qty">10</td>
@@ -342,8 +342,151 @@
         </form>
     </section>
 
+    <!-- Cash Register Section -->
+    <section class="cash-register" style="display: none">
+        <form>
+            <div class="form-title">
+                <nav class="navbar" style="background-color: gray">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">
+                            <i class="fa-solid fa-user-tie"></i>
+                            Cash Register
+                        </a>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="form-search">
+                <nav class="navbar bg-body-tertiary">
+                    <div class="container">
+                        <form class="d-flex" role="search">
+                            <div>
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            </div>
+                            <div>
+                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+
+            <!-- Customer Phone Number Search Bar -->
+            <div class="form-customer-search">
+                <nav class="navbar bg-body-tertiary mt-2">
+                    <div class="container">
+                        <form class="d-flex" role="search">
+                            <div>
+                                <input class="form-control me-2" type="search" placeholder="Search by Customer Phone Number" aria-label="Search by Phone Number">
+                            </div>
+                            <div>
+                                <button class="btn btn-outline-info" type="submit">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+
+            <!-- POS Layout Start -->
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- Sidebar -->
+                    <div class="col-md-2 sidebar p-4">
+                        <h4 class="mb-4">Posive</h4>
+                        <nav class="nav flex-column">
+                            <a class="nav-link active" href="#">POS</a>
+                            <a class="nav-link" href="#">Overview</a>
+                            <a class="nav-link" href="#">Product</a>
+                            <a class="nav-link" href="#">Settings</a>
+                            <a class="nav-link" href="#">Help Center</a>
+                        </nav>
+                    </div>
+
+                    <!-- Product List -->
+                    <div class="col-md-7 p-4">
+                        <h5>Let's do your best today 🚀</h5>
+                        <p>Date: December 18, 2023</p>
+
+                        <!-- Categories -->
+                        <div class="mb-4">
+                            <button class="btn btn-outline-primary me-2">Main Course</button>
+                            <button class="btn btn-outline-secondary me-2">Rice Bowl</button>
+                            <button class="btn btn-outline-secondary me-2">Fast Food</button>
+                            <button class="btn btn-outline-secondary">Healthy Food</button>
+                        </div>
+
+                        <!-- Product Cards -->
+                        <div class="row row-cols-1 row-cols-md-3 g-4">
+                            <div class="col">
+                                <div class="card product-card">
+                                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Healthy Salad">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Healthy Salad</h5>
+                                        <p class="card-text">$10.00</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card product-card">
+                                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Indomie with Cheese">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Indomie with Cheese</h5>
+                                        <p class="card-text">$15.00</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Add more products similarly -->
+                        </div>
+                    </div>
+
+                    <!-- Cart/Order Summary -->
+                    <div class="col-md-3 p-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">William Defoe</h5>
+                                <p class="card-text">#12312312</p>
+
+                                <h6>Your Order:</h6>
+                                <ul class="list-group mb-3">
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span>Healthy Salad</span>
+                                        <span>$10.00</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <span>Smokey Beef</span>
+                                        <span>$12.00</span>
+                                    </li>
+                                </ul>
+
+                                <h6>Total:</h6>
+                                <p>Subtotal: $32.99</p>
+                                <p>Service Tax: $2.00</p>
+                                <h6>Total Payment: $34.99</h6>
+
+                                <div class="mb-3">
+                                    <label for="paymentMethod" class="form-label">Payment Method</label>
+                                    <select class="form-select" id="paymentMethod">
+                                        <option selected>Master Card</option>
+                                        <option>Paypal</option>
+                                        <option>Scan Code</option>
+                                    </select>
+                                </div>
+
+                                <button class="btn btn-primary w-100">Make Order</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- POS Layout End -->
+
+        </form>
+    </section>
+
+
+
     <!-- Forms -->
-    <!--Customer Form -->
+    <!-- Customer Form -->
     <section class="customer-form">
         <div class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -389,7 +532,7 @@
         </div>
     </section>
 
-    <!--Customer Form Edit -->
+    <!-- Customer Form Edit -->
     <section class="customer-form-edit">
         <div class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -437,7 +580,7 @@
         </div>
     </section>
 
-    <!--User Form -->
+    <!-- User Form -->
     <section class="user-form">
         <div class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -487,7 +630,7 @@
         </div>
     </section>
 
-    <!--User Form Edit -->
+    <!-- User Form Edit -->
     <section class="user-form-edit">
         <div class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -540,46 +683,44 @@
         </div>
     </section>
 
-    <!--Product Form -->
-    <section class="product-form">
+    <!-- Product Form (New) -->
+    <section class="product-form-new">
         <div class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">New Customer</h5>
+                        <h5 class="modal-title">New Product</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form id="new-product-form">
                             <div class="mb-3">
-                                <label for="exampleInputEmail2" class="form-label">Code : </label>
-                                <br>
-                                <label for="exampleInputEmail2" class="form-label">Code</label>
+                                <label for="newProductCode" class="form-label">Code:</label>
+                                <input id="newProductCode" class="form-control" type="text">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail2" class="form-label">Description</label>
-                                <input class="form-control" type="text" aria-label="default input example">
+                                <label for="newProductDesc" class="form-label">Description:</label>
+                                <input id="newProductDesc" class="form-control" type="text">
                             </div>
                             <div class="upload-container">
-                                <div class="upload-box" id="uploadBox">
+                                <div class="upload-box" id="uploadBoxNew">
                                     <i class="fa-solid fa-cloud-arrow-up"></i>
                                     <p>Drag & Drop to Upload File</p>
                                     <p>OR</p>
-                                    <button id="browseFileButton">Browse File</button>
-                                    <input type="file" id="fileInput" hidden>
+                                    <button type="button" id="browseFileButtonNew">Browse File</button>
+                                    <input type="file" id="fileInputNew" hidden>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Unit Price</label>
-                                <input type="email" class="form-control" aria-describedby="emailHelp">
+                                <label for="newProductUnitPrice" class="form-label">Unit Price:</label>
+                                <input id="newProductUnitPrice" class="form-control" type="text">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Qty On Hand</label>
-                                <input class="form-control" type="text" aria-label="default input example">
+                                <label for="newProductQtyOnHand" class="form-label">Qty On Hand:</label>
+                                <input id="newProductQtyOnHand" class="form-control" type="text">
                             </div>
                         </form>
                     </div>
-
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary">Save</button>
                     </div>
@@ -588,37 +729,46 @@
         </div>
     </section>
 
-    <!-- Product Form Edit -->
+    <!-- Product Form (Edit) -->
     <section class="product-form-edit">
         <div class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Customer</h5>
+                        <h5 class="modal-title">Edit Product</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form id="edit-product-form">
                             <div class="mb-3">
-                                <label for="exampleInputEmail2" class="form-label">Code : </label>
-                                <br>
-                                <label id="item-code" class="form-label">Code</label>
+                                <label for="editProductCode" class="form-label">Code:</label>
+                                <input id="editProductCode" class="form-control" type="text">
                             </div>
                             <div class="mb-3">
-                                <label for="item-desc" class="form-label">Description</label>
-                                <input class="form-control" id="item-desc" type="text" aria-label="default input example">
+                                <label for="editProductDesc" class="form-label">Description:</label>
+                                <input id="editProductDesc" class="form-control" type="text">
+                            </div>
+                            <div class="upload-container">
+                                <div class="upload-box" id="uploadBoxEdit">
+                                    <!-- Image Preview and Upload UI -->
+                                    <img id="imagePreviewEdit" class="preview" src="" alt="Image Preview" style="display:none;" />
+                                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                                    <p id="uploadTextEdit">Drag & Drop to Upload File</p>
+                                    <p>OR</p>
+                                    <button type="button" id="browseFileButtonEdit">Browse File</button>
+                                    <input type="file" id="fileInputEdit" hidden>
+                                </div>
                             </div>
                             <div class="mb-3">
-                                <label for="item-unit-price" class="form-label">Unit Price</label>
-                                <input type="email" id="item-unit-price" class="form-control" aria-describedby="emailHelp">
+                                <label for="editProductUnitPrice" class="form-label">Unit Price:</label>
+                                <input id="editProductUnitPrice" class="form-control" type="text">
                             </div>
                             <div class="mb-3">
-                                <label for="item-qty-on-hand" class="form-label">Qty On Hand</label>
-                                <input class="form-control" id="item-qty-on-hand" type="text" aria-label="default input example">
+                                <label for="editProductQtyOnHand" class="form-label">Qty On Hand:</label>
+                                <input id="editProductQtyOnHand" class="form-control" type="text">
                             </div>
                         </form>
                     </div>
-
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary">Save</button>
                         <button type="button" class="btn btn-success">Update</button>
@@ -628,6 +778,7 @@
             </div>
         </div>
     </section>
+
 
     <!--    Bootstrap script-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
