@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const navLink = this.querySelector('.nav-link');
             navLink.classList.add('active');
             navLink.style.background = 'rgba(248, 187, 208, 0.51)';
+            navLink.style.color = '#FFF8E1';
         });
 
         item.addEventListener('mouseout', function() {
@@ -17,34 +18,65 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+/////////////////////////////////////////////////////////// Sidebar Toggle - Selected //////////////////////////////////////////////////////////
+document.addEventListener("DOMContentLoaded", function() {
+    // Get all navigation links
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            // Remove the 'bold' class from all links
+            navLinks.forEach(nav => nav.classList.remove('bold'));
+
+            // Add the 'bold' class to the clicked link
+            this.classList.add('bold');
+        });
+    });
+});
+
 ////////////////////////////////////////////////////// Customer Section Load //////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', function () {
-    const customerButton = document.getElementById('customerBtn');
+    const customerSecButton = document.getElementById('customerBtn');
     const mainContent = document.querySelector('.main-content');
-    const customerSection = document.querySelector('.customer');
+    const customerSecSection = document.querySelector('.customer');
 
-    customerButton.addEventListener('click', function (event) {
+    customerSecButton.addEventListener('click', function (event) {
         event.preventDefault();
         mainContent.innerHTML = '';
-        mainContent.appendChild(customerSection);
-        customerSection.style.display = 'block';
+        mainContent.appendChild(customerSecSection);
+        customerSecSection.style.display = 'block';
     });
 });
 
 ////////////////////////////////////////////////////// Customer Add Form Load //////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', function () {
-    const customerButton = document.getElementById('customer-add-btn');
-    const customerModal = new bootstrap.Modal(document.querySelector('.customer-form .modal'));
+    const customerAddButton = document.getElementById('customer-add-btn');
+    const customerAddModal = new bootstrap.Modal(document.querySelector('.customer-form .modal'));
 
-    customerButton.addEventListener('click', function () {
-        customerModal.show();
+    customerAddButton.addEventListener('click', function () {
+        try {
+            customerAddModal.show();
+            console.log("Modal opened successfully");
+        } catch (error) {
+            console.error("Error opening the modal: ", error);
+        }
+    });
+
+    // Add event listener for closing the modal
+    document.querySelector('.modal .btn-close').addEventListener('click', function () {
+        try {
+            customerAddModal.hide();
+            console.log("Modal closed successfully");
+        } catch (error) {
+            console.error("Error closing the modal: ", error);
+        }
     });
 });
 
 ////////////////////////////////////////////////////// Data load for Edit Customer Form //////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', function () {
     const tableRows = document.querySelectorAll('.customer-table tbody tr');
-    const customerModal = new bootstrap.Modal(document.querySelector('.customer-form-edit .modal'));
+    const customerTableModal = new bootstrap.Modal(document.querySelector('.customer-form-edit .modal'));
 
     const id = document.getElementById('customer-id');
     const name = document.getElementById('customer-name');
@@ -66,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
             phone.value = customer_phone;
             address.value = customer_address;
 
-            customerModal.show();
+            customerTableModal.show();
         });
     });
 });
@@ -88,18 +120,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 ////////////////////////////////////////////////////// User Add Form Load //////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', function () {
-    const customerButton = document.getElementById('user-add-btn');
-    const customerModal = new bootstrap.Modal(document.querySelector('.user-form .modal'));
+    const UserAddButton = document.getElementById('user-add-btn');
+    const UserAddModal = new bootstrap.Modal(document.querySelector('.user-form .modal'));
 
-    customerButton.addEventListener('click', function () {
-        customerModal.show();
+    UserAddButton.addEventListener('click', function () {
+        UserAddModal.show();
     });
 });
 
 ////////////////////////////////////////////////////// Data load for Edit User Form //////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', function () {
     const tableRows = document.querySelectorAll('.user-table tbody tr');
-    const customerModal = new bootstrap.Modal(document.querySelector('.user-form-edit .modal'));
+    const userTableModal = new bootstrap.Modal(document.querySelector('.user-form-edit .modal'));
     const id = document.getElementById('user-id');
     const name = document.getElementById('user-name');
     const email = document.getElementById('user-email');
@@ -124,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function () {
             salary.value = user_salary;
 
 
-            customerModal.show();
+            userTableModal.show();
         });
     });
 });
@@ -145,11 +177,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 ////////////////////////////////////////////////////// Product Add Form Load //////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', function () {
-    const customerButton = document.getElementById('product-add-btn');
-    const customerModal = new bootstrap.Modal(document.querySelector('.product-form-new .modal'));
+    const productAddButton = document.getElementById('product-add-btn');
+    const productAddModal = new bootstrap.Modal(document.querySelector('.product-form-new .modal'));
 
-    customerButton.addEventListener('click', function () {
-        customerModal.show();
+    productAddButton.addEventListener('click', function () {
+        productAddModal.show();
     });
 });
 
@@ -309,3 +341,145 @@ document.addEventListener('DOMContentLoaded', function () {
         custModal.show();
     });
 });
+
+////////////////////////////////////////////////////// Data for arrays //////////////////////////////////////////////////////////
+
+let products = [
+    { code: "P001", description: "Chocolate Cake", unitPrice: 20.00, qtyOnHand: 40, image: "https://www.labonelfinebaking.shop/wp-content/uploads/2021/02/CLASSIC-CHOCOLATE-CAKE.jpg" },
+    { code: "P002", description: "Vanilla Cupcake", unitPrice: 5.00, qtyOnHand: 100, image: "https://hips.hearstapps.com/del.h-cdn.co/assets/18/07/1518475314-vanilla-cupcake-horizontal-.jpg?crop=0.667xw:1.00xh;0.199xw,0&resize=1200:*" },
+    { code: "P003", description: "Strawberry Tart", unitPrice: 12.00, qtyOnHand: 25, image: "https://static.toiimg.com/thumb/55435839.cms?width=1200&height=900" },
+    { code: "P004", description: "Lemon Cheesecake", unitPrice: 15.00, qtyOnHand: 30, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYhIH3gaoVMTsWxza5WuBAJlVJUJJGVpCi6w&s" },
+    { code: "P005", description: "Carrot Cake", unitPrice: 18.00, qtyOnHand: 20, image: "https://www.rainbownourishments.com/wp-content/uploads/2023/03/vegan-carrot-cake-1.jpg" },
+    { code: "P006", description: "Red Velvet Cake", unitPrice: 22.00, qtyOnHand: 15, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrw5Aqhuo-gAqBJp9HsA1NUUcAUIYE76EPIA&s" },
+    { code: "P007", description: "Blueberry Muffin", unitPrice: 8.00, qtyOnHand: 60, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxwriYjJ0IX6I9kkpo0rDCDzPff-GrkSX4zw&s" },
+    { code: "P008", description: "Apple Pie", unitPrice: 25.00, qtyOnHand: 10, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmQ7JyEum073tMWX4Nt9nahFPEcmKmdGvlhg&s" }
+];
+
+let customers = [
+    { id: "C001", name: "William Defoe", email: "william@example.com", phone: "12312312", address: "123 Street" },
+    { id: "C002", name: "Jane Smith", email: "jane@example.com", phone: "45645645", address: "456 Avenue" },
+    { id: "C003", name: "Tom Hardy", email: "tom@example.com", phone: "78978978", address: "789 Boulevard" },
+    { id: "C004", name: "Emily Blunt", email: "emily@example.com", phone: "11223344", address: "112 Street" },
+    { id: "C005", name: "Scarlett Johansson", email: "scarlett@example.com", phone: "22334455", address: "223 Avenue" },
+    { id: "C006", name: "Chris Hemsworth", email: "chris@example.com", phone: "33445566", address: "334 Boulevard" },
+    { id: "C007", name: "Robert Downey", email: "robert@example.com", phone: "44556677", address: "445 Road" },
+    { id: "C008", name: "Natalie Portman", email: "natalie@example.com", phone: "55667788", address: "556 Lane" }
+];
+
+let users = [
+    { id: "U001", name: "John Doe", email: "john@example.com", phone: "12312312", address: "456 Avenue", salary: 5000 },
+    { id: "U002", name: "Jane Roe", email: "jane@example.com", phone: "23423423", address: "567 Boulevard", salary: 4500 },
+    { id: "U003", name: "Chris Evans", email: "chris@example.com", phone: "34534534", address: "678 Street", salary: 6000 },
+    { id: "U004", name: "Emma Watson", email: "emma@example.com", phone: "45645645", address: "789 Avenue", salary: 5500 },
+    { id: "U005", name: "Tom Holland", email: "tom@example.com", phone: "56756756", address: "890 Road", salary: 4000 },
+    { id: "U006", name: "Brie Larson", email: "brie@example.com", phone: "67867867", address: "901 Lane", salary: 6200 },
+    { id: "U007", name: "Mark Ruffalo", email: "mark@example.com", phone: "78978978", address: "123 Plaza", salary: 4800 },
+    { id: "U008", name: "Zendaya Maree", email: "zendaya@example.com", phone: "89089089", address: "456 Terrace", salary: 5200 }
+];
+
+//////////////////////////////////////////////////////////////////////// Table data display //////////////////////////////////////////////////////////
+
+// Function to display products in a table
+function displayProducts() {
+    const productTableBody = document.querySelector('.product-table tbody');
+    productTableBody.innerHTML = ''; // Clear existing rows
+
+    products.forEach(product => {
+        let row = `
+            <tr>
+                <td class="row-id">${product.code}</td>
+                <td class="row-desc">${product.description}</td>
+                <td class="row-image" style="width: 10%; height: auto;" ><img src="${product.image}" alt="${product.description}" style="width: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;"></td>
+                <td class="row-price">${product.unitPrice.toFixed(2)}</td>
+                <td class="row-qty">${product.qtyOnHand}</td>
+                <td class="row-actions"> <button class="btn btn-danger">Delete</button> </td>
+            </tr>
+        `;
+        productTableBody.innerHTML += row;
+    });
+}
+
+// Function to display customers in a table
+function displayCustomers() {
+    const customerTableBody = document.querySelector('.customer-table tbody');
+    customerTableBody.innerHTML = ''; // Clear existing rows
+
+    customers.forEach(customer => {
+        let row = `
+            <tr>
+                <td class="row-id">${customer.id}</td>
+                <td class="row-name">${customer.name}</td>
+                <td class="row-email">${customer.email}</td>
+                <td class="row-phone">${customer.phone}</td>
+                <td class="row-address">${customer.address}</td>
+                <td class="row-actions"> <button class="btn btn-danger">Delete</button> </td>
+            </tr>
+        `;
+        customerTableBody.innerHTML += row;
+    });
+}
+
+/////////////////////////////////////////////////////////////////////// Saving Data///////////////////////////////////////////////
+
+// Function to display users in a table
+function displayUsers() {
+    const userTableBody = document.querySelector('.user-table tbody');
+    userTableBody.innerHTML = ''; // Clear existing rows
+
+    users.forEach(user => {
+        let row = `
+            <tr>
+                <td class="row-id">${user.id}</td>
+                <td class="row-name">${user.name}</td>
+                <td class="row-email">${user.email}</td>
+                <td class="row-phone">${user.phone}</td>
+                <td class="row-address">${user.address}</td>
+                <td class="row-salary">${user.salary}</td>
+                <td class="row-actions"><button class="btn btn-danger">Delete</button> </td>
+            </tr>
+        `;
+        userTableBody.innerHTML += row;
+    });
+}
+
+// Call these functions to initially load the tables
+displayProducts();
+displayCustomers();
+displayUsers();
+
+
+// Function to add a new product
+function addProduct(product) {
+    products.push(product);
+    displayProducts(); // Refresh the product table
+}
+
+// Function to add a new customer
+function addCustomer(customer) {
+    customers.push(customer);
+    displayCustomers(); // Refresh the customer table
+}
+
+// Function to add a new user
+function addUser(user) {
+    users.push(user);
+    displayUsers(); // Refresh the user table
+}
+
+// Example: Adding a new product from a form
+document.getElementById('product-add-btn').addEventListener('click', function() {
+    let newProduct = {
+        code: document.getElementById('productCode').value,
+        description: document.getElementById('productDesc').value,
+        image: document.getElementById('productImage').value, // Assuming an input for image URL
+        unitPrice: parseFloat(document.getElementById('productUnitPrice').value),
+        qtyOnHand: parseInt(document.getElementById('productQtyOnHand').value),
+
+    };
+    addProduct(newProduct);
+    // Hide modal, clear form, etc.
+});
+
+

@@ -108,6 +108,7 @@ body
 
 .customer, .user, .product, .cash-register
 {
+    font-family: 'Poppins', sans-serif;
     margin-top: 1%;
 }
 
@@ -197,6 +198,11 @@ img.preview {
 .delete-button:hover {
     background-color: #ff6666;
 }
+
+.bold {
+    font-weight: bold;
+}
+
 
 
 
