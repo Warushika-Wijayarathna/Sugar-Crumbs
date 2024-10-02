@@ -121,9 +121,102 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    const productButton = document.getElementById('productBtn');
+    const mainContent = document.querySelector('.main-content');
+    const productSection = document.querySelector('.product');
+
+    productButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        mainContent.innerHTML = '';
+        mainContent.appendChild(productSection);
+        productSection.style.display = 'block';
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    const customerButton = document.getElementById('product-add-btn');
+    const customerModal = new bootstrap.Modal(document.querySelector('.product-form .modal'));
+
+    customerButton.addEventListener('click', function () {
+        customerModal.show();
+    });
+});
 
 
+////////////////////////////////////////////////////// Image Upload//////////////////////////////////////////////////////////
 
+const uploadBox = document.getElementById('uploadBox');
+const fileInput = document.getElementById('fileInput');
+const browseFileButton = document.getElementById('browseFileButton');
 
+// Open file dialog when clicking the browse button
+browseFileButton.addEventListener('click', () => {
+    fileInput.click();
+});
+
+// Handle file drag & drop
+uploadBox.addEventListener('dragover', (event) => {
+    event.preventDefault();
+    uploadBox.style.borderColor = '#fff';
+});
+
+uploadBox.addEventListener('dragleave', () => {
+    uploadBox.style.borderColor = '#ffffff';
+});
+
+uploadBox.addEventListener('drop', (event) => {
+    event.preventDefault();
+    const file = event.dataTransfer.files[0];
+    handleFile(file);
+    uploadBox.style.borderColor = '#ffffff';
+});
+
+// Handle file input change
+fileInput.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    handleFile(file);
+});
+
+function handleFile(file) {
+    // Check if the file is an image
+    if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+            // Replace the content inside the upload box with image preview and delete button
+            uploadBox.innerHTML = `
+                <img src="${event.target.result}" alt="Image Preview" class="preview">
+                <button class="delete-button" id="deleteButton">Delete Image</button>
+            `;
+
+            // Add event listener for delete button
+            const deleteButton = document.getElementById('deleteButton');
+            deleteButton.addEventListener('click', resetUploadBox);
+        };
+
+        reader.readAsDataURL(file);
+    } else {
+        alert("Please upload an image file.");
+    }
+}
+
+function resetUploadBox() {
+    // Restore the original drag-and-drop interface
+    uploadBox.innerHTML = `
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        <p>Drag & Drop to Upload File</p>
+        <p>OR</p>
+        <button id="browseFileButton">Browse File</button>
+        <input type="file" id="fileInput" hidden>
+    `;
+
+    // Re-attach event listeners for new elements
+    const browseFileButton = document.getElementById('browseFileButton');
+    const fileInput = document.getElementById('fileInput');
+
+    browseFileButton.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', (event) => handleFile(event.target.files[0]));
+}
 
 
