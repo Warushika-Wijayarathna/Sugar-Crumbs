@@ -299,3 +299,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+
+////////////////////////////////////////////////////// Customer Add Form Load for Cash Register //////////////////////////////////////////////////////////
+document.addEventListener('DOMContentLoaded', function () {
+    const custButton = document.getElementById('customer-add-btn-reg');
+    const custModal = new bootstrap.Modal(document.querySelector('.customer-form .modal'));
+
+    custButton.addEventListener('click', function () {
+        custModal.show();
+    });
+});

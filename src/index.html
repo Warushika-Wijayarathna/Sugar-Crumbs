@@ -356,43 +356,15 @@
                 </nav>
             </div>
 
-            <div class="form-search">
-                <nav class="navbar bg-body-tertiary">
-                    <div class="container">
-                        <form class="d-flex" role="search">
-                            <div>
-                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            </div>
-                            <div>
-                                <button class="btn btn-outline-success" type="submit">Search</button>
-                            </div>
-                        </form>
-                    </div>
-                </nav>
-            </div>
 
-            <!-- Customer Phone Number Search Bar -->
-            <div class="form-customer-search">
-                <nav class="navbar bg-body-tertiary mt-2">
-                    <div class="container">
-                        <form class="d-flex" role="search">
-                            <div>
-                                <input class="form-control me-2" type="search" placeholder="Search by Customer Phone Number" aria-label="Search by Phone Number">
-                            </div>
-                            <div>
-                                <button class="btn btn-outline-info" type="submit">Search</button>
-                            </div>
-                        </form>
-                    </div>
-                </nav>
-            </div>
 
             <!-- POS Layout Start -->
             <div class="container-fluid">
+
                 <div class="row">
                     <!-- Sidebar -->
                     <div class="col-md-2 sidebar p-4">
-                        <h4 class="mb-4">Posive</h4>
+                        <h4 class="mb-4">Pos view</h4>
                         <nav class="nav flex-column">
                             <a class="nav-link active" href="#">POS</a>
                             <a class="nav-link" href="#">Overview</a>
@@ -404,6 +376,24 @@
 
                     <!-- Product List -->
                     <div class="col-md-7 p-4">
+                        <!-- Customer Phone Number Search Bar with Add Customer Button -->
+                        <div class="form-customer-search mb-3">
+                            <nav class="navbar bg-body-tertiary">
+                                <div class="container">
+                                    <form class="d-flex" role="search">
+                                        <div>
+                                            <input class="form-control me-2" type="search" placeholder="Search by Customer Phone Number" aria-label="Search by Phone Number">
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-outline-info" type="submit">Search</button>
+                                        </div>
+                                        <div>
+                                            <button type="button" class="btn btn-primary" id="customer-add-btn-reg">+ Add Customer</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </nav>
+                        </div>
                         <h5>Let's do your best today 🚀</h5>
                         <p>Date: December 18, 2023</p>
 
@@ -482,7 +472,6 @@
 
         </form>
     </section>
-
 
 
     <!-- Forms -->
