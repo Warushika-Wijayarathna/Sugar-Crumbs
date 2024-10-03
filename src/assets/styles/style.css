@@ -302,7 +302,7 @@ img.preview {
 
 /* Charts Section */
 .dashboard .chart-card {
-    background-color: #292929;
+    background-color: #F5F5DC;
     padding: 20px;
     border-radius: 12px;
 }
@@ -319,28 +319,8 @@ canvas {
 
 
 /* Button styles for Add New Item, Customer, etc. */
-.dashboard-button {
-    background-color: #555;
-    color: white;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 10px 0;
-    transition: background-color 0.3s;
-}
-
-.dashboard-button:hover {
-    background-color: #777;
-}
-
-.dashboard-button i {
-    margin-right: 10px;
-}
-
 .equal-height-card {
-    height: 180px; /* Adjust this value according to your design */
+    height: 180px;
 }
 
 .equal-height-half {
@@ -395,11 +375,6 @@ canvas {
 /* General Adjustments */
 .form-title {
     padding: 10px; /* Reduce padding for form title */
-}
-
-.dashboard .bg-primary {
-    background-color: #1e40af !important; /* Darker shade of blue */
-    font-size: 14px;
 }
 
 .dashboard .bg-secondary, .dashboard .bg-success {
