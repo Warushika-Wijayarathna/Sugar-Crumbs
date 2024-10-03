@@ -18,6 +18,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+/////////////////////////////////////////////////////////// Nav-Brand ///////////////////////////////////////////////////////////////////////////
+document.addEventListener('DOMContentLoaded', function () {
+    const navbarBrand = document.querySelector('.navbar-brand');
+
+    // Set default color
+    navbarBrand.style.color = 'black';
+
+    // Change color on hover
+    navbarBrand.addEventListener('mouseover', function () {
+        navbarBrand.style.color = 'blue';
+    });
+
+    // Revert to default color when not hovering
+    navbarBrand.addEventListener('mouseout', function () {
+        navbarBrand.style.color = 'black';
+    });
+});
+
 /////////////////////////////////////////////////////////// Sidebar Toggle - Selected //////////////////////////////////////////////////////////
 document.addEventListener("DOMContentLoaded", function() {
     // Get all navigation links
