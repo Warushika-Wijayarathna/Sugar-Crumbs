@@ -327,6 +327,9 @@ canvas {
     height: calc(80% - 10px); /* Adjusting for margin */
 }
 
+.cash-register .card:hover{
+    transform: translateY(-5px);
+}
 
 /* Responsive Grid Layout for Cards */
 @media (max-width: 1200px) {
