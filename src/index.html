@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <title>Home</title>
 
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon-->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -14,7 +20,7 @@
     <link rel="stylesheet" href="assets/styles/style.css">
 
     <!--Font Awesome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
 
 </head>
@@ -24,7 +30,23 @@
         <nav class="navbar bg-body-tertiary">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    <img src="assets/images/favicon.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                    Sugar Crumbs
+                </a>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="assets/images/favicon.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                     Sugar Crumbs
                 </a>
                 <form class="d-flex" role="search">
@@ -36,7 +58,7 @@
     </div>
 
     <!-- Navigation -->
-    <div class="dashboard">
+    <div class="aside">
         <div class="aside-navigation">
             <div class="profile-picture">
                 <img src="assets/images/profile.jpeg" alt="Profile Image">
@@ -45,7 +67,7 @@
             <div class="card text-center">
                 <ul class="nav nav-pills card-header-pills">
                     <li class="nav-item">
-                        <a class="nav-link" href="https://getbootstrap.com/docs/5.3/components/card/#navigation">Dashboard</a>
+                        <a class="nav-link" href="#" id="dashboardBtn">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" id="productBtn">Product</a>
@@ -60,13 +82,17 @@
                         <a class="nav-link" href="#" id="userBtn">User</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://getbootstrap.com/docs/5.3/components/card/#navigation">Invoice</a>
+                        <a class="nav-link" href="#" id="invoiceBtn">Invoice</a>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="main-content"></div>
     </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+    </div>
+
 
     <!-- Customer Section -->
     <section class="customer" style="display: none">
@@ -100,7 +126,7 @@
                 </nav>
             </div>
 
-            <div class="customer-table">
+            <div class="customer-table table-responsive">
                 <table class="table">
                     <thead>
                     <tr>
@@ -262,7 +288,7 @@
                 <nav class="navbar" style="background-color: gray">
                     <div class="container-fluid">
                         <a class="navbar-brand" href="#">
-                            <i class="fa-solid fa-user-tie"></i>
+                            <i class="fa-solid fa-boxes-packing"></i>
                             Product
                         </a>
                     </div>
@@ -349,7 +375,7 @@
                 <nav class="navbar" style="background-color: gray">
                     <div class="container-fluid">
                         <a class="navbar-brand" href="#">
-                            <i class="fa-solid fa-user-tie"></i>
+                            <i class="fa-solid fa-cash-register"></i>
                             Cash Register
                         </a>
                     </div>
@@ -364,7 +390,7 @@
                 <div class="row">
 
                     <!-- Product List -->
-                    <div class="col-md-7 p-4">
+                    <div class="col-md-8 p-4">
                         <!-- Customer Phone Number Search Bar with Add Customer Button -->
                         <div class="form-customer-search mb-3">
                             <nav class="navbar bg-body-tertiary">
@@ -394,32 +420,14 @@
                             <button class="btn btn-outline-secondary">Drinks</button>
                         </div>
 
-                        <!-- Product Cards -->
-                        <div class="row row-cols-1 row-cols-md-3 g-4">
-                            <div class="col">
-                                <div class="card product-card">
-                                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Healthy Salad">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Healthy Salad</h5>
-                                        <p class="card-text">$10.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card product-card">
-                                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Indomie with Cheese">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Indomie with Cheese</h5>
-                                        <p class="card-text">$15.00</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Add more products similarly -->
+                        <!-- Product Cards Container -->
+                        <div class="row row-cols-1 row-cols-md-4 g-4" id="product-list">
+                            <!-- Product cards will be dynamically added here -->
                         </div>
                     </div>
 
                     <!-- Cart/Order Summary -->
-                    <div class="col-md-3 p-4">
+                    <div class="col-md-4 p-4">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">William Defoe</h5>
@@ -461,6 +469,181 @@
 
         </form>
     </section>
+
+    <!-- Invoice Section -->
+    <section class="invoice" style="display: none">
+        <form>
+            <div class="form-title">
+                <nav class="navbar" style="background-color: gray">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">
+                            <i class="fa-solid fa-file-invoice-dollar"></i>
+                            Invoice
+                        </a>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="form-search">
+                <nav class="navbar bg-body-tertiary">
+                    <div class="container">
+                        <form class="d-flex" role="search">
+                            <div>
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            </div>
+                            <div>
+                                <button class="btn btn-outline-success" type="submit">Search</button>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-primary" id="invoice-add-btn">+ Add Invoice</button>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="invoice-table">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Invoice Id</th>
+                        <th scope="col">Customer Name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                    <tr>
+                        <th scope="row" class="row-id">1</th>
+                        <td class="row-name">Ashani Warushika</td>
+                        <td class="row-date">2023-12-18</td>
+                        <td class="row-total">Rs. 500.00</td>
+                        <td class="row-action">
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="row-id">1</th>
+                        <td class="row-name">Ashani Warushika</td>
+                        <td class="row-date">2023-12-18</td>
+                        <td class="row-total">Rs. 500.00</td>
+                        <td>
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section class="dashboard" style="display:none;">
+        <form>
+            <div class="form-title bg-body-tertiary">
+                <nav class="navbar" style="background-color: gray">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">
+                            <i class="fa-solid fa-house"></i>
+                            Dashboard
+                        </a>
+                    </div>
+                </nav>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="row mb-4">
+                    <!-- Total Orders -->
+                    <div class="col-md-3 mb-3">
+                        <div class="card text-white bg-primary mb-3 equal-height-card" style="max-width: 18rem;">
+                            <div class="card-header">Total Orders</div>
+                            <div class="card-body">
+                                <h5 class="card-t">65</h5>
+                                <p class="card-text">+2.1%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Total Sales -->
+                    <div class="col-md-3 mb-3">
+                        <div class="card text-white bg-secondary mb-3 equal-height-card" style="max-width: 18rem;">
+                            <div class="card-header">Total Sales</div>
+                            <div class="card-body">
+                                <h5 class="card-t">97,056</h5>
+                                <p class="card-text">+5.6%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Total Revenue -->
+                    <div class="col-md-3 mb-3">
+                        <div class="card text-white bg-success mb-3 equal-height-card" style="max-width: 18rem;">
+                            <div class="card-header">Total Revenue</div>
+                            <div class="card-body">
+                                <h5 class="card-t">27,230</h5>
+                                <p class="card-text">+4.8%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add New Item and Add New Customer (combined) -->
+                    <div class="col-md-3 mb-3">
+                        <div class="row h-100">
+                            <!-- Add New Item -->
+                            <div class="col-12 mb-3">
+                                <div class="card equal-height-half">
+                                    <div class="card-body d-flex align-items-center justify-content-center">
+                                        <i class="fa-solid fa-box fa-2x me-2"></i>
+                                        <h6 class="mt-2">Add New Item</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Add New Customer -->
+                            <div class="col-12">
+                                <div class="card equal-height-half">
+                                    <div class="card-body d-flex align-items-center justify-content-center">
+                                        <i class="fa-solid fa-user fa-2x me-2"></i>
+                                        <h6 class="mt-2">Add New Customer</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Charts Section -->
+                <div class="row">
+                    <!-- Line Chart -->
+                    <div class="col-md-8 mb-4">
+                        <div class="card chart-card">
+                            <div class="card-body">
+                                <h5 class="card-title">Order Summary</h5>
+                                <canvas id="lineChart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Pie Chart -->
+                    <div class="col-md-4 mb-4">
+                        <div class="card chart-card">
+                            <div class="card-body">
+                                <h5 class="card-title">Top Categories</h5>
+                                <canvas id="pieChart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transaction Section -->
+                <div class="row">
+
+                </div>
+
+            </div>
+        </form>
+    </section>
+
+
+
 
 
     <!-- Forms -->
@@ -762,6 +945,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- Custom JS -->
     <script src="assets/scripts/script.js"></script>
 

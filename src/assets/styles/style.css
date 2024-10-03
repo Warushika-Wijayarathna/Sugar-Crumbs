@@ -2,26 +2,48 @@
 /*Poppins*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-body
-{
+body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; /* Global font */
 }
 
-.dashboard
-{
-    display: grid;
-    grid-template-columns: 15% 80%;
-    grid-gap: 20px;
-    height: 100vh;
+.header {
+    position: fixed; /* Fix header at the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #6D4C41; /* Header background color */
+    color: #FFF8E1; /* Header text color */
+    z-index: 1000; /* Ensure header is above other content */
 }
 
+.aside {
+    position: fixed; /* Fix aside navigation */
+    top: 56px; /* Height of the header */
+    left: 0;
+    bottom: 0; /* Extend to the bottom of the viewport */
+    width: 15%; /* Width of the aside navigation */
+    background: #6D4C41; /* Aside background color */
+    color: #FFF8E1; /* Aside text color */
+    overflow-y: auto; /* Scrollable if content overflows */
+    z-index: 999; /* Ensure aside is below the header */
+}
+
+.main-content {
+    margin-left: 15%; /* Leave space for the aside */
+    margin-top: 56px; /* Leave space for the header */
+    padding: 20px; /* Padding for main content */
+    height: calc(100vh - 56px); /* Set height based on viewport */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Adjust styles for aside navigation */
 .aside-navigation {
-    background: #6D4C41;
-    color: #FFF8E1;
-    font-family: 'Poppins', sans-serif;
-    min-width: 200px;
+    background: #6D4C41; /* Aside navigation background */
+    color: #FFF8E1; /* Aside navigation text color */
+    min-width: 200px; /* Minimum width for aside navigation */
 }
 
 .aside-navigation div
@@ -79,8 +101,13 @@ body
 
 .header
 {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #6D4C41;
+    color: #FFF8E1;
+    z-index: 1000;
 }
 
 .header nav
@@ -106,10 +133,12 @@ body
     padding: 20px;
 }
 
-.customer, .user, .product, .cash-register
+.customer, .user, .product, .cash-register, .invoice, .dashboard
 {
     font-family: 'Poppins', sans-serif;
     margin-top: 1%;
+    padding: 1%;
+    gap: 1%;
 }
 
 .form-search
@@ -123,12 +152,12 @@ body
     margin-left: -50%;
 }
 
-.user-table img
-{
-    width: 100%;
-    aspect-ratio: auto;
-    object-fit: cover;
-}
+/*.user-table img*/
+/*{*/
+/*    width: 100%;*/
+/*    aspect-ratio: auto;*/
+/*    object-fit: cover;*/
+/*}*/
 
 .row-image
 {
@@ -202,6 +231,218 @@ img.preview {
 .bold {
     font-weight: bold;
 }
+
+.product-card {
+    width: 100%;
+    max-width: 100%;
+}
+
+
+.dashboard {
+    padding: 0.5%;
+}
+
+.navbar {
+    padding: 10px 20px;
+    background-color: #333;
+    border-radius: 8px;
+}
+
+.navbar-brand {
+    color: #f5f5f5;
+    font-weight: bold;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.dashboard-content .row {
+    margin-top: 10px;
+}
+
+.dashboard .card {
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.dashboard .card:hover {
+    transform: translateY(-5px);
+}
+
+/* Color and Layout for the Cards */
+.dashboard .bg-primary {
+    background-color: #1e40af !important; /* Darker shade of blue */
+}
+
+.dashboard .bg-secondary {
+    background-color: #9333ea !important; /* Purple */
+}
+
+.dashboard .bg-success {
+    background-color: #059669 !important; /* Green */
+}
+
+.dashboard .card-header {
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-bottom: none;
+}
+
+.dashboard .card-body {
+    padding: 20px;
+}
+
+.dashboard .card-t {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.dashboard .card-text {
+    font-size: 16px;
+}
+
+/* Charts Section */
+.dashboard .chart-card {
+    background-color: #292929;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.dashboard .card-title {
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+canvas {
+    margin-top: 15px;
+}
+
+/* Recent Transactions Table */
+.recent-transactions-table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.recent-transactions-table th,
+.recent-transactions-table td {
+    padding: 12px 20px;
+    color: #f5f5f5;
+}
+
+.recent-transactions-table th {
+    background-color: #333;
+    font-size: 16px;
+    text-align: left;
+}
+
+.recent-transactions-table td {
+    background-color: #444;
+    font-size: 14px;
+}
+
+.recent-transactions-table tr:nth-child(even) td {
+    background-color: #3a3a3a;
+}
+
+/* Button styles for Add New Item, Customer, etc. */
+.dashboard-button {
+    background-color: #555;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px 0;
+    transition: background-color 0.3s;
+}
+
+.dashboard-button:hover {
+    background-color: #777;
+}
+
+.dashboard-button i {
+    margin-right: 10px;
+}
+
+.equal-height-card {
+    height: 180px; /* Adjust this value according to your design */
+}
+
+.equal-height-half {
+    height: calc(80% - 10px); /* Adjusting for margin */
+}
+
+
+/* Responsive Grid Layout for Cards */
+@media (max-width: 1200px) {
+    .dashboard-content .row {
+        display: flex;
+        flex-wrap: wrap; /* Allow wrapping of cards */
+        gap: 10px;
+    }
+
+    .col-md-4, .col-md-8 {
+        flex: 1 1 45%; /* Allow cards to shrink and wrap */
+        max-width: 45%;
+    }
+
+    .col-md-2 {
+        flex: 1 1 20%;
+        max-width: 20%;
+    }
+}
+
+/* Responsive Adjustments for Smaller Devices */
+@media (max-width: 768px) {
+    .aside {
+        grid-template-columns: 100%; /* Stack aside navigation vertically */
+    }
+
+    .dashboard-content .row {
+        flex-direction: column;
+    }
+
+    .col-md-4, .col-md-8 {
+        flex: 1 1 100%; /* Stack cards on smaller screens */
+        max-width: 100%;
+    }
+
+    .dashboard .card {
+        margin-bottom: 10px;
+        padding: 8px;
+    }
+}
+
+.navbar {
+    padding: 8px 10px; /* Reduced padding for navbar */
+}
+
+/* General Adjustments */
+.form-title {
+    padding: 10px; /* Reduce padding for form title */
+}
+
+.dashboard .bg-primary {
+    background-color: #1e40af !important; /* Darker shade of blue */
+    font-size: 14px;
+}
+
+.dashboard .bg-secondary, .dashboard .bg-success {
+    font-size: 14px;
+}
+
+/* Reduce table font size */
+.recent-transactions-table th,
+.recent-transactions-table td {
+    font-size: 12px;
+    padding: 8px;
+}
+
 
 
 

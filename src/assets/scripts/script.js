@@ -155,7 +155,6 @@ document.addEventListener('DOMContentLoaded', function () {
             address.value = user_address;
             salary.value = user_salary;
 
-
             userTableModal.show();
         });
     });
@@ -482,4 +481,102 @@ document.getElementById('product-add-btn').addEventListener('click', function() 
     // Hide modal, clear form, etc.
 });
 
+////////////////////////////////////////////////////// Product cards load ////////////////////////////////////////////
 
+// Select the product list container
+const productList = document.getElementById("product-list");
+
+// Loop through the products array and generate product cards
+products.forEach(product => {
+    const productCard = `
+        <div class="col">
+            <div class="card product-card">
+                <img src="${product.image}" class="card-img-top" alt="${product.description}">
+                <div class="card-body">
+                    <h5 class="card-title">${product.description}</h5>
+                    <p class="card-text">$${product.unitPrice.toFixed(2)}</p>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Append the product card to the product list
+    productList.innerHTML += productCard;
+});
+
+////////////////////////////////////////////////////// Invoice Section Load //////////////////////////////////////////////////////////
+document.addEventListener('DOMContentLoaded', function () {
+    const invoiceButton = document.getElementById('invoiceBtn');
+    const mainContent = document.querySelector('.main-content');
+    const invoiceSection = document.querySelector('.invoice');
+
+    invoiceButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        mainContent.innerHTML = '';
+        mainContent.appendChild(invoiceSection);
+        invoiceSection.style.display = 'block';
+    });
+});
+
+////////////////////////////////////////////////////// Desktop Section Load //////////////////////////////////////////////////////////
+document.addEventListener('DOMContentLoaded', function () {
+    const dashboardButton = document.getElementById('dashboardBtn');
+    const mainContent = document.querySelector('.main-content');
+    const dashboardSection = document.querySelector('.dashboard');
+
+    dashboardButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        mainContent.innerHTML = '';
+        mainContent.appendChild(dashboardSection);
+        dashboardSection.style.display = 'block';
+    });
+});
+
+
+////////////////////////////////////////////////////////////////// Charts ////////////////////////////////////////////////////////////
+
+// Line Chart
+var ctxLine = document.getElementById('lineChart').getContext('2d');
+var lineChart = new Chart(ctxLine, {
+    type: 'line',
+    data: {
+        labels: ['Oct 11', 'Oct 15', 'Oct 19', 'Oct 25', 'Nov 1', 'Nov 5', 'Nov 11'],
+        datasets: [{
+            label: 'Selected Period',
+            data: [3000, 4000, 3500, 6000, 4500, 5000, 7000],
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        },
+            {
+                label: 'Comparison',
+                data: [2000, 3000, 2500, 4000, 3500, 4200, 6000],
+                borderColor: 'rgb(255, 99, 132)',
+                tension: 0.1
+            }]
+    },
+    options: {
+        responsive: true
+    }
+});
+
+// Pie Chart
+var ctxPie = document.getElementById('pieChart').getContext('2d');
+var pieChart = new Chart(ctxPie, {
+    type: 'pie',
+    data: {
+        labels: ['Grocery', 'Fruits', 'Vegetables', 'Others'],
+        datasets: [{
+            label: 'Top Categories',
+            data: [43, 31, 15, 11],
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                'rgb(255, 206, 86)',
+                'rgb(75, 192, 192)'
+            ]
+        }]
+    },
+    options: {
+        responsive: true
+    }
+});
