@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         item.addEventListener('mouseover', function() {
             const navLink = this.querySelector('.nav-link');
             navLink.classList.add('active');
-            navLink.style.background = 'rgba(248, 187, 208, 0.51)';
+            navLink.style.background = 'rgba(128, 128, 128, 0.7)';
             navLink.style.color = '#333333';
         });
 
@@ -20,14 +20,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /////////////////////////////////////////////////////////// Nav-Brand ///////////////////////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', function () {
-    const navbarBrand = document.querySelector('.navbar-brand');
+    const navbarBrand = document.querySelector('.header span');
 
     // Set default color
-    navbarBrand.style.color = 'black';
+    navbarBrand.style.color = '#333333';
 
     // Change color on hover
     navbarBrand.addEventListener('mouseover', function () {
-        navbarBrand.style.color = 'blue';
+        navbarBrand.style.color = 'rgba(128, 128, 128, 0.7)';
     });
 
     // Revert to default color when not hovering

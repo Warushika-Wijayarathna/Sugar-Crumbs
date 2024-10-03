@@ -8,6 +8,7 @@ body {
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
     color: #333333;
+    background: #FAF3E0 ;
 }
 
 .header {
@@ -40,7 +41,6 @@ body {
 .dashboard-content .row:nth-child(2)
 {
     margin-top: -2%;
-    height: 50%;
 }
 /* Adjust styles for aside navigation */
 .aside-navigation {
@@ -106,17 +106,12 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background: #B0E0E6;
     z-index: 1000;
 }
 
 .header nav
 {
     padding: 0;
-}
-
-.header a{
-    color: #FFF8E1;
 }
 
 .header nav div
@@ -244,14 +239,13 @@ img.preview {
 
 .navbar {
     padding: 10px 20px;
-    background-color: #333;
     border-radius: 8px;
 }
 
 .navbar-brand {
     font-weight: bold;
     font-size: 24px;
-    color: #333333;
+    color:  #FAF3E0;
 }
 
 .dashboard-content .row {
@@ -271,16 +265,19 @@ img.preview {
 }
 
 /* Color and Layout for the Cards */
-.dashboard .bg-primary {
-    background-color: #1e40af !important; /* Darker shade of blue */
+.dashboard .card.bg-primary {
+    background-color: #FFD700 !important;
+    color: darkgoldenrod !important;
 }
 
-.dashboard .bg-secondary {
-    background-color: #9333ea !important; /* Purple */
+.dashboard .card.bg-secondary {
+    background-color: #D8BFD8 !important;
+    color: #800080 !important;
 }
 
-.dashboard .bg-success {
-    background-color: #059669 !important; /* Green */
+.dashboard .card.bg-success {
+    background-color: #98FB98 !important;
+    color: #008000 !important;
 }
 
 .dashboard .card-header {
