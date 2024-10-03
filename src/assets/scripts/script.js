@@ -607,3 +607,36 @@ var pieChart = new Chart(ctxPie, {
     }
 });
 
+
+///////////////////////////////////////////////////////////////////////////////////////http ////////////////////////////////////////////////////
+
+document.addEventListener('DOMContentLoaded', function () {
+    const registerButton = document.getElementById('registerBtn');
+    const mainContent = document.querySelector('.main-content');
+    const registerSection = document.querySelector('.cash-register');
+
+    registerButton.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        // Clear main content and display the register section
+        mainContent.innerHTML = '';
+        mainContent.appendChild(registerSection);
+        registerSection.style.display = 'block';
+
+        // Update the URL to the new section
+        const sectionUrl = '/register';  // Or whatever your URL path is
+        window.history.pushState({ section: 'register' }, '', sectionUrl);
+    });
+
+    // Handle the back/forward button navigation
+    window.addEventListener('popstate', function (event) {
+        if (event.state && event.state.section === 'register') {
+            mainContent.innerHTML = '';
+            mainContent.appendChild(registerSection);
+            registerSection.style.display = 'block';
+        } else {
+            // Handle the logic for other sections or default content
+            mainContent.innerHTML = 'Main content goes here';
+        }
+    });
+});
