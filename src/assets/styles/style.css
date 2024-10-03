@@ -6,7 +6,13 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif; /* Global font */
+    font-family: 'Poppins', sans-serif;
+    color: #333333;
+}
+
+a
+{
+    color: #333333;
 }
 
 .header {
@@ -14,53 +20,53 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background: #6D4C41; /* Header background color */
-    color: #FFF8E1; /* Header text color */
+    background: #B0E0E6 ; /* Header background color */
     z-index: 1000; /* Ensure header is above other content */
 }
 
 .aside {
     position: fixed; /* Fix aside navigation */
-    top: 56px; /* Height of the header */
+    top: 26px; /* Height of the header */
     left: 0;
     bottom: 0; /* Extend to the bottom of the viewport */
     width: 15%; /* Width of the aside navigation */
-    background: #6D4C41; /* Aside background color */
-    color: #FFF8E1; /* Aside text color */
+    background: #B0E0E6; /* Aside background color */
     overflow-y: auto; /* Scrollable if content overflows */
     z-index: 999; /* Ensure aside is below the header */
 }
 
 .main-content {
     margin-left: 15%; /* Leave space for the aside */
-    margin-top: 56px; /* Leave space for the header */
+    margin-top: 46px; /* Leave space for the header */
     padding: 20px; /* Padding for main content */
     height: calc(100vh - 56px); /* Set height based on viewport */
-    overflow-y: auto; /* Enable vertical scrolling */
 }
 
+.dashboard-content .row:nth-child(2)
+{
+    margin-top: -2%;
+    height: 50%;
+}
 /* Adjust styles for aside navigation */
 .aside-navigation {
-    background: #6D4C41; /* Aside navigation background */
-    color: #FFF8E1; /* Aside navigation text color */
+    background: #B0E0E6; /* Aside navigation background */
     min-width: 200px; /* Minimum width for aside navigation */
 }
 
 .aside-navigation div
 {
     padding-right: 0;
-    background: #6D4C41;
+    background: #B0E0E6;
     z-index: 2;
     border: none;
 }
 
 .aside-navigation ul
 {
-    padding-left: 20%;
     list-style: none;
     display: flex;
     flex-direction: column;
-    margin: 30% 0 0 0;
+    place-items: center;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -75,8 +81,8 @@ body {
 
 .aside-navigation ul li a
 {
-    color: #FFF8E1;
     min-width: 200px;
+    color: #333333;
 }
 
 .profile-picture
@@ -105,8 +111,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background: #6D4C41;
-    color: #FFF8E1;
+    background: #B0E0E6;
     z-index: 1000;
 }
 
@@ -121,7 +126,7 @@ body {
 
 .header nav div
 {
-    background: #6D4C41;
+    background: #B0E0E6;
     padding: 0.5%;
 }
 
@@ -264,7 +269,7 @@ img.preview {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s;
     padding: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .dashboard .card:hover {
@@ -291,7 +296,7 @@ img.preview {
     border-bottom: none;
 }
 
-.dashboard .card-body {
+.dashboard .row:nth-child(1) .card-body {
     padding: 20px;
 }
 
@@ -321,32 +326,6 @@ canvas {
     margin-top: 15px;
 }
 
-/* Recent Transactions Table */
-.recent-transactions-table {
-    width: 100%;
-    margin-top: 20px;
-}
-
-.recent-transactions-table th,
-.recent-transactions-table td {
-    padding: 12px 20px;
-    color: #f5f5f5;
-}
-
-.recent-transactions-table th {
-    background-color: #333;
-    font-size: 16px;
-    text-align: left;
-}
-
-.recent-transactions-table td {
-    background-color: #444;
-    font-size: 14px;
-}
-
-.recent-transactions-table tr:nth-child(even) td {
-    background-color: #3a3a3a;
-}
 
 /* Button styles for Add New Item, Customer, etc. */
 .dashboard-button {
@@ -436,12 +415,6 @@ canvas {
     font-size: 14px;
 }
 
-/* Reduce table font size */
-.recent-transactions-table th,
-.recent-transactions-table td {
-    font-size: 12px;
-    padding: 8px;
-}
 
 
 

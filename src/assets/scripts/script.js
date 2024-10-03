@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const navLink = this.querySelector('.nav-link');
             navLink.classList.add('active');
             navLink.style.background = 'rgba(248, 187, 208, 0.51)';
-            navLink.style.color = '#FFF8E1';
+            navLink.style.color = '#333333';
         });
 
         item.addEventListener('mouseout', function() {
@@ -518,20 +518,28 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-////////////////////////////////////////////////////// Desktop Section Load //////////////////////////////////////////////////////////
+////////////////////////////////////////////////////// Dashboard Section Load //////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', function () {
     const dashboardButton = document.getElementById('dashboardBtn');
     const mainContent = document.querySelector('.main-content');
     const dashboardSection = document.querySelector('.dashboard');
 
+    // Function to load the dashboard section
+    function loadDashboard() {
+        mainContent.innerHTML = ''; // Clear existing content
+        mainContent.appendChild(dashboardSection); // Append dashboard section
+        dashboardSection.style.display = 'block'; // Show the dashboard section
+    }
+
+    // Load the dashboard when the page is fully loaded
+    loadDashboard();
+
+    // Event listener for dashboard button click (if needed)
     dashboardButton.addEventListener('click', function (event) {
-        event.preventDefault();
-        mainContent.innerHTML = '';
-        mainContent.appendChild(dashboardSection);
-        dashboardSection.style.display = 'block';
+        event.preventDefault(); // Prevent default button action
+        loadDashboard(); // Call the function to load dashboard
     });
 });
-
 
 ////////////////////////////////////////////////////////////////// Charts ////////////////////////////////////////////////////////////
 
@@ -580,3 +588,4 @@ var pieChart = new Chart(ctxPie, {
         responsive: true
     }
 });
+
