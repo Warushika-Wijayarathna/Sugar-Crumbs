@@ -336,7 +336,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 ////////////////////////////////////////////////////// Product Section Load //////////////////////////////////////////////////////////
 document.addEventListener('DOMContentLoaded', function () {
-    const registerButton = document.getElementById('registerBtn');
+    const registerButton = document.getElementById('cash-registerBtn');
     const mainContent = document.querySelector('.main-content');
     const registerSection = document.querySelector('.cash-register');
 
@@ -611,31 +611,39 @@ var pieChart = new Chart(ctxPie, {
 ///////////////////////////////////////////////////////////////////////////////////////http ////////////////////////////////////////////////////
 
 document.addEventListener('DOMContentLoaded', function() {
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
+    try {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
 
-    function showSection(targetId) {
-        sections.forEach(section => {
-            section.style.display = section.classList.contains(targetId) ? 'block' : 'none';
+        function showSection(targetId) {
+            sections.forEach(section => {
+                section.style.display = section.classList.contains(targetId) ? 'block' : 'none';
+            });
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                try {
+                    event.preventDefault();
+                    const targetId = this.id.replace('Btn', '');
+                    showSection(targetId);
+                    // Update the URL without reloading the page
+                    history.pushState(null, '', `#${targetId}`);
+                } catch (error) {
+                    console.error('Error handling click event:', error);
+                }
+            });
         });
-    }
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            const targetId = this.id.replace('Btn', '');
-            showSection(targetId);
-            // Update the URL without reloading the page
-            history.pushState(null, '', `#${targetId}`);
-        });
-    });
-
-    // Show the section based on the URL hash when the page loads
-    const initialSectionId = window.location.hash.replace('#', '');
-    if (initialSectionId) {
-        showSection(initialSectionId);
-    } else {
-        // Default to showing the dashboard section if no hash is present
-        showSection('dashboard');
+        // Show the section based on the URL hash when the page loads
+        const initialSectionId = window.location.hash.replace('#', '');
+        if (initialSectionId) {
+            showSection(initialSectionId);
+        } else {
+            // Default to showing the dashboard section if no hash is present
+            showSection('dashboard');
+        }
+    } catch (error) {
+        console.error('Error during DOMContentLoaded:', error);
     }
 });
