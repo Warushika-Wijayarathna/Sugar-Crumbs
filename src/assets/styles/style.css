@@ -410,6 +410,7 @@ section.login-page {
 
 /* Responsive Grid Layout for Cards */
 @media (max-width: 1200px) {
+
     .dashboard-content .row {
         display: flex;
         flex-wrap: wrap; /* Allow wrapping of cards */
@@ -428,6 +429,9 @@ section.login-page {
 }
 
 @media (max-width: 768px) {
+    .aside {
+        display: none;
+    }
 
     .rectangle-container {
         width: 90%; /* Make it full-width on tablets */
@@ -477,6 +481,9 @@ section.login-page {
 }
 
 @media (max-width: 425px) {
+    .aside {
+        display: none;
+    }
     .main-content {
         margin-top: 25%;
     }
@@ -501,6 +508,9 @@ section.login-page {
 }
 
 @media (max-width: 375px) {
+    .aside {
+        display: none;
+    }
     .main-content {
         margin-top: 30%;
     }
@@ -522,6 +532,10 @@ section.login-page {
 }
 
 @media (max-width: 320px) {
+    .aside {
+        display: none;
+    }
+
     .main-content {
         margin-top: 35%;
     }

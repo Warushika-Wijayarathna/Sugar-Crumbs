@@ -791,3 +791,19 @@ adjustChartLayout();
 
 // Adjust layout on window resize
 window.addEventListener('resize', adjustChartLayout);
+
+
+signOutBtn.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent default action
+
+    // Hide header, aside, and main content
+    document.getElementById('header').style.display = 'none';
+    document.getElementById('aside').style.display = 'none';
+    document.getElementById('main-content').style.display = 'none';
+
+    // Ensure aside is hidden
+    document.querySelector('.aside').style.display = 'none';
+
+    // Show the login page
+    document.querySelector('.login-page').style.display = 'flex';
+});
