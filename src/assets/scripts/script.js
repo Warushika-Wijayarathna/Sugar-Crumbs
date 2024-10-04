@@ -706,3 +706,88 @@ window.addEventListener('resize', function() {
 
 // Initial check to set the correct class on page load
 window.dispatchEvent(new Event('resize'));
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+    const signInBtn = document.getElementById('signInBtn');
+    const signOutBtn = document.getElementById('signOutBtn');
+
+    signInBtn.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Make header, aside, and main content visible
+        document.getElementById('header').style.display = 'block';
+        document.getElementById('aside').style.display = 'block';
+        document.getElementById('main-content').style.display = 'block';
+
+        // Optionally, hide the login page
+        document.querySelector('.login-page').style.display = 'none';
+    });
+
+    signOutBtn.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default action
+
+        // Hide header, aside, and main content
+        document.getElementById('header').style.display = 'none';
+        document.getElementById('aside').style.display = 'none';
+        document.getElementById('main-content').style.display = 'none';
+
+        // Show the login page
+        document.querySelector('.login-page').style.display = 'flex';
+    });
+
+    // Add a toggle button in the header
+    const header = document.querySelector('.header nav .container-fluid');
+    const toggleButton = document.createElement('button');
+    toggleButton.classList.add('btn', 'btn-primary');
+    toggleButton.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    toggleButton.style.display = 'none'; // Initially hidden
+    header.appendChild(toggleButton);
+
+    // Add event listener for the toggle button
+    toggleButton.addEventListener('click', function() {
+        const aside = document.querySelector('.aside');
+        if (aside.style.display === 'none' || aside.style.display === '') {
+            aside.style.display = 'block';
+        } else {
+            aside.style.display = 'none';
+        }
+    });
+
+    // Add event listener for window resize
+    window.addEventListener('resize', function() {
+        const aside = document.querySelector('.aside');
+        if (window.innerWidth <= 768) {
+            aside.style.display = 'none';
+            toggleButton.style.display = 'block';
+        } else {
+            aside.style.display = 'block';
+            toggleButton.style.display = 'none';
+        }
+    });
+
+    // Initial check to set the correct display on page load
+    window.dispatchEvent(new Event('resize'));
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const aside = document.querySelector('.aside');
+    if (aside) {
+        aside.style.display = 'none';
+    }
+});
+
+function adjustChartLayout() {
+    const chartsSection = document.getElementById('charts-section');
+    if (window.innerWidth <= 768) {
+        chartsSection.classList.add('vertical-align');
+    } else {
+        chartsSection.classList.remove('vertical-align');
+    }
+}
+
+// Adjust layout on page load
+adjustChartLayout();
+
+// Adjust layout on window resize
+window.addEventListener('resize', adjustChartLayout);

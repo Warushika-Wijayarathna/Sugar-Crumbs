@@ -28,35 +28,35 @@
 
     <!-- Sign in -->
     <section class="login-page">
-    <div class="rectangle-container">
-        <div class="row justify-content-center">
-            <!-- Illustration Section -->
-            <div class="col-md-6 illustration">
-                <img src="assets/images/signin.png" alt="Bakery Products Illustration">
-            </div>
+        <div class="rectangle-container">
+            <div class="row justify-content-center">
+                <!-- Illustration Section -->
+                <div class="col-md-6 illustration">
+                    <img src="assets/images/signin.png" alt="Bakery Products Illustration">
+                </div>
 
-            <!-- Login Form Section -->
-            <div id="log" class="col-md-4">
-                <div class="login-form">
-                    <h2 class="mb-4 text-center">Sugar Crumbs 🧁</h2>
-                    <form>
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" placeholder="Enter your username">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Enter your password">
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <a href="#" class="small">Forgot Password?</a>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100 mt-3" id="signInBtn">Sign In</button>                    </form>
+                <!-- Login Form Section -->
+                <div id="log" class="col-md-4">
+                    <div class="login-form">
+                        <h2 class="mb-4 text-center">Sugar Crumbs 🧁</h2>
+                        <form>
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="username" placeholder="Enter your username">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="#" class="small">Forgot Password?</a>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 mt-3" id="signInBtn">Sign In</button>                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Header -->
     <div id="header" class="header" style="display:none;">
@@ -75,7 +75,7 @@
     </div>
 
     <!-- Navigation -->
-    <div id="aside" class="aside" style="display:none;">
+    <div id="aside" class="aside">
         <div class="aside-navigation">
             <div class="profile-picture">
                 <img src="assets/images/profile.jpeg" alt="Profile Image">
@@ -622,7 +622,7 @@
                 </div>
 
                 <!-- Charts Section -->
-                <div class="row">
+                <div class="row" id="charts-section">
                     <!-- Line Chart -->
                     <div class="col-md-8 mb-4">
                         <div class="card chart-card">
