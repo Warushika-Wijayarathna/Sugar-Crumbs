@@ -39,12 +39,12 @@ document.addEventListener('DOMContentLoaded', function () {
 /////////////////////////////////////////////////////////// Sidebar Toggle - Selected //////////////////////////////////////////////////////////
 document.addEventListener("DOMContentLoaded", function() {
     // Get all navigation links
-    const navLinks = document.querySelectorAll('.nav-link');
+    const nav_Links = document.querySelectorAll('.nav-link');
 
-    navLinks.forEach(link => {
+    nav_Links.forEach(link => {
         link.addEventListener('click', function() {
             // Remove the 'bold' class from all links
-            navLinks.forEach(nav => nav.classList.remove('bold'));
+            nav_Links.forEach(nav => nav.classList.remove('bold'));
 
             // Add the 'bold' class to the clicked link
             this.classList.add('bold');
@@ -349,8 +349,8 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-//////////////////////////////////////////////////// Customer Add Form Load for Cash Register //////////////////////////////////////////////////////////
-document.addEventListener('DOMContentLoaded', function () {document.addEventListener('DOMContentLoaded', function () {
+////////////////////////////////////////////////////// Customer Add Form Load for Cash Register //////////////////////////////////////////////////////////
+document.addEventListener('DOMContentLoaded', function () {
     try {
         const custButton = document.getElementById('customer-add-btn-reg');
         const custModal = new bootstrap.Modal(document.querySelector('.customer-form .modal'));
@@ -614,41 +614,58 @@ var pieChart = new Chart(ctxPie, {
 
 ///////////////////////////////////////////////////////////////////////////////////////http ////////////////////////////////////////////////////
 
+// document.addEventListener('DOMContentLoaded', function() {
+//     try {
+//         const sections = document.querySelectorAll('section');
+//         const navLinks = document.querySelectorAll('.nav-link');
+//
+//         function showSection(targetId) {
+//             sections.forEach(section => {
+//                 section.style.display = section.classList.contains(targetId) ? 'block' : 'none';
+//             });
+//         }
+//
+//         navLinks.forEach(link => {
+//             link.addEventListener('click', function(event) {
+//                 try {
+//                     event.preventDefault();
+//                     const targetId = this.id.replace('Btn', '');
+//                     showSection(targetId);
+//                     // Update the URL without reloading the page
+//                     history.pushState(null, '', `#${targetId}`);
+//                 } catch (error) {
+//                     console.error('Error handling click event:', error);
+//                 }
+//             });
+//         });
+//
+//         // Show the section based on the URL hash when the page loads
+//         const initialSectionId = window.location.hash.replace('#', '');
+//         if (initialSectionId) {
+//             showSection(initialSectionId);
+//         } else {
+//             // Default to showing the dashboard section if no hash is present
+//             showSection('dashboard');
+//         }
+//     } catch (error) {
+//         console.error('Error during DOMContentLoaded:', error);
+//     }
+// });
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 document.addEventListener('DOMContentLoaded', function() {
-    try {
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.nav-link');
+    const signInBtn = document.getElementById('signInBtn');
+    signInBtn.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent form submission
 
-        function showSection(targetId) {
-            sections.forEach(section => {
-                section.style.display = section.classList.contains(targetId) ? 'block' : 'none';
-            });
-        }
+        // Make header, aside, and main content visible
+        document.getElementById('header').style.display = 'block';
+        document.getElementById('aside').style.display = 'block';
+        document.getElementById('main-content').style.display = 'block';
 
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-                try {
-                    event.preventDefault();
-                    const targetId = this.id.replace('Btn', '');
-                    showSection(targetId);
-                    // Update the URL without reloading the page
-                    history.pushState(null, '', `#${targetId}`);
-                } catch (error) {
-                    console.error('Error handling click event:', error);
-                }
-            });
-        });
-
-        // Show the section based on the URL hash when the page loads
-        const initialSectionId = window.location.hash.replace('#', '');
-        if (initialSectionId) {
-            showSection(initialSectionId);
-        } else {
-            // Default to showing the dashboard section if no hash is present
-            showSection('dashboard');
-        }
-    } catch (error) {
-        console.error('Error during DOMContentLoaded:', error);
-    }
+        // Optionally, hide the login page
+        document.querySelector('.login-page').style.display = 'none';
+    });
 });
-}

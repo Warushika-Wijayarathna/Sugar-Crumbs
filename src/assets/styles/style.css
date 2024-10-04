@@ -385,7 +385,36 @@ canvas {
 }
 
 
-
+section.login-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f9f9f9;
+}
+.rectangle-container {
+    width: 63%; /* Adjust width as needed */
+    height: 500px; /* Fixed height for rectangle */
+    border: 2px solid #ccc; /* Rectangle border */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+.login-form {
+    max-width: 400px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+}
+.illustration {
+    max-width: 500px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.illustration img {
+    width: 100%;
+}
 
 
 
