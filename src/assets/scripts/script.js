@@ -349,14 +349,18 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-////////////////////////////////////////////////////// Customer Add Form Load for Cash Register //////////////////////////////////////////////////////////
-document.addEventListener('DOMContentLoaded', function () {
-    const custButton = document.getElementById('customer-add-btn-reg');
-    const custModal = new bootstrap.Modal(document.querySelector('.customer-form .modal'));
+//////////////////////////////////////////////////// Customer Add Form Load for Cash Register //////////////////////////////////////////////////////////
+document.addEventListener('DOMContentLoaded', function () {document.addEventListener('DOMContentLoaded', function () {
+    try {
+        const custButton = document.getElementById('customer-add-btn-reg');
+        const custModal = new bootstrap.Modal(document.querySelector('.customer-form .modal'));
 
-    custButton.addEventListener('click', function () {
-        custModal.show();
-    });
+        custButton.addEventListener('click', function () {
+            custModal.show();
+        });
+    } catch (error) {
+        console.error('Error loading customer form:', error);
+    }
 });
 
 ////////////////////////////////////////////////////// Data for arrays //////////////////////////////////////////////////////////
@@ -647,3 +651,4 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Error during DOMContentLoaded:', error);
     }
 });
+}
