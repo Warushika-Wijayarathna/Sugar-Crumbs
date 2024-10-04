@@ -657,6 +657,8 @@ var pieChart = new Chart(ctxPie, {
 
 document.addEventListener('DOMContentLoaded', function() {
     const signInBtn = document.getElementById('signInBtn');
+    const signOutBtn = document.getElementById('signOutBtn');
+
     signInBtn.addEventListener('click', function(event) {
         event.preventDefault(); // Prevent form submission
 
@@ -667,5 +669,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Optionally, hide the login page
         document.querySelector('.login-page').style.display = 'none';
+    });
+
+    signOutBtn.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default action
+
+        // Hide header, aside, and main content
+        document.getElementById('header').style.display = 'none';
+        document.getElementById('aside').style.display = 'none';
+        document.getElementById('main-content').style.display = 'none';
+
+        // Show the login page
+        document.querySelector('.login-page').style.display = 'flex';
     });
 });

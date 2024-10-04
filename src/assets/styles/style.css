@@ -2,7 +2,8 @@
 /*Poppins*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-body {
+body
+{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -11,7 +12,8 @@ body {
     background: #FAF3E0 ;
 }
 
-.header {
+.header
+{
     position: fixed; /* Fix header at the top */
     top: 0;
     left: 0;
@@ -20,7 +22,8 @@ body {
     z-index: 1000; /* Ensure header is above other content */
 }
 
-.aside {
+.aside
+{
     position: fixed; /* Fix aside navigation */
     top: 26px; /* Height of the header */
     left: 0;
@@ -31,7 +34,8 @@ body {
     z-index: 999; /* Ensure aside is below the header */
 }
 
-.main-content {
+.main-content
+{
     margin-left: 15%; /* Leave space for the aside */
     margin-top: 46px; /* Leave space for the header */
     padding: 20px; /* Padding for main content */
@@ -46,6 +50,26 @@ body {
 .aside-navigation {
     background: #B0E0E6; /* Aside navigation background */
     min-width: 200px; /* Minimum width for aside navigation */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    place-items: center;
+}
+
+.aside-navigation .card
+{
+    flex-grow: 1;
+}
+
+#sign-out-btn
+{
+    width: 80%;
+    margin-bottom: 5%;
+    font-family: 'Poppins', sans-serif;
+}
+
+#sign-out-btn span{
+    margin-left: 10%;
 }
 
 .aside-navigation div
