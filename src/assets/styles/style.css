@@ -332,7 +332,7 @@ img.preview {
 }
 
 .dashboard .card-title {
-    color: #fff;
+    color: #333333;
     font-size: 18px;
     font-weight: bold;
 }
@@ -353,46 +353,6 @@ canvas {
 
 .cash-register .card:hover{
     transform: translateY(-5px);
-}
-
-/* Responsive Grid Layout for Cards */
-@media (max-width: 1200px) {
-    .dashboard-content .row {
-        display: flex;
-        flex-wrap: wrap; /* Allow wrapping of cards */
-        gap: 10px;
-    }
-
-    .col-md-4, .col-md-8 {
-        flex: 1 1 45%; /* Allow cards to shrink and wrap */
-        max-width: 45%;
-    }
-
-    .col-md-2 {
-        flex: 1 1 20%;
-        max-width: 20%;
-    }
-}
-
-/* Responsive Adjustments for Smaller Devices */
-@media (max-width: 768px) {
-    .aside {
-        grid-template-columns: 100%; /* Stack aside navigation vertically */
-    }
-
-    .dashboard-content .row {
-        flex-direction: column;
-    }
-
-    .col-md-4, .col-md-8 {
-        flex: 1 1 100%; /* Stack cards on smaller screens */
-        max-width: 100%;
-    }
-
-    .dashboard .card {
-        margin-bottom: 10px;
-        padding: 8px;
-    }
 }
 
 .navbar {
@@ -441,6 +401,60 @@ section.login-page {
 }
 
 
+/* Responsive Grid Layout for Cards */
+@media (max-width: 1200px) {
+    .dashboard-content .row {
+        display: flex;
+        flex-wrap: wrap; /* Allow wrapping of cards */
+        gap: 10px;
+    }
 
+    .col-md-4, .col-md-8 {
+        flex: 1 1 45%; /* Allow cards to shrink and wrap */
+        max-width: 45%;
+    }
 
+    .col-md-2 {
+        flex: 1 1 20%;
+        max-width: 20%;
+    }
+}
+
+@media (max-width: 768px) {
+    .rectangle-container {
+        width: 90%; /* Make it full-width on tablets */
+        height: auto; /* Auto height for better flexibility */
+    }
+    .illustration {
+        max-width: 100%; /* Full width for the illustration */
+        margin-bottom: 20px;
+    }
+    .login-form {
+        max-width: 100%; /* Full width for the form */
+    }
+
+    #log {
+        width: 80%;
+    }
+}
+
+@media (max-width: 425px) {
+    .rectangle-container {
+        flex-direction: column; /* Stack the elements on top of each other */
+        height: auto; /* Auto height */
+        padding: 10px;
+    }
+    .illustration {
+        margin-bottom: 15px; /* Reduced margin on mobile */
+    }
+    .login-form {
+        padding: 15px; /* Reduce form padding */
+    }
+    #signInBtn {
+        font-size: 1rem; /* Adjust font size for smaller devices */
+    }
+    #log {
+        width: 80%;
+    }
+}
 

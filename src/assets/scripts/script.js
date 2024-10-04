@@ -683,3 +683,26 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.login-page').style.display = 'flex';
     });
 });
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+window.addEventListener('resize', function() {
+    const logElement = document.getElementById('log');
+    if (window.innerWidth >= 768 && window.innerWidth < 992) {
+        logElement.classList.remove('col-md-4', 'col-md-2', 'col-md-1');
+        logElement.classList.add('col-md-3');
+    } else if (window.innerWidth >= 576 && window.innerWidth < 768) {
+        logElement.classList.remove('col-md-4', 'col-md-3', 'col-md-1');
+        logElement.classList.add('col-md-2');
+    } else if (window.innerWidth < 576) {
+        logElement.classList.remove('col-md-4', 'col-md-3', 'col-md-2');
+        logElement.classList.add('col-md-1');
+    } else {
+        logElement.classList.remove('col-md-3', 'col-md-2', 'col-md-1');
+        logElement.classList.add('col-md-4');
+    }
+});
+
+// Initial check to set the correct class on page load
+window.dispatchEvent(new Event('resize'));
