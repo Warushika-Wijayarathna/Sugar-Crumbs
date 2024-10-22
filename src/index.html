@@ -19,8 +19,11 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/styles/style.css">
 
-    <!--Font Awesome-->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- JQuey -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
 </head>
@@ -51,7 +54,8 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <a href="#" class="small">Forgot Password?</a>
                             </div>
-                            <button type="submit" class="btn btn-primary w-100 mt-3" id="signInBtn">Sign In</button>                    </form>
+                            <button type="submit" class="btn btn-primary w-100 mt-3" id="signInBtn">Sign In</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -340,6 +344,7 @@
                     <tr>
                         <th scope="col">Code</th>
                         <th scope="col">Description</th>
+                        <th scope="col">Category</th>
                         <th scope="col">Image</th>
                         <th scope="col">Unit Price</th>
                         <th scope="col">Qty On Hand</th>
@@ -347,42 +352,6 @@
                     </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                    <tr>
-                        <th scope="row" class="row-id">1</th>
-                        <td class="row-desc">Butter Cake 1kg</td>
-                        <td class="row-image">
-                            <img src="https://p16-va.lemon8cdn.com/tos-alisg-v-a3e477-sg/64485364429546b1b1ab4090730b0c60~tplv-tej9nj120t-origin.webp" alt="Butter cake" class="preview">
-                        </td>
-                        <td class="row-price">Rs.500.00</td>
-                        <td class="row-qty">10</td>
-                        <td class="row-action">
-                            <button type="button" class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="row-id">1</th>
-                        <td class="row-desc">Chocolate 1kg</td>
-                        <td class="row-image">
-                            <img src="https://www.cookingclassy.com/wp-content/uploads/2022/04/easy-chocolate-cake-2-600x900.jpg" alt="Chocolate cake" class="preview">
-                        </td>
-                        <td class="row-price">Rs.800.00</td>
-                        <td class="row-qty">15</td>
-                        <td>
-                            <button type="button" class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" class="row-id">1</th>
-                        <td class="row-desc">Ribbon Cake 1kg</td>
-                        <td class="row-image">
-                            <img src="https://www.wishque.com/data/images/products/5178/15559498_781637321743_0.27734600-1596597953.jpg" alt="Ribbon cake" class="preview">
-                        </td>
-                        <td class="row-price">Rs.600.00</td>
-                        <td class="row-qty">10</td>
-                        <td>
-                            <button type="button" class="btn btn-danger">Delete</button>
-                        </td>
-                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -871,6 +840,10 @@
                                 <label for="newProductDesc" class="form-label">Description:</label>
                                 <input id="newProductDesc" class="form-control" type="text">
                             </div>
+                            <div class="mb-3">
+                                <label for="newProductCategory" class="form-label">Description:</label>
+                                <input id="newProductCategory" class="form-control" type="text">
+                            </div>
                             <div class="upload-container">
                                 <div class="upload-box" id="uploadBoxNew">
                                     <i class="fa-solid fa-cloud-arrow-up"></i>
@@ -917,9 +890,12 @@
                                 <label for="editProductDesc" class="form-label">Description:</label>
                                 <input id="editProductDesc" class="form-control" type="text">
                             </div>
+                            <div class="mb-3">
+                                <label for="editProductCategory" class="form-label">Category:</label>
+                                <input id="editProductCategory" class="form-control" type="text">
+                            </div>
                             <div class="upload-container">
                                 <div class="upload-box" id="uploadBoxEdit">
-                                    <!-- Image Preview and Upload UI -->
                                     <img id="imagePreviewEdit" class="preview" src="" alt="Image Preview" style="display:none;" />
                                     <i class="fa-solid fa-cloud-arrow-up"></i>
                                     <p id="uploadTextEdit">Drag & Drop to Upload File</p>

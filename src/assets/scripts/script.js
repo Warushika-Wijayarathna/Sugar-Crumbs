@@ -1,77 +1,73 @@
 ////////////////////////////////////////////////////// Sidebar Toggle //////////////////////////////////////////////////////////
-document.addEventListener('DOMContentLoaded', function() {
-    const navItems = document.querySelectorAll('.nav-item');
-
-    navItems.forEach(function(item) {
-        item.addEventListener('mouseover', function() {
-            const navLink = this.querySelector('.nav-link');
-            navLink.classList.add('active');
-            navLink.style.background = 'rgba(128, 128, 128, 0.7)';
-            navLink.style.color = '#333333';
+$(document).ready(function() {
+    $('.nav-item').on('mouseover', function() {
+        const navLink = $(this).find('.nav-link');
+        navLink.addClass('active');
+        navLink.css({
+            'background': 'rgba(128, 128, 128, 0.7)',
+            'color': '#333333'
         });
+    });
 
-        item.addEventListener('mouseout', function() {
-            const navLink = this.querySelector('.nav-link');
-            navLink.classList.remove('active');
-            navLink.style.background = '';
-        });
+    $('.nav-item').on('mouseout', function() {
+        const navLink = $(this).find('.nav-link');
+        navLink.removeClass('active');
+        navLink.css('background', '');
     });
 });
 
 /////////////////////////////////////////////////////////// Nav-Brand ///////////////////////////////////////////////////////////////////////////
-document.addEventListener('DOMContentLoaded', function () {
-    const navbarBrand = document.querySelector('.header span');
+$(document).ready(function () {
+    const navbarBrand = $('.header span');
 
     // Set default color
-    navbarBrand.style.color = '#333333';
+    navbarBrand.css('color', '#333333');
 
     // Change color on hover
-    navbarBrand.addEventListener('mouseover', function () {
-        navbarBrand.style.color = 'rgba(128, 128, 128, 0.7)';
+    navbarBrand.on('mouseover', function () {
+        navbarBrand.css('color', 'rgba(128, 128, 128, 0.7)');
     });
 
     // Revert to default color when not hovering
-    navbarBrand.addEventListener('mouseout', function () {
-        navbarBrand.style.color = 'black';
+    navbarBrand.on('mouseout', function () {
+        navbarBrand.css('color', 'black');
     });
 });
 
 /////////////////////////////////////////////////////////// Sidebar Toggle - Selected //////////////////////////////////////////////////////////
-document.addEventListener("DOMContentLoaded", function() {
-    // Get all navigation links
-    const nav_Links = document.querySelectorAll('.nav-link');
+$(document).ready(function() {
+    const nav_Links = $('.nav-link');
 
-    nav_Links.forEach(link => {
-        link.addEventListener('click', function() {
-            // Remove the 'bold' class from all links
-            nav_Links.forEach(nav => nav.classList.remove('bold'));
+    nav_Links.on('click', function() {
+        // Remove the 'bold' class from all links
+        nav_Links.removeClass('bold');
 
-            // Add the 'bold' class to the clicked link
-            this.classList.add('bold');
-        });
+        // Add the 'bold' class to the clicked link
+        $(this).addClass('bold');
     });
 });
 
 ////////////////////////////////////////////////////// Customer Section Load //////////////////////////////////////////////////////////
-document.addEventListener('DOMContentLoaded', function () {
-    const customerSecButton = document.getElementById('customerBtn');
-    const mainContent = document.querySelector('.main-content');
-    const customerSecSection = document.querySelector('.customer');
 
-    customerSecButton.addEventListener('click', function (event) {
+$(document).ready(function () {
+    const customerButton = $('#customerBtn');
+    const mainContent = $('.main-content');
+    const customerSection = $('.customer');
+
+    customerButton.on('click', function (event) {
         event.preventDefault();
-        mainContent.innerHTML = '';
-        mainContent.appendChild(customerSecSection);
-        customerSecSection.style.display = 'block';
+        mainContent.empty();
+        mainContent.append(customerSection);
+        customerSection.show();
     });
 });
 
 ////////////////////////////////////////////////////// Customer Add Form Load //////////////////////////////////////////////////////////
-document.addEventListener('DOMContentLoaded', function () {
-    const customerAddButton = document.getElementById('customer-add-btn');
-    const customerAddModal = new bootstrap.Modal(document.querySelector('.customer-form .modal'));
+$(document).ready(function () {
+    const customerAddButton = $('#customer-add-btn');
+    const customerAddModal = new bootstrap.Modal($('.customer-form .modal').get(0));
 
-    customerAddButton.addEventListener('click', function () {
+    customerAddButton.on('click', function () {
         try {
             customerAddModal.show();
             console.log("Modal opened successfully");
@@ -81,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Add event listener for closing the modal
-    document.querySelector('.modal .btn-close').addEventListener('click', function () {
+    $('.modal .btn-close').on('click', function () {
         try {
             customerAddModal.hide();
             console.log("Modal closed successfully");
@@ -92,144 +88,154 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 ////////////////////////////////////////////////////// Data load for Edit Customer Form //////////////////////////////////////////////////////////
-document.addEventListener('DOMContentLoaded', function () {
-    const tableRows = document.querySelectorAll('.customer-table tbody tr');
-    const customerTableModal = new bootstrap.Modal(document.querySelector('.customer-form-edit .modal'));
+$(document).ready(function () {
+    const tableRows = $('.customer-table tbody tr');
+    const customerTableModal = new bootstrap.Modal($('.customer-form-edit .modal').get(0));
 
-    const id = document.getElementById('customer-id');
-    const name = document.getElementById('customer-name');
-    const email = document.getElementById('customer-email');
-    const phone = document.getElementById('customer-phone');
-    const address = document.getElementById('customer-address');
+    const id = $('#customer-id');
+    const name = $('#customer-name');
+    const email = $('#customer-email');
+    const phone = $('#customer-phone');
+    const address = $('#customer-address');
 
-    tableRows.forEach(function (row) {
-        row.addEventListener('click', function () {
-            const customer_id = row.querySelector('.row-id').textContent;
-            const customer_name = row.querySelector('.row-name').textContent;
-            const customer_email = row.querySelector('.row-email').textContent;
-            const customer_phone = row.querySelector('.row-phone').textContent;
-            const customer_address = row.querySelector('.row-address').textContent;
+    tableRows.on('click', function () {
+        const customer_id = $(this).find('.row-id').text();
+        const customer_name = $(this).find('.row-name').text();
+        const customer_email = $(this).find('.row-email').text();
+        const customer_phone = $(this).find('.row-phone').text();
+        const customer_address = $(this).find('.row-address').text();
 
-            id.textContent = customer_id;
-            name.value = customer_name;
-            email.value = customer_email;
-            phone.value = customer_phone;
-            address.value = customer_address;
+        id.text(customer_id);
+        name.val(customer_name);
+        email.val(customer_email);
+        phone.val(customer_phone);
+        address.val(customer_address);
 
-            customerTableModal.show();
-        });
+        customerTableModal.show();
     });
 });
 
 ////////////////////////////////////////////////////// User Section Load //////////////////////////////////////////////////////////
+$(document).ready(function () {
+    const userButton = $('#userBtn');
+    const mainContent = $('.main-content');
+    const userSection = $('.user');
 
-document.addEventListener('DOMContentLoaded', function () {
-    const userButton = document.getElementById('userBtn');
-    const mainContent = document.querySelector('.main-content');
-    const userSection = document.querySelector('.user');
-
-    userButton.addEventListener('click', function (event) {
+    userButton.on('click', function (event) {
         event.preventDefault();
-        mainContent.innerHTML = '';
-        mainContent.appendChild(userSection);
-        userSection.style.display = 'block';
+        mainContent.empty();
+        mainContent.append(userSection);
+        userSection.show();
     });
 });
 
 ////////////////////////////////////////////////////// User Add Form Load //////////////////////////////////////////////////////////
-document.addEventListener('DOMContentLoaded', function () {
-    const UserAddButton = document.getElementById('user-add-btn');
-    const UserAddModal = new bootstrap.Modal(document.querySelector('.user-form .modal'));
+$(document).ready(function () {
+    const UserAddButton = $('#user-add-btn');
+    const UserAddModal = new bootstrap.Modal($('.user-form .modal').get(0));
 
-    UserAddButton.addEventListener('click', function () {
+    UserAddButton.on('click', function () {
         UserAddModal.show();
     });
 });
 
 ////////////////////////////////////////////////////// Data load for Edit User Form //////////////////////////////////////////////////////////
-document.addEventListener('DOMContentLoaded', function () {
-    const tableRows = document.querySelectorAll('.user-table tbody tr');
-    const userTableModal = new bootstrap.Modal(document.querySelector('.user-form-edit .modal'));
-    const id = document.getElementById('user-id');
-    const name = document.getElementById('user-name');
-    const email = document.getElementById('user-email');
-    const phone = document.getElementById('user-phone');
-    const address = document.getElementById('user-address');
-    const salary = document.getElementById('user-salary');
+$(document).ready(function () {
+    const tableRows = $('.user-table tbody tr');
+    const userTableModal = new bootstrap.Modal($('.user-form-edit .modal').get(0));
 
-    tableRows.forEach(function (row) {
-        row.addEventListener('click', function () {
-            const user_id = row.querySelector('.row-id').textContent;
-            const user_name = row.querySelector('.row-name').textContent;
-            const user_email = row.querySelector('.row-email').textContent;
-            const user_phone = row.querySelector('.row-phone').textContent;
-            const user_address = row.querySelector('.row-address').textContent;
-            const user_salary = row.querySelector('.row-salary').textContent;
+    const id = $('#user-id');
+    const name = $('#user-name');
+    const email = $('#user-email');
+    const phone = $('#user-phone');
+    const address = $('#user-address');
+    const salary = $('#user-salary');
 
-            id.textContent = user_id;
-            name.value = user_name;
-            email.value = user_email;
-            phone.value = user_phone;
-            address.value = user_address;
-            salary.value = user_salary;
+    tableRows.on('click', function () {
+        const user_id = $(this).find('.row-id').text();
+        const user_name = $(this).find('.row-name').text();
+        const user_email = $(this).find('.row-email').text();
+        const user_phone = $(this).find('.row-phone').text();
+        const user_address = $(this).find('.row-address').text();
+        const user_salary = $(this).find('.row-salary').text();
 
-            userTableModal.show();
-        });
+        id.text(user_id);
+        name.val(user_name);
+        email.val(user_email);
+        phone.val(user_phone);
+        address.val(user_address);
+        salary.val(user_salary);
+
+        userTableModal.show();
     });
 });
 
 ////////////////////////////////////////////////////// Product Section Load //////////////////////////////////////////////////////////
-document.addEventListener('DOMContentLoaded', function () {
-    const productButton = document.getElementById('productBtn');
-    const mainContent = document.querySelector('.main-content');
-    const productSection = document.querySelector('.product');
+$(document).ready(function () {
+    const productButton = $('#productBtn');
+    const mainContent = $('.main-content');
+    const productSection = $('.product');
 
-    productButton.addEventListener('click', function (event) {
+    productButton.on('click', function (event) {
         event.preventDefault();
-        mainContent.innerHTML = '';
-        mainContent.appendChild(productSection);
-        productSection.style.display = 'block';
+        mainContent.empty();
+        mainContent.append(productSection);
+        productSection.show();
     });
 });
 
 ////////////////////////////////////////////////////// Product Add Form Load //////////////////////////////////////////////////////////
-document.addEventListener('DOMContentLoaded', function () {
-    const productAddButton = document.getElementById('product-add-btn');
-    const productAddModal = new bootstrap.Modal(document.querySelector('.product-form-new .modal'));
+$(document).ready(function () {
+    const productAddButton = $('#product-add-btn');
+    const productAddModal = new bootstrap.Modal($('.product-form-new .modal').get(0));
 
-    productAddButton.addEventListener('click', function () {
+    productAddButton.on('click', function () {
         productAddModal.show();
     });
 });
 
+//////////////////////////////////////////////////////// Invoice Section Load/////////////////////////////////////////////////////////////////////////
+
+$(document).ready(function () {
+    const invoiceButton = $('#invoiceBtn');
+    const mainContent = $('.main-content');
+    const invoiceSection = $('.invoice');
+
+    invoiceButton.on('click', function (event) {
+        event.preventDefault();
+        mainContent.empty();
+        mainContent.append(invoiceSection);
+        invoiceSection.show();
+    });
+});
 
 ////////////////////////////////////////////////////// Image Upload for New Product Form //////////////////////////////////////////////////////////
 
-const uploadBoxNew = document.getElementById('uploadBoxNew');
-const fileInputNew = document.getElementById('fileInputNew');
-const browseFileButtonNew = document.getElementById('browseFileButtonNew');
+const uploadBoxNew = $('#uploadBoxNew');
+const fileInputNew = $('#fileInputNew');
+const browseFileButtonNew = $('#browseFileButtonNew');
 
-browseFileButtonNew.addEventListener('click', () => {
+browseFileButtonNew.on('click', () => {
     fileInputNew.click();
 });
 
-uploadBoxNew.addEventListener('dragover', (event) => {
+uploadBoxNew.on('dragover', (event) => {
     event.preventDefault();
-    uploadBoxNew.style.borderColor = '#fff';
+    uploadBoxNew.css('borderColor', '#fff');
 });
 
-uploadBoxNew.addEventListener('dragleave', () => {
-    uploadBoxNew.style.borderColor = '#ffffff';
+uploadBoxNew.on('dragleave', () => {
+    uploadBoxNew.css('borderColor', '#ffffff');
 });
 
-uploadBoxNew.addEventListener('drop', (event) => {
+uploadBoxNew.on('drop', (event) => {
     event.preventDefault();
-    const file = event.dataTransfer.files[0];
+    const file = event.originalEvent.dataTransfer.files[0];
     handleFileNew(file);
-    uploadBoxNew.style.borderColor = '#ffffff';
+    uploadBoxNew.css('borderColor', '#ffffff');
 });
 
-fileInputNew.addEventListener('change', (event) => {
+fileInputNew.on('change', (event) => {
     const file = event.target.files[0];
     handleFileNew(file);
 });
@@ -239,12 +245,12 @@ function handleFileNew(file) {
         const reader = new FileReader();
 
         reader.onload = function (event) {
-            uploadBoxNew.innerHTML = `
+            uploadBoxNew.html(`
                 <img src="${event.target.result}" alt="Image Preview" class="preview">
                 <button class="delete-button" id="deleteButtonNew">Delete Image</button>
-            `;
+            `);
 
-            document.getElementById('deleteButtonNew').addEventListener('click', resetUploadBoxNew);
+            $('#deleteButtonNew').on('click', resetUploadBoxNew);
         };
 
         reader.readAsDataURL(file);
@@ -254,74 +260,71 @@ function handleFileNew(file) {
 }
 
 function resetUploadBoxNew() {
-    uploadBoxNew.innerHTML = `
+    uploadBoxNew.html(`
         <i class="fa-solid fa-cloud-arrow-up"></i>
         <p>Drag & Drop to Upload File</p>
         <p>OR</p>
         <button id="browseFileButtonNew">Browse File</button>
         <input type="file" id="fileInputNew" hidden>
-    `;
+    `);
 
-    const browseFileButtonNew = document.getElementById('browseFileButtonNew');
-    const fileInputNew = document.getElementById('fileInputNew');
+    const browseFileButtonNew = $('#browseFileButtonNew');
+    const fileInputNew = $('#fileInputNew');
 
-    browseFileButtonNew.addEventListener('click', () => fileInputNew.click());
-    fileInputNew.addEventListener('change', (event) => handleFileNew(event.target.files[0]));
+    browseFileButtonNew.on('click', () => fileInputNew.click());
+    fileInputNew.on('change', (event) => handleFileNew(event.target.files[0]));
 }
 
 ////////////////////////////////////////// Product Edit Form Load //////////////////////////////////////////
-
-document.addEventListener('DOMContentLoaded', function () {
-    const tableRows = document.querySelectorAll('.product-table tbody tr');
-    const productModalEdit = new bootstrap.Modal(document.querySelector('.product-form-edit .modal'));
-    const code = document.getElementById('editProductCode');
-    const description = document.getElementById('editProductDesc');
-    const unitPrice = document.getElementById('editProductUnitPrice');
-    const qtyOnHand = document.getElementById('editProductQtyOnHand');
-    const uploadBoxEdit = document.getElementById('uploadBoxEdit');
-    const imagePreviewEdit = document.getElementById('imagePreviewEdit');
-    const uploadTextEdit = document.getElementById('uploadTextEdit');
-    const fileInputEdit = document.getElementById('fileInputEdit');
+$(document).ready(function () {
+    const tableRows = $('.product-table tbody tr');
+    const productModalEdit = new bootstrap.Modal($('.product-form-edit .modal').get(0));
+    const code = $('#editProductCode');
+    const description = $('#editProductDesc');
+    const category = $('#editProductCategory');
+    const unitPrice = $('#editProductUnitPrice');
+    const qtyOnHand = $('#editProductQtyOnHand');
+    const uploadBoxEdit = $('#uploadBoxEdit');
+    const imagePreviewEdit = $('#imagePreviewEdit');
+    const uploadTextEdit = $('#uploadTextEdit');
+    const fileInputEdit = $('#fileInputEdit');
 
     function resetUploadBoxEdit() {
-        imagePreviewEdit.style.display = 'none';
-        imagePreviewEdit.src = '';
-        uploadTextEdit.style.display = 'block';
+        imagePreviewEdit.hide().attr('src', '');
+        uploadTextEdit.show();
     }
 
-    tableRows.forEach(function (row) {
-        row.addEventListener('click', function () {
-            const item_code = row.querySelector('.row-id').textContent;
-            const item_description = row.querySelector('.row-desc').textContent;
-            const item_unit_price = row.querySelector('.row-price').textContent;
-            const item_qty_on_hand = row.querySelector('.row-qty').textContent;
-            const item_image = row.querySelector('.row-image img')?.getAttribute('src');
+    tableRows.on('click', function () {
+        const item_code = $(this).find('.row-id').text();
+        const item_description = $(this).find('.row-desc').text();
+        const item_category = $(this).find('.row-category').text();
+        const item_unit_price = $(this).find('.row-price').text();
+        const item_qty_on_hand = $(this).find('.row-qty').text();
+        const item_image = $(this).find('.row-image img').attr('src');
 
-            code.value = item_code;
-            description.value = item_description;
-            unitPrice.value = item_unit_price;
-            qtyOnHand.value = item_qty_on_hand;
+        code.val(item_code);
+        description.val(item_description);
+        category.val(item_category);
+        unitPrice.val(item_unit_price);
+        qtyOnHand.val(item_qty_on_hand);
 
-            if (item_image) {
-                imagePreviewEdit.src = item_image;
-                imagePreviewEdit.style.display = 'block';
-                uploadTextEdit.style.display = 'none';
-            } else {
-                resetUploadBoxEdit();
-            }
+        if (item_image) {
+            imagePreviewEdit.attr('src', item_image).show();
+            uploadTextEdit.hide();
+        } else {
+            resetUploadBoxEdit();
+        }
 
-            productModalEdit.show();
-        });
+        productModalEdit.show();
     });
 
-    fileInputEdit.addEventListener('change', function () {
-        const file = fileInputEdit.files[0];
+    fileInputEdit.on('change', function () {
+        const file = fileInputEdit.get(0).files[0];
         if (file) {
             const reader = new FileReader();
             reader.onload = function (e) {
-                imagePreviewEdit.src = e.target.result;
-                imagePreviewEdit.style.display = 'block';
-                uploadTextEdit.style.display = 'none';
+                imagePreviewEdit.attr('src', e.target.result).show();
+                uploadTextEdit.hide();
             };
             reader.readAsDataURL(file);
         } else {
@@ -329,33 +332,32 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    document.getElementById('browseFileButtonEdit').addEventListener('click', function () {
+    $('#browseFileButtonEdit').on('click', function () {
         fileInputEdit.click();
     });
 });
 
-////////////////////////////////////////////////////// Product Section Load //////////////////////////////////////////////////////////
-document.addEventListener('DOMContentLoaded', function () {
-    const registerButton = document.getElementById('cash-registerBtn');
-    const mainContent = document.querySelector('.main-content');
-    const registerSection = document.querySelector('.cash-register');
+////////////////////////////////////////////////////// Cash Register Section Load //////////////////////////////////////////////////////////
+$(document).ready(function () {
+    const registerButton = $('#cash-registerBtn');
+    const mainContent = $('.main-content');
+    const registerSection = $('.cash-register');
 
-    registerButton.addEventListener('click', function (event) {
+    registerButton.on('click', function (event) {
         event.preventDefault();
-        mainContent.innerHTML = '';
-        mainContent.appendChild(registerSection);
-        registerSection.style.display = 'block';
+        mainContent.empty();
+        mainContent.append(registerSection);
+        registerSection.show();
     });
 });
 
-
 ////////////////////////////////////////////////////// Customer Add Form Load for Cash Register //////////////////////////////////////////////////////////
-document.addEventListener('DOMContentLoaded', function () {
+$(document).ready(function () {
     try {
-        const custButton = document.getElementById('customer-add-btn-reg');
-        const custModal = new bootstrap.Modal(document.querySelector('.customer-form .modal'));
+        const custButton = $('#customer-add-btn-reg');
+        const custModal = new bootstrap.Modal($('.customer-form .modal').get(0));
 
-        custButton.addEventListener('click', function () {
+        custButton.on('click', function () {
             custModal.show();
         });
     } catch (error) {
@@ -366,14 +368,14 @@ document.addEventListener('DOMContentLoaded', function () {
 ////////////////////////////////////////////////////// Data for arrays //////////////////////////////////////////////////////////
 
 let products = [
-    { code: "P001", description: "Chocolate Cake", unitPrice: 20.00, qtyOnHand: 40, image: "https://www.labonelfinebaking.shop/wp-content/uploads/2021/02/CLASSIC-CHOCOLATE-CAKE.jpg" },
-    { code: "P002", description: "Vanilla Cupcake", unitPrice: 5.00, qtyOnHand: 100, image: "https://hips.hearstapps.com/del.h-cdn.co/assets/18/07/1518475314-vanilla-cupcake-horizontal-.jpg?crop=0.667xw:1.00xh;0.199xw,0&resize=1200:*" },
-    { code: "P003", description: "Strawberry Tart", unitPrice: 12.00, qtyOnHand: 25, image: "https://static.toiimg.com/thumb/55435839.cms?width=1200&height=900" },
-    { code: "P004", description: "Lemon Cheesecake", unitPrice: 15.00, qtyOnHand: 30, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYhIH3gaoVMTsWxza5WuBAJlVJUJJGVpCi6w&s" },
-    { code: "P005", description: "Carrot Cake", unitPrice: 18.00, qtyOnHand: 20, image: "https://www.rainbownourishments.com/wp-content/uploads/2023/03/vegan-carrot-cake-1.jpg" },
-    { code: "P006", description: "Red Velvet Cake", unitPrice: 22.00, qtyOnHand: 15, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrw5Aqhuo-gAqBJp9HsA1NUUcAUIYE76EPIA&s" },
-    { code: "P007", description: "Blueberry Muffin", unitPrice: 8.00, qtyOnHand: 60, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxwriYjJ0IX6I9kkpo0rDCDzPff-GrkSX4zw&s" },
-    { code: "P008", description: "Apple Pie", unitPrice: 25.00, qtyOnHand: 10, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmQ7JyEum073tMWX4Nt9nahFPEcmKmdGvlhg&s" }
+    { code: "P001", description: "Chocolate Cake", category: "Cake",unitPrice: 20.00, qtyOnHand: 40, image: "https://www.labonelfinebaking.shop/wp-content/uploads/2021/02/CLASSIC-CHOCOLATE-CAKE.jpg" },
+    { code: "P002", description: "Vanilla Cupcake", category: "Cake",unitPrice: 5.00, qtyOnHand: 100, image: "https://hips.hearstapps.com/del.h-cdn.co/assets/18/07/1518475314-vanilla-cupcake-horizontal-.jpg?crop=0.667xw:1.00xh;0.199xw,0&resize=1200:*" },
+    { code: "P003", description: "Strawberry Tart", category: "Cake",unitPrice: 12.00, qtyOnHand: 25, image: "https://static.toiimg.com/thumb/55435839.cms?width=1200&height=900" },
+    { code: "P004", description: "Lemon Cheesecake", category: "Cake",unitPrice: 15.00, qtyOnHand: 30, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYhIH3gaoVMTsWxza5WuBAJlVJUJJGVpCi6w&s" },
+    { code: "P005", description: "Carrot Cake", category: "Cake",unitPrice: 18.00, qtyOnHand: 20, image: "https://www.rainbownourishments.com/wp-content/uploads/2023/03/vegan-carrot-cake-1.jpg" },
+    { code: "P006", description: "Red Velvet Cake", category: "Cake",unitPrice: 22.00, qtyOnHand: 15, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrw5Aqhuo-gAqBJp9HsA1NUUcAUIYE76EPIA&s" },
+    { code: "P007", description: "Blueberry Muffin", category: "Cake",unitPrice: 8.00, qtyOnHand: 60, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxwriYjJ0IX6I9kkpo0rDCDzPff-GrkSX4zw&s" },
+    { code: "P008", description: "Apple Pie", category: "Cake",unitPrice: 25.00, qtyOnHand: 10, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmQ7JyEum073tMWX4Nt9nahFPEcmKmdGvlhg&s" }
 ];
 
 let customers = [
@@ -398,18 +400,19 @@ let users = [
     { id: "U008", name: "Zendaya Maree", email: "zendaya@example.com", phone: "89089089", address: "456 Terrace", salary: 5200 }
 ];
 
-//////////////////////////////////////////////////////////////////////// Table data display //////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////// Table data display //////////////////////////////////////////////////////////
 
 // Function to display products in a table
 function displayProducts() {
-    const productTableBody = document.querySelector('.product-table tbody');
-    productTableBody.innerHTML = ''; // Clear existing rows
+    const productTableBody = $('.product-table tbody');
+    productTableBody.empty(); // Clear existing rows
 
     products.forEach(product => {
         let row = `
             <tr>
                 <td class="row-id">${product.code}</td>
                 <td class="row-desc">${product.description}</td>
+                <td class="row-category">${product.category}</td>
                 <td class="row-image" style="width: 10%; height: auto;" ><img src="${product.image}" alt="${product.description}" style="width: 100%;
     aspect-ratio: auto;
     object-fit: cover;"></td>
@@ -418,14 +421,14 @@ function displayProducts() {
                 <td class="row-actions"> <button class="btn btn-danger">Delete</button> </td>
             </tr>
         `;
-        productTableBody.innerHTML += row;
+        productTableBody.append(row);
     });
 }
 
 // Function to display customers in a table
 function displayCustomers() {
-    const customerTableBody = document.querySelector('.customer-table tbody');
-    customerTableBody.innerHTML = ''; // Clear existing rows
+    const customerTableBody = $('.customer-table tbody');
+    customerTableBody.empty(); // Clear existing rows
 
     customers.forEach(customer => {
         let row = `
@@ -438,7 +441,7 @@ function displayCustomers() {
                 <td class="row-actions"> <button class="btn btn-danger">Delete</button> </td>
             </tr>
         `;
-        customerTableBody.innerHTML += row;
+        customerTableBody.append(row);
     });
 }
 
@@ -446,8 +449,8 @@ function displayCustomers() {
 
 // Function to display users in a table
 function displayUsers() {
-    const userTableBody = document.querySelector('.user-table tbody');
-    userTableBody.innerHTML = ''; // Clear existing rows
+    const userTableBody = $('.user-table tbody');
+    userTableBody.empty(); // Clear existing rows
 
     users.forEach(user => {
         let row = `
@@ -461,7 +464,7 @@ function displayUsers() {
                 <td class="row-actions"><button class="btn btn-danger">Delete</button> </td>
             </tr>
         `;
-        userTableBody.innerHTML += row;
+        userTableBody.append(row);
     });
 }
 
@@ -490,74 +493,63 @@ function addUser(user) {
 }
 
 // Example: Adding a new product from a form
-document.getElementById('product-add-btn').addEventListener('click', function() {
+$('#product-add-btn').on('click', function() {
     let newProduct = {
-        code: document.getElementById('productCode').value,
-        description: document.getElementById('productDesc').value,
-        image: document.getElementById('productImage').value, // Assuming an input for image URL
-        unitPrice: parseFloat(document.getElementById('productUnitPrice').value),
-        qtyOnHand: parseInt(document.getElementById('productQtyOnHand').value),
-
+        code: $('#productCode').val(),
+        description: $('#productDesc').val(),
+        category: $('#productCategory').val(),
+        image: $('#productImage').val(), // Assuming an input for image URL
+        unitPrice: parseFloat($('#productPrice').val()),
+        qtyOnHand: parseInt($('#productQty').val())
     };
     addProduct(newProduct);
-    // Hide modal, clear form, etc.
 });
 
-////////////////////////////////////////////////////// Product cards load ////////////////////////////////////////////
-
-// Select the product list container
-const productList = document.getElementById("product-list");
-
-// Loop through the products array and generate product cards
-products.forEach(product => {
-    const productCard = `
-        <div class="col">
-            <div class="card product-card">
-                <img src="${product.image}" class="card-img-top" alt="${product.description}">
-                <div class="card-body">
-                    <h5 class="card-title">${product.description}</h5>
-                    <p class="card-text">$${product.unitPrice.toFixed(2)}</p>
-                </div>
-            </div>
-        </div>
-    `;
-
-    // Append the product card to the product list
-    productList.innerHTML += productCard;
+// Example: Adding a new customer from a form
+$('#customer-add-btn').on('click', function() {
+    let newCustomer = {
+        id: $('#customerId').val(),
+        name: $('#customerName').val(),
+        email: $('#customerEmail').val(),
+        phone: $('#customerPhone').val(),
+        address: $('#customerAddress').val()
+    };
+    addCustomer(newCustomer);
 });
 
-////////////////////////////////////////////////////// Invoice Section Load //////////////////////////////////////////////////////////
-document.addEventListener('DOMContentLoaded', function () {
-    const invoiceButton = document.getElementById('invoiceBtn');
-    const mainContent = document.querySelector('.main-content');
-    const invoiceSection = document.querySelector('.invoice');
-
-    invoiceButton.addEventListener('click', function (event) {
-        event.preventDefault();
-        mainContent.innerHTML = '';
-        mainContent.appendChild(invoiceSection);
-        invoiceSection.style.display = 'block';
-    });
+// Example: Adding a new user from a form
+$('#user-add-btn').on('click', function() {
+    let newUser = {
+        id: $('#userId').val(),
+        name: $('#userName').val(),
+        email: $('#userEmail').val(),
+        phone: $('#userPhone').val(),
+        address: $('#userAddress').val(),
+        salary: parseFloat($('#userSalary').val())
+    };
+    addUser(newUser);
 });
+
+
 
 ////////////////////////////////////////////////////// Dashboard Section Load //////////////////////////////////////////////////////////
-document.addEventListener('DOMContentLoaded', function () {
-    const dashboardButton = document.getElementById('dashboardBtn');
-    const mainContent = document.querySelector('.main-content');
-    const dashboardSection = document.querySelector('.dashboard');
+$(document).ready(function () {
+    const dashboardButton = $('#dashboardBtn');
+    const mainContent = $('.main-content');
+    const dashboardSection = $('.dashboard');
 
     // Function to load the dashboard section
     function loadDashboard() {
-        mainContent.innerHTML = ''; // Clear existing content
-        mainContent.appendChild(dashboardSection); // Append dashboard section
-        dashboardSection.style.display = 'block'; // Show the dashboard section
+        mainContent.empty(); // Clear existing content
+        mainContent.append(dashboardSection); // Append dashboard section
+        dashboardSection.show(); // Show the dashboard section
     }
 
     // Load the dashboard when the page is fully loaded
     loadDashboard();
 
     // Event listener for dashboard button click (if needed)
-    dashboardButton.addEventListener('click', function (event) {
+    dashboardButton.on('click', function (event) {
         event.preventDefault(); // Prevent default button action
         loadDashboard(); // Call the function to load dashboard
     });
@@ -566,7 +558,7 @@ document.addEventListener('DOMContentLoaded', function () {
 ////////////////////////////////////////////////////////////////// Charts ////////////////////////////////////////////////////////////
 
 // Line Chart
-var ctxLine = document.getElementById('lineChart').getContext('2d');
+var ctxLine = $('#lineChart').get(0).getContext('2d');
 var lineChart = new Chart(ctxLine, {
     type: 'line',
     data: {
@@ -590,7 +582,7 @@ var lineChart = new Chart(ctxLine, {
 });
 
 // Pie Chart
-var ctxPie = document.getElementById('pieChart').getContext('2d');
+var ctxPie = $('#pieChart').get(0).getContext('2d');
 var pieChart = new Chart(ctxPie, {
     type: 'pie',
     data: {
@@ -655,134 +647,127 @@ var pieChart = new Chart(ctxPie, {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-document.addEventListener('DOMContentLoaded', function() {
-    const signInBtn = document.getElementById('signInBtn');
-    const signOutBtn = document.getElementById('signOutBtn');
+$(document).ready(function() {
+    const signInBtn = $('#signInBtn');
+    const signOutBtn = $('#signOutBtn');
 
-    signInBtn.addEventListener('click', function(event) {
+    signInBtn.on('click', function(event) {
         event.preventDefault(); // Prevent form submission
 
         // Make header, aside, and main content visible
-        document.getElementById('header').style.display = 'block';
-        document.getElementById('aside').style.display = 'block';
-        document.getElementById('main-content').style.display = 'block';
+        $('#header').show();
+        $('#aside').show();
+        $('#main-content').show();
 
         // Optionally, hide the login page
-        document.querySelector('.login-page').style.display = 'none';
+        $('.login-page').hide();
     });
 
-    signOutBtn.addEventListener('click', function(event) {
+    signOutBtn.on('click', function(event) {
         event.preventDefault(); // Prevent default action
 
         // Hide header, aside, and main content
-        document.getElementById('header').style.display = 'none';
-        document.getElementById('aside').style.display = 'none';
-        document.getElementById('main-content').style.display = 'none';
+        $('#header').hide();
+        $('#aside').hide();
+        $('#main-content').hide();
 
         // Show the login page
-        document.querySelector('.login-page').style.display = 'flex';
+        $('.login-page').css('display', 'flex');
     });
 });
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-window.addEventListener('resize', function() {
-    const logElement = document.getElementById('log');
-    if (window.innerWidth >= 768 && window.innerWidth < 992) {
-        logElement.classList.remove('col-md-4', 'col-md-2', 'col-md-1');
-        logElement.classList.add('col-md-3');
-    } else if (window.innerWidth >= 576 && window.innerWidth < 768) {
-        logElement.classList.remove('col-md-4', 'col-md-3', 'col-md-1');
-        logElement.classList.add('col-md-2');
-    } else if (window.innerWidth < 576) {
-        logElement.classList.remove('col-md-4', 'col-md-3', 'col-md-2');
-        logElement.classList.add('col-md-1');
+$(window).on('resize', function() {
+    const logElement = $('#log');
+    if ($(window).width() >= 768 && $(window).width() < 992) {
+        logElement.removeClass('col-md-4 col-md-2 col-md-1').addClass('col-md-3');
+    } else if ($(window).width() >= 576 && $(window).width() < 768) {
+        logElement.removeClass('col-md-4 col-md-3 col-md-1').addClass('col-md-2');
+    } else if ($(window).width() < 576) {
+        logElement.removeClass('col-md-4 col-md-3 col-md-2').addClass('col-md-1');
     } else {
-        logElement.classList.remove('col-md-3', 'col-md-2', 'col-md-1');
-        logElement.classList.add('col-md-4');
+        logElement.removeClass('col-md-3 col-md-2 col-md-1').addClass('col-md-4');
     }
 });
 
 // Initial check to set the correct class on page load
-window.dispatchEvent(new Event('resize'));
+$(window).trigger('resize');
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-document.addEventListener('DOMContentLoaded', function() {
-    const signInBtn = document.getElementById('signInBtn');
-    const signOutBtn = document.getElementById('signOutBtn');
+$(document).ready(function() {
+    const signInBtn = $('#signInBtn');
+    const signOutBtn = $('#signOutBtn');
 
-    signInBtn.addEventListener('click', function(event) {
+    signInBtn.on('click', function(event) {
         event.preventDefault(); // Prevent form submission
 
         // Make header, aside, and main content visible
-        document.getElementById('header').style.display = 'block';
-        document.getElementById('aside').style.display = 'block';
-        document.getElementById('main-content').style.display = 'block';
+        $('#header').show();
+        $('#aside').show();
+        $('#main-content').show();
 
         // Optionally, hide the login page
-        document.querySelector('.login-page').style.display = 'none';
+        $('.login-page').hide();
     });
 
-    signOutBtn.addEventListener('click', function(event) {
+    signOutBtn.on('click', function(event) {
         event.preventDefault(); // Prevent default action
 
         // Hide header, aside, and main content
-        document.getElementById('header').style.display = 'none';
-        document.getElementById('aside').style.display = 'none';
-        document.getElementById('main-content').style.display = 'none';
+        $('#header').hide();
+        $('#aside').hide();
+        $('#main-content').hide();
 
         // Show the login page
-        document.querySelector('.login-page').style.display = 'flex';
+        $('.login-page').css('display', 'flex');
     });
 
     // Add a toggle button in the header
-    const header = document.querySelector('.header nav .container-fluid');
-    const toggleButton = document.createElement('button');
-    toggleButton.classList.add('btn', 'btn-primary');
-    toggleButton.innerHTML = '<i class="fa-solid fa-bars"></i>';
-    toggleButton.style.display = 'none'; // Initially hidden
-    header.appendChild(toggleButton);
+    const header = $('.header nav .container-fluid');
+    const toggleButton = $('<button>').addClass('btn btn-primary').html('<i class="fa-solid fa-bars"></i>').hide(); // Initially hidden
+    header.append(toggleButton);
 
     // Add event listener for the toggle button
-    toggleButton.addEventListener('click', function() {
-        const aside = document.querySelector('.aside');
-        if (aside.style.display === 'none' || aside.style.display === '') {
-            aside.style.display = 'block';
+    toggleButton.on('click', function() {
+        const aside = $('.aside');
+        if (aside.is(':visible')) {
+            aside.hide();
         } else {
-            aside.style.display = 'none';
+            aside.show();
         }
     });
 
     // Add event listener for window resize
-    window.addEventListener('resize', function() {
-        const aside = document.querySelector('.aside');
-        if (window.innerWidth <= 768) {
-            aside.style.display = 'none';
-            toggleButton.style.display = 'block';
+    $(window).on('resize', function() {
+        const aside = $('.aside');
+        if ($(window).width() <= 768) {
+            aside.hide();
+            toggleButton.show();
         } else {
-            aside.style.display = 'block';
-            toggleButton.style.display = 'none';
+            aside.show();
+            toggleButton.hide();
         }
     });
 
     // Initial check to set the correct display on page load
-    window.dispatchEvent(new Event('resize'));
+    $(window).trigger('resize');
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const aside = document.querySelector('.aside');
-    if (aside) {
-        aside.style.display = 'none';
+$(document).ready(function() {
+    const aside = $('.aside');
+    if (aside.length) {
+        aside.hide();
     }
 });
 
 function adjustChartLayout() {
-    const chartsSection = document.getElementById('charts-section');
-    if (window.innerWidth <= 768) {
-        chartsSection.classList.add('vertical-align');
+    const chartsSection = $('#charts-section');
+    if ($(window).width() <= 768) {
+        chartsSection.addClass('vertical-align');
     } else {
-        chartsSection.classList.remove('vertical-align');
+        chartsSection.removeClass('vertical-align');
     }
 }
 
@@ -790,20 +775,28 @@ function adjustChartLayout() {
 adjustChartLayout();
 
 // Adjust layout on window resize
-window.addEventListener('resize', adjustChartLayout);
+$(window).on('resize', adjustChartLayout);
 
+//////////////////////////////////////////////////////// Product cards load ////////////////////////////////////////////
 
-signOutBtn.addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent default action
+// Select the product list container
+const productList = $("#product-list");
 
-    // Hide header, aside, and main content
-    document.getElementById('header').style.display = 'none';
-    document.getElementById('aside').style.display = 'none';
-    document.getElementById('main-content').style.display = 'none';
+// Loop through the products array and generate product cards
+$.each(products, function(index, product) {
+    const productCard = `
+        <div class="col">
+            <div class="card product-card">
+                <img src="${product.image}" class="card-img-top" alt="${product.description}">
+                <div class="card-body">
+                    <h5 class="card-title">${product.description}</h5>
+                    <p class="card-text">$${product.unitPrice.toFixed(2)}</p>
+                </div>
+            </div>
+        </div>
+    `;
 
-    // Ensure aside is hidden
-    document.querySelector('.aside').style.display = 'none';
-
-    // Show the login page
-    document.querySelector('.login-page').style.display = 'flex';
+    // Append the product card to the product list
+    productList.append(productCard);
 });
+
