@@ -79,7 +79,7 @@
     </div>
 
     <!-- Navigation -->
-    <div id="aside" class="aside">
+    <div id="aside" class="aside" style="display: none">
         <div class="aside-navigation">
             <div class="profile-picture">
                 <img src="assets/images/profile.jpeg" alt="Profile Image">
@@ -636,34 +636,34 @@
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="exampleInputEmail2" class="form-label">Customer Id : </label>
+                                <label class="form-label">Customer Id : </label>
                                 <br>
-                                <label for="exampleInputEmail2" class="form-label">Customer Id</label>
+                                <label class="form-label" id="customer-id2">Customer Id</label>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail2" class="form-label">Name</label>
-                                <input class="form-control" type="text" aria-label="default input example">
+                                <label for="customer-name2" class="form-label">Name</label>
+                                <input class="form-control" type="text" aria-label="default input example" id="customer-name2">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail2" class="form-label">Address</label>
+                                <label for="customer-address2" class="form-label">Address</label>
                                 <input class="form-control" id="customer-address2" type="text" aria-label="default input example">
                             </div>
                             <div class="mb-3">
-                                <label for="customerPhone" class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" id="customerPhone"
+                                <label for="customer-phone2" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="customer-phone2"
                                        placeholder="(123) 456-7890"
                                        pattern="^\(\d{3}\) \d{3}-\d{4}$"
                                        title="Phone number should be in the format (123) 456-7890">
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail2" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp">
+                                <label for="exampleInput" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="exampleInput" aria-describedby="emailHelp">
                             </div>
                         </form>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-primary" id="customer-save">Save</button>
                     </div>
                 </div>
             </div>
@@ -684,7 +684,7 @@
                             <div class="mb-3">
                                 <label for="customer-id" class="form-label">Customer Id : </label>
                                 <br>
-                                <label for="exampleInputEmail2" class="form-label" id="customer-id">Customer Id</label>
+                                <label class="form-label" id="customer-id">Customer Id</label>
                             </div>
                             <div class="mb-3">
                                 <label for="customer-name" class="form-label">Name</label>
@@ -730,38 +730,39 @@
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="exampleInputEmail2" class="form-label">User Id : </label>
+                                <label for="user-id2" class="form-label">User Id : </label>
                                 <br>
-                                <label for="exampleInputEmail2" class="form-label">User Id</label>
+                                <label class="form-label" id="user-id2">User Id</label>
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail2" class="form-label">Name</label>
-                                <input class="form-control" type="text" aria-label="default input example">
+                                <label for="user-name2" class="form-label">Name</label>
+                                <input class="form-control" type="text" aria-label="default input example" id="user-name2">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Address</label>
-                                <input class="form-control" type="text" aria-label="default input example">
+                                <label for="user-address2" class="form-label">Address</label>
+                                <input class="form-control" type="text" aria-label="default input example" id="user-address2">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Phone Number</label>
+                                <label class="form-label" for="user-phone2">Phone Number</label>
                                 <input type="tel" class="form-control"
                                        placeholder="(123) 456-7890"
                                        pattern="^\(\d{3}\) \d{3}-\d{4}$"
-                                       title="Phone number should be in the format (123) 456-7890">
+                                       title="Phone number should be in the format (123) 456-7890"
+                                       id="user-phone2">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Email</label>
-                                <input type="email" class="form-control" aria-describedby="emailHelp">
+                                <label class="form-label" for="user-email2">Email</label>
+                                <input type="email" class="form-control" aria-describedby="emailHelp" id="user-email2">
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Salary</label>
-                                <input class="form-control" type="text" aria-label="default input example">
+                                <label for="user-salary2" class="form-label">Salary</label>
+                                <input class="form-control" type="text" aria-label="default input example" id="user-salary2">
                             </div>
                         </form>
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-primary" id="user-save">Save</button>
                     </div>
                 </div>
             </div>
@@ -782,7 +783,7 @@
                             <div class="mb-3">
                                 <label for="user-id" class="form-label">Customer Id : </label>
                                 <br>
-                                <label for="exampleInputEmail2" class="form-label" id="user-id">Customer Id</label>
+                                <label class="form-label" id="user-id">Customer Id</label>
                             </div>
                             <div class="mb-3">
                                 <label for="user-name" class="form-label">Name</label>
@@ -864,7 +865,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-primary" id="product-save">Save</button>
                     </div>
                 </div>
             </div>

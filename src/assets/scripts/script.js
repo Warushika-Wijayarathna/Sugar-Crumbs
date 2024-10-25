@@ -493,43 +493,65 @@ function addUser(user) {
 }
 
 // Example: Adding a new product from a form
-$('#product-add-btn').on('click', function() {
+$('#product-save').on('click', function() {
     let newProduct = {
-        code: $('#productCode').val(),
-        description: $('#productDesc').val(),
-        category: $('#productCategory').val(),
-        image: $('#productImage').val(), // Assuming an input for image URL
-        unitPrice: parseFloat($('#productPrice').val()),
-        qtyOnHand: parseInt($('#productQty').val())
+        code: $('#newProductCode').val(),
+        description: $('#newProductDesc').val(),
+        category: $('#newProductCategory').val(),
+        image: $('#fileInputNew').val(),
+        unitPrice: parseFloat($('#newProductUnitPrice').val()),
+        qtyOnHand: parseInt($('#newProductQtyOnHand').val())
     };
-    addProduct(newProduct);
+
+    let success = addProduct(newProduct);
+
+    if (success) {
+        alert("Product saved successfully!");
+    } else {
+        alert("Failed to save the product. Please try again.");
+    }
 });
 
 // Example: Adding a new customer from a form
-$('#customer-add-btn').on('click', function() {
+$('#customer-save').on('click', function() {
     let newCustomer = {
-        id: $('#customerId').val(),
-        name: $('#customerName').val(),
-        email: $('#customerEmail').val(),
-        phone: $('#customerPhone').val(),
-        address: $('#customerAddress').val()
+        id: $('#customer-id2').val(),
+        name: $('#customer-name2').val(),
+        email: $('#exampleInput').val(),
+        phone: $('#customer-phone2').val(),
+        address: $('#customer-address2').val()
     };
-    addCustomer(newCustomer);
+
+    // Adding a callback to handle success or failure
+    addCustomer(newCustomer, function(success) {
+        if (success) {
+            alert("Customer saved successfully!");
+        } else {
+            alert("Failed to save the customer. Please try again.");
+        }
+    });
 });
 
 // Example: Adding a new user from a form
-$('#user-add-btn').on('click', function() {
+$('#user-save').on('click', function() {
     let newUser = {
-        id: $('#userId').val(),
-        name: $('#userName').val(),
-        email: $('#userEmail').val(),
-        phone: $('#userPhone').val(),
-        address: $('#userAddress').val(),
-        salary: parseFloat($('#userSalary').val())
+        id: $('#user-id2').val(),
+        name: $('#user-name2').val(),
+        email: $('#user-email2').val(),
+        phone: $('#user-phone2').val(),
+        address: $('#user-address2').val(),
+        salary: parseFloat($('#user-salary2').val())
     };
-    addUser(newUser);
-});
 
+    // Adding a callback to handle success or failure
+    addUser(newUser, function(success) {
+        if (success) {
+            alert("User saved successfully!");
+        } else {
+            alert("Failed to save the user. Please try again.");
+        }
+    });
+});
 
 
 ////////////////////////////////////////////////////// Dashboard Section Load //////////////////////////////////////////////////////////
