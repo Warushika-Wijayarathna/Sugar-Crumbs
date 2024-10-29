@@ -1,9 +1,11 @@
 import product from '../model/product_model.js';
 import { products } from '../db/database.js';
 
-//display all products when the page loads
-
+// Display all products when the page loads
 const productList = $("#product-list");
+let subtotal = 0; // Track subtotal
+const serviceTaxRate = 0.06; // Example service tax rate of 6%
+let serviceTax = 0; // Track service tax
 
 // Loop through the products array and generate product cards
 $.each(products, function(index, product) {
@@ -23,8 +25,7 @@ $.each(products, function(index, product) {
     productList.append(productCard);
 });
 
-// when the user clicks on a product card, add that product to the cart(list group)
-
+// When the user clicks on a product card, add that product to the cart (list group)
 productList.on("click", ".product-card", function() {
     const productCard = $(this);
     const productTitle = productCard.find(".card-title").text();
@@ -44,6 +45,9 @@ productList.on("click", ".product-card", function() {
 
         quantitySpan.text(`x${quantity}`);
         priceSpan.text(`$${newTotalPrice}`);
+
+        // Update subtotal
+        subtotal += productPrice;
     } else {
         // If the product is not in the cart, add it as a new item
         const cartItem = `
@@ -53,7 +57,17 @@ productList.on("click", ".product-card", function() {
             </li>
         `;
         $("#cart").append(cartItem);
+
+        // Update subtotal
+        subtotal += productPrice;
     }
+
+    // Update total and service tax display
+    serviceTax = subtotal * serviceTaxRate; // Calculate service tax
+    const totalPayment = (subtotal + serviceTax).toFixed(2);
+
+    // Update subtotal, service tax, and total in the UI
+    $("h6:contains('Total:') + p").text(`Subtotal: $${subtotal.toFixed(2)}`);
+    $("h6:contains('Total:') + p + p").text(`Service Tax: $${serviceTax.toFixed(2)}`);
+    $("h6:contains('Total Payment:')").text(`Total Payment: $${totalPayment}`);
 });
-
-
