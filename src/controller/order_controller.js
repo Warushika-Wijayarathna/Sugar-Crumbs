@@ -15,6 +15,7 @@ $.each(products, function(index, product) {
                 <img src="${product.image}" class="card-img-top" alt="${product.description}">
                 <div class="card-body">
                     <h5 class="card-title">${product.description}</h5>
+                    <p class="card-category">${product.category}</p>
                     <p class="card-text">$${product.unitPrice.toFixed(2)}</p>
                 </div>
             </div>
@@ -24,6 +25,9 @@ $.each(products, function(index, product) {
     // Append the product card to the product list
     productList.append(productCard);
 });
+
+//When the Cakes selected hide rest and leave only cards with category Cake
+
 
 // When the user clicks on a product card, add that product to the cart (list group)
 productList.on("click", ".product-card", function() {
@@ -70,4 +74,33 @@ productList.on("click", ".product-card", function() {
     $("h6:contains('Total:') + p").text(`Subtotal: $${subtotal.toFixed(2)}`);
     $("h6:contains('Total:') + p + p").text(`Service Tax: $${serviceTax.toFixed(2)}`);
     $("h6:contains('Total Payment:')").text(`Total Payment: $${totalPayment}`);
+});
+
+// Function to filter products by category
+function filterProducts(category) {
+    $(".product-card").each(function() {
+        const productCard = $(this).closest(".col");
+        const productCategory = productCard.find(".card-category").text();
+
+        // Show or hide based on category match or 'All' selection
+        if (category === "All" || productCategory === category) {
+            productCard.removeClass("d-none");
+        } else {
+            productCard.addClass("d-none");
+        }
+    });
+}
+
+// Event listeners for category buttons
+$("#all-button").on("click", function() {
+    filterProducts("All");
+});
+$("#cakes-button").on("click", function() {
+    filterProducts("Cake");
+});
+$("#cookies-button").on("click", function() {
+    filterProducts("Cookie");
+});
+$("#drinks-button").on("click", function() {
+    filterProducts("Drink");
 });

@@ -6,6 +6,7 @@ import { products } from '../db/database.js';
 $(document).ready(function() {
     displayProducts();
 });
+
 function displayProducts() {
     const productTableBody = $('.product-table tbody');
     productTableBody.empty(); // Clear existing rows
