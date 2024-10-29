@@ -1,5 +1,5 @@
-import product from '../model/product_model';
-import { products } from '../db/database';
+import product from '../model/product_model.js';
+import { products } from '../db/database.js';
 
 // display all products
 

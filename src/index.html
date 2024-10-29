@@ -247,11 +247,9 @@
                     <thead>
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">Name</th>
+                        <th scope="col">Username</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Contact</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Salary</th>
+                        <th scope="col">Password</th>
                         <th scope="col">Action</th>
                     </tr>
                     </thead>
@@ -424,15 +422,8 @@
                                 <p class="card-text">#12312312</p>
 
                                 <h6>Your Order:</h6>
-                                <ul class="list-group mb-3">
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        <span>Healthy Salad</span>
-                                        <span>$10.00</span>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        <span>Smokey Beef</span>
-                                        <span>$12.00</span>
-                                    </li>
+                                <ul id="cart" class="list-group mb-3">
+                                    <!-- Items -->
                                 </ul>
 
                                 <h6>Total:</h6>
@@ -946,6 +937,8 @@
     <script type="module" src="controller/product_controller.js"></script>
     <script type="module" src="controller/dashboard_controller.js"></script>
     <script type="module" src="controller/main_content_controller.js"></script>
+    <script type="module" src="controller/order_controller.js"></script>
+    <script type="module" src="controller/user_controller.js"></script>
 
 </body>
 </html>
