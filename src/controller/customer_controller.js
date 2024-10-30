@@ -234,4 +234,3 @@ function saveCustomersToLocalStorage() {
     localStorage.setItem('customers', JSON.stringify(customers));
 }
 
-

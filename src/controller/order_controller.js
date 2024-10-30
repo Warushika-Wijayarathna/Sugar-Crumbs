@@ -102,5 +102,5 @@ export function resetCart() {
     $("h6:contains('Total Payment:')").text(`Total Payment: $0.00`);
 
     // Re-generate product cards and reattach event listeners
-    setTimeout(generateProductCards, 0); // Ensure generateProductCards is called after reset
+    setTimeout(generateProductCards, 10); // Ensure generateProductCards is called after reset
 }

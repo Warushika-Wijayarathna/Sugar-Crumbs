@@ -45,7 +45,7 @@ export let customers = [
 
 
 export let users = [
-    { id: "U001", username: "admin", email: "example.com", password: "admin" },
-    { id: "U002", username: "user", email: "example.com", password: "user" },
-    { id: "U003", username: "manager", email: "example.com", password: "manager" }
+    { _id: "U001", _username: "admin", _email: "example.com", _password: "admin" },
+    { _id: "U002", _username: "user", _email: "example.com", _password: "user" },
+    { _id: "U003", _username: "manager", _email: "example.com", _password: "manager" }
 ];

@@ -2,11 +2,12 @@ import {users} from '../db/database.js';
 
 //check username and password
 function checkUser(username, password) {
-    return users.find(user => user.username === username && user.password === password);
+    return users.find(user => user._username === username && user._password === password);
 }
 
 //enter into the dashboard if the username and password are correct
 function login() {
+    event.preventDefault();
     const username = $('#username').val();
     const password = $('#password').val();
     const user = checkUser(username, password);
