@@ -6,10 +6,14 @@ let customers = JSON.parse(localStorage.getItem('customers')) || [];
 
 // jQuery document ready function
 $(document).ready(function() {
+    initializers();
+});
+
+export function initializers() {
     displayCustomers();
     initializeCustomerModal();
     initializeCustomerEdit();
-});
+}
 
 // Display all customers
 function displayCustomers() {
@@ -57,6 +61,8 @@ function openCustomerModal(modal) {
 }
 
 function saveCustomer(modal) {
+    console.log("Save button clicked"); // For debugging
+
     const customerId = $('#customer-id2').text();
     const customerName = $('#customer-name2').val();
     const customerEmail = $('#exampleInput').val();
@@ -233,4 +239,3 @@ $('#customer-delete').on('click', function() {
 function saveCustomersToLocalStorage() {
     localStorage.setItem('customers', JSON.stringify(customers));
 }
-
