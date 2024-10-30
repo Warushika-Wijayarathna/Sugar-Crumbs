@@ -1,25 +1,140 @@
 import user from '../model/user_model.js';
 import { users } from '../db/database.js';
 
-// display all users
 $(document).ready(function() {
+    loadUsersFromLocalStorage();
     displayUsers();
+
+    const UserAddModal = new bootstrap.Modal($('.user-form .modal').get(0));
+    const userTableModal = new bootstrap.Modal($('.user-form-edit .modal').get(0));
+
+    // Add User Button Click - Clear fields, generate user ID, and show modal
+    $('#user-add-btn').on('click', function() {
+        clearFields(addUserFields);
+        addUserFields.id.text(generateUserId()); // Set the generated ID // Set the generated ID
+        UserAddModal.show();
+    });
+
+    // Event delegation for Edit User Button - Clear fields, load data, and show modal
+    $('.user-table').on('click', '.edit-user-btn', function () {
+        const row = $(this).closest('tr');
+        populateEditUserFields(row);
+        userTableModal.show();
+    });
+
+    // Save users to localStorage after any data modifications
+    $(window).on('beforeunload', saveUsersToLocalStorage);
 });
 
+// Load users from localStorage if available
+function loadUsersFromLocalStorage() {
+    const storedUsers = JSON.parse(localStorage.getItem('users'));
+    if (storedUsers) {
+        users.length = 0; // Clear existing array without changing reference
+        users.push(...storedUsers);
+    }
+}
+
+// Display all users in the table
 function displayUsers() {
     const userTableBody = $('.user-table tbody');
-    userTableBody.empty(); // Clear existing rows
+    userTableBody.empty();
 
     users.forEach(user => {
-        let row = `
+        const row = `
             <tr>
-                <td class="row-id">${user.id}</td>
-                <td class="row-username">${user.username}</td>
-                <td class="row-email">${user.email}</td>
-                <td class="row-password"><input type="password" class="form-control" value="${user.password}" readonly></td>                
-                <td class="row-actions"> <button class="btn btn-danger">Delete</button> </td>
+                <td class="row-id">${user._id}</td>
+                <td class="row-username">${user._username}</td>
+                <td class="row-email">${user._email}</td>
+                <td class="row-password"><input type="password" class="form-control" value="${user._password}" readonly></td>                
+                <td class="row-actions"> <button class="btn btn-success edit-user-btn">Update</button> </td>
             </tr>
         `;
         userTableBody.append(row);
     });
+}
+
+// Field selectors for Add and Edit forms
+const addUserFields = {
+    id: $('#user-id2'),
+    username: $('#user-name2'),
+    email: $('#user-email2'),
+    password: $('#user-password2')
+};
+
+const editUserFields = {
+    id: $('#user-id'),
+    username: $('#user-name'),
+    email: $('#user-email'),
+    password: $('#user-password')
+};
+
+// Populate Edit User fields based on selected row data
+function populateEditUserFields(row) {
+    clearFields(editUserFields);
+
+    editUserFields.id.text(row.find('.row-id').text());
+    editUserFields.username.val(row.find('.row-username').text());
+    editUserFields.email.val(row.find('.row-email').text());
+    editUserFields.password.val(''); // Clear password field for security
+}
+
+// Utility function to clear form fields
+function clearFields(fields) {
+    Object.values(fields).forEach(field => {
+        if (field.is('input')) {
+            field.val('');
+        } else {
+            field.text('');
+        }
+    });
+}
+
+// Save users to localStorage
+function saveUsersToLocalStorage() {
+    localStorage.setItem('users', JSON.stringify(users));
+}
+
+// user-update button click event
+$('#user-update').on('click', function() {
+    const userId = editUserFields.id.text();
+    const userIndex = users.findIndex(user => user._id === userId);
+
+    if (userIndex === -1) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops!',
+            text: 'User not found.'
+        });
+        return;
+    }
+
+    const updatedUser = new user(
+        userId,
+        editUserFields.username.val(),
+        editUserFields.email.val(),
+        editUserFields.password.val()
+    );
+
+    users[userIndex] = updatedUser;
+    displayUsers();
+    saveUsersToLocalStorage();
+
+    $('.user-form-edit .modal').modal('hide');
+
+    // SweetAlert success message
+    Swal.fire({
+        icon: 'success',
+        title: 'User updated successfully!',
+        showConfirmButton: false,
+        timer: 1500
+    });
+});
+
+// Generate unique user ID based on the last user's ID in the users array
+function generateUserId() {
+    if (users.length === 0) return 'U001'; // Start from U001 if no users exist
+    const lastUserId = users[users.length - 1]._id;
+    const newUserId = parseInt(lastUserId.substr(1)) + 1;
+    return `U${newUserId.toString().padStart(3, '0')}`; // Pads with zeros, e.g., U001
 }

@@ -1,23 +1,29 @@
-import {users} from '../db/database.js';
+// Retrieve users from localStorage
+function getUsersFromLocalStorage() {
+    const storedUsers = JSON.parse(localStorage.getItem('users'));
+    return storedUsers ? storedUsers : []; // Return an empty array if no users are stored
+}
 
-//check username and password
+// Check username and password against localStorage data
 function checkUser(username, password) {
+    const users = getUsersFromLocalStorage();
     return users.find(user => user._username === username && user._password === password);
 }
 
-//enter into the dashboard if the username and password are correct
-function login() {
+// Enter into the dashboard if the username and password are correct
+function login(event) {
     event.preventDefault();
     const username = $('#username').val();
     const password = $('#password').val();
     const user = checkUser(username, password);
+
     if (user) {
         // Make header, aside, and main content visible
         $('#header').show();
         $('#aside').show();
         $('#main-content').show();
 
-        //load the dashboard
+        // Load the dashboard
         loadDashboard();
 
         // Optionally, hide the login page
@@ -27,7 +33,7 @@ function login() {
     }
 }
 
-//load the dashboard
+// Load the dashboard
 function loadDashboard() {
     const mainContent = $('.main-content');
     const dashboardSection = $('.dashboard');
@@ -39,6 +45,6 @@ function loadDashboard() {
 }
 
 $(document).ready(function() {
-    let signInBtn = $('#signInBtn');
+    const signInBtn = $('#signInBtn');
     signInBtn.on('click', login);
 });

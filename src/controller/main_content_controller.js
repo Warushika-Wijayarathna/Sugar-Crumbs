@@ -1,4 +1,66 @@
 import { resetCart } from './order_controller.js';
+// Import necessary functions from the ProductController
+import { reattachAddProductClick } from './product_controller.js';
+
+$(document).ready(function() {
+    const main_content = $('.main-content');
+
+    // Reusable function to handle button clicks with cart check
+    function setupButton(buttonSelector, sectionSelector) {
+        const button = $(buttonSelector);
+        const section = $(sectionSelector);
+
+        button.on('click', function(event) {
+            event.preventDefault();
+
+            // Check if the cart is empty before proceeding
+            if (!isCartEmpty()) {
+                Swal.fire({
+                    title: 'You have items in your cart',
+                    text: "Are you sure you want to leave?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Leave',
+                    cancelButtonText: 'Stay'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        resetCart(); // Reset the cart method of order_controller.js
+                        console.log($("#bill").html()); // After resetCart()
+                        loadSection(section, buttonSelector); // Only load if confirmed
+                    }
+                });
+            } else {
+                loadSection(section, buttonSelector); // Direct load if cart is empty
+            }
+        });
+    }
+
+    // Load section into main content
+    function loadSection(section, buttonSelector) {
+        main_content.empty();
+        main_content.append(section);
+
+        // Call reattachAddProductClick() if "product-add" button is clicked
+        if (buttonSelector === '#productBtn') {
+            reattachAddProductClick(); // Reattach click event before showing the modal
+        }
+
+        section.show();
+    }
+
+    // Call the setup function for each button/section pair
+    setupButton('#customerBtn', '.customer');
+    setupButton('#productBtn', '.product'); // Ensure this points to your product section
+    setupButton('#cash-registerBtn', '.cash-register');
+    setupButton('#userBtn', '.user');
+    setupButton('#invoiceBtn', '.invoice');
+    setupButton('#dashboardBtn', '.dashboard');
+
+    // Helper to check if the cart is empty
+    function isCartEmpty() {
+        return $("#cart").children().length === 0;
+    }
+});
 
 
 ////////////////////////////////////////////////////// Sidebar Toggle //////////////////////////////////////////////////////////
