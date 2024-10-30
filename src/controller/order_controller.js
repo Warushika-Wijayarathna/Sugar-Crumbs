@@ -15,11 +15,11 @@ function generateProductCards() {
         const productCard = `
             <div class="col">
                 <div class="card product-card">
-                    <img src="${product.image}" class="card-img-top" alt="${product.description}">
+                    <img src="${product._image}" class="card-img-top" alt="${product._description}">
                     <div class="card-body">
-                        <h5 class="card-title">${product.description}</h5>
-                        <p class="card-category">${product.category}</p>
-                        <p class="card-text">$${product.unitPrice.toFixed(2)}</p>
+                        <h5 class="card-title">${product._description}</h5>
+                        <p class="card-category">${product._category}</p>
+                        <p class="card-text">$${product._unitPrice.toFixed(2)}</p>
                     </div>
                 </div>
             </div>
@@ -104,3 +104,35 @@ export function resetCart() {
     // Re-generate product cards and reattach event listeners
     setTimeout(generateProductCards, 10); // Ensure generateProductCards is called after reset
 }
+
+function filterProducts(category) {
+    $(".product-card").each(function() {
+        const productCard = $(this).closest(".col");
+        const productCategory = productCard.find(".card-category").text();
+
+        // Show or hide based on category match or 'All' selection
+        if (category === "All" || productCategory === category) {
+            productCard.removeClass("d-none");
+        } else {
+            productCard.addClass("d-none");
+        }
+    });
+}
+
+// Event listeners for category buttons
+$("#all-button").on("click", function() {
+    event.preventDefault();
+    filterProducts("All");
+});
+$("#cakes-button").on("click", function() {
+    event.preventDefault();
+    filterProducts("Cake");
+});
+$("#cookies-button").on("click", function() {
+    event.preventDefault();
+    filterProducts("Cookie");
+});
+$("#drinks-button").on("click", function() {
+    event.preventDefault();
+    filterProducts("Drink");
+});

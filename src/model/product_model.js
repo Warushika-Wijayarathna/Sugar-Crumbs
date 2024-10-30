@@ -1,11 +1,11 @@
 export default class product {
-    constructor(code, description, category, unitPrice, qtyOnHand, image) {
+    constructor(code, description, category, image, unitPrice, qtyOnHand) {
         this._code = code;
         this._description = description;
         this._category = category;
+        this._image = image;
         this._unitPrice = unitPrice;
         this._qtyOnHand = qtyOnHand;
-        this._image = image;
     }
 
     // get product code
@@ -23,6 +23,11 @@ export default class product {
         return this._category;
     }
 
+    // get product image
+    getImage() {
+        return this._image;
+    }
+
     // get product unit price
     getUnitPrice() {
         return this._unitPrice;
@@ -31,11 +36,6 @@ export default class product {
     // get product quantity on hand
     getQtyOnHand() {
         return this._qtyOnHand;
-    }
-
-    // get product image
-    getImage() {
-        return this._image;
     }
 
     // set product code
@@ -53,6 +53,11 @@ export default class product {
         this._category = category;
     }
 
+    // set product image
+    setImage(image) {
+        this._image = image;
+    }
+
     // set product unit price
     setUnitPrice(unitPrice) {
         this._unitPrice = unitPrice;
@@ -61,10 +66,5 @@ export default class product {
     // set product quantity on hand
     setQtyOnHand(qtyOnHand) {
         this._qtyOnHand = qtyOnHand;
-    }
-
-    // set product image
-    setImage(image) {
-        this._image = image;
     }
 }

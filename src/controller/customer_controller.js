@@ -6,14 +6,10 @@ let customers = JSON.parse(localStorage.getItem('customers')) || [];
 
 // jQuery document ready function
 $(document).ready(function() {
-    initializers();
-});
-
-export function initializers() {
     displayCustomers();
     initializeCustomerModal();
     initializeCustomerEdit();
-}
+});
 
 // Display all customers
 function displayCustomers() {
@@ -48,6 +44,8 @@ function initializeCustomerModal() {
     customerAddButton.on('click', () => openCustomerModal(customerAddModal));
     $('.modal .btn-close').on('click', () => customerAddModal.hide());
     $('#customer-save').on('click', () => saveCustomer(customerAddModal));
+
+
 }
 
 function openCustomerModal(modal) {
