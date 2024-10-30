@@ -7,55 +7,34 @@ let subtotal = 0; // Track subtotal
 const serviceTaxRate = 0.06; // Example service tax rate of 6%
 let serviceTax = 0; // Track service tax
 
-// Loop through the products array and generate product cards
-$.each(products, function(index, product) {
-    console.log("Adding product:", product); // Debug: Log each product object
-    const productCard = `
-        <div class="col">
-            <div class="card product-card">
-                <img src="${product.image}" class="card-img-top" alt="${product.description}">
-                <div class="card-body">
-                    <h5 class="card-title">${product.description}</h5>
-                    <p class="card-category">${product.category}</p>
-                    <p class="card-text">$${product.unitPrice.toFixed(2)}</p>
+// Function to generate product cards
+function generateProductCards() {
+    productList.empty(); // Clear existing product cards
+    $.each(products, function(index, product) {
+        console.log("Adding product:", product); // Debug: Log each product object
+        const productCard = `
+            <div class="col">
+                <div class="card product-card">
+                    <img src="${product.image}" class="card-img-top" alt="${product.description}">
+                    <div class="card-body">
+                        <h5 class="card-title">${product.description}</h5>
+                        <p class="card-category">${product.category}</p>
+                        <p class="card-text">$${product.unitPrice.toFixed(2)}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    `;
-    productList.append(productCard);
-});
-
-// Filter function to display only selected category products
-function filterProducts(category) {
-    $(".product-card").each(function() {
-        const productCard = $(this).closest(".col");
-        const productCategory = productCard.find(".card-category").text();
-
-        // Show or hide based on category match or 'All' selection
-        if (category === "All" || productCategory === category) {
-            productCard.removeClass("d-none");
-        } else {
-            productCard.addClass("d-none");
-        }
+        `;
+        productList.append(productCard);
     });
+
+    // Reattach event listeners to product cards
+    productList.off("click", ".product-card", handleProductCardClick); // Remove previous listeners
+    productList.on("click", ".product-card", handleProductCardClick);
+    console.log("Event listeners reattached to product cards"); // Debug: Log reattachment
 }
 
-// Event listeners for category buttons
-$("#all-button").on("click", function() {
-    filterProducts("All");
-});
-$("#cakes-button").on("click", function() {
-    filterProducts("Cake");
-});
-$("#cookies-button").on("click", function() {
-    filterProducts("Cookie");
-});
-$("#drinks-button").on("click", function() {
-    filterProducts("Drink");
-});
-
-// When the user clicks on a product card, add that product to the cart
-productList.on("click", ".product-card", function() {
+// Function to handle product card click
+function handleProductCardClick() {
     console.log("Product card clicked"); // Debug: Check if click event fires
     const productCard = $(this);
     const productTitle = productCard.find(".card-title").text();
@@ -104,57 +83,24 @@ productList.on("click", ".product-card", function() {
     $("h6:contains('Total:') + p").text(`Subtotal: $${subtotal.toFixed(2)}`);
     $("h6:contains('Total:') + p + p").text(`Service Tax: $${serviceTax.toFixed(2)}`);
     $("h6:contains('Total Payment:')").text(`Total Payment: $${totalPayment}`);
-});
+}
 
-// Cart empty check with navigation confirmation
+// Initial call to generate product cards
 $(document).ready(function() {
-    const mainContent = $('.main-content');
-    const cart = $('#cart'); // Assuming cart is a ul element
-
-    // Reusable function to handle button clicks
-    function setupButton(buttonSelector, sectionSelector) {
-        const button = $(buttonSelector);
-        const section = $(sectionSelector);
-
-        button.on('click', function(event) {
-            event.preventDefault();
-            console.log("Button clicked:", buttonSelector); // Debug: Button click
-            if (cart.children().length > 0) {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Cart is not empty',
-                    text: 'Are you sure you want to navigate away?',
-                    showCancelButton: true,
-                    confirmButtonText: 'Yes',
-                    cancelButtonText: 'No'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        console.log("Navigation confirmed, emptying cart"); // Debug: Confirm navigation
-                        mainContent.empty();
-                        mainContent.append(section);
-                        section.show();
-                        cart.empty(); // Empty the cart
-                        subtotal = 0; // Reset subtotal
-                        serviceTax = 0; // Reset service tax
-                        $("h6:contains('Total:') + p").text(`Subtotal: $${subtotal.toFixed(2)}`);
-                        $("h6:contains('Total:') + p + p").text(`Service Tax: $${serviceTax.toFixed(2)}`);
-                        $("h6:contains('Total Payment:')").text(`Total Payment: $${subtotal.toFixed(2)}`);
-                    }
-                });
-            } else {
-                console.log("Cart is empty, navigating directly"); // Debug: Cart empty, no confirmation needed
-                mainContent.empty();
-                mainContent.append(section);
-                section.show();
-            }
-        });
-    }
-
-    // Call the reusable function for each button/section pair
-    setupButton('#customerBtn', '.customer');
-    setupButton('#productBtn', '.product');
-    setupButton('#cash-registerBtn', '.cash-register');
-    setupButton('#userBtn', '.user');
-    setupButton('#invoiceBtn', '.invoice');
-    setupButton('#dashboardBtn', '.dashboard');
+    generateProductCards();
 });
+
+export function resetCart() {
+    console.log("Resetting cart"); // Debug: Check if the method is called
+    $("#cart").empty(); // Empty the cart
+    subtotal = 0; // Reset subtotal
+    serviceTax = 0; // Reset service tax
+
+    // Update UI elements to reflect the empty cart
+    $("h6:contains('Total:') + p").text(`Subtotal: $0.00`);
+    $("h6:contains('Total:') + p + p").text(`Service Tax: $0.00`);
+    $("h6:contains('Total Payment:')").text(`Total Payment: $0.00`);
+
+    // Re-generate product cards and reattach event listeners
+    setTimeout(generateProductCards, 0); // Ensure generateProductCards is called after reset
+}

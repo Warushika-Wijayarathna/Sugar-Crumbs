@@ -403,9 +403,9 @@
                         <!-- Categories -->
                         <div class="mb-4">
                             <button class="btn btn-outline-primary me-2" id="all-button">All</button>
-                            <button class="btn btn-outline-secondary me-2" id="cakes-button">Cakes</button>
-                            <button class="btn btn-outline-secondary me-2" id="cookies-button">Cookies</button>
-                            <button class="btn btn-outline-secondary" id="drinks-button">Drinks</button>
+                            <button class="btn btn-outline-primary me-2" id="cakes-button">Cakes</button>
+                            <button class="btn btn-outline-primary me-2" id="cookies-button">Cookies</button>
+                            <button class="btn btn-outline-primary" id="drinks-button">Drinks</button>
                         </div>
 
                         <!-- Product Cards Container -->
@@ -415,7 +415,7 @@
                     </div>
 
                     <!-- Cart/Order Summary -->
-                    <div class="col-md-4 p-4">
+                    <div id="bill" class="col-md-4 p-4">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">William Defoe</h5>
@@ -427,9 +427,9 @@
                                 </ul>
 
                                 <h6>Total:</h6>
-                                <p>Subtotal: $32.99</p>
-                                <p>Service Tax: $2.00</p>
-                                <h6>Total Payment: $34.99</h6>
+                                <p id="subtotal">Subtotal: $0.00</p>
+                                <p id="service-tax">Service Tax: $0.00</p>
+                                <h6 id="total-payment">Total Payment: $0.00</h6>
 
                                 <div class="mb-3">
                                     <label for="paymentMethod" class="form-label">Payment Method</label>
@@ -698,9 +698,8 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save</button>
-                        <button type="button" class="btn btn-success">Update</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-success" id="customer-update">Update</button>
+                        <button type="button" class="btn btn-danger" id="customer-delete">Delete</button>
                     </div>
                 </div>
             </div>

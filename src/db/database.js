@@ -33,15 +33,16 @@ export let products = [
 
 
 export let customers = [
-    { id: "C001", name: "William Defoe", email: "william@example.com", phone: "12312312", address: "123 Street" },
-    { id: "C002", name: "Jane Smith", email: "jane@example.com", phone: "45645645", address: "456 Avenue" },
-    { id: "C003", name: "Tom Hardy", email: "tom@example.com", phone: "78978978", address: "789 Boulevard" },
-    { id: "C004", name: "Emily Blunt", email: "emily@example.com", phone: "11223344", address: "112 Street" },
-    { id: "C005", name: "Scarlett Johansson", email: "scarlett@example.com", phone: "22334455", address: "223 Avenue" },
-    { id: "C006", name: "Chris Hemsworth", email: "chris@example.com", phone: "33445566", address: "334 Boulevard" },
-    { id: "C007", name: "Robert Downey", email: "robert@example.com", phone: "44556677", address: "445 Road" },
-    { id: "C008", name: "Natalie Portman", email: "natalie@example.com", phone: "55667788", address: "556 Lane" }
+    { _id: "C001", _name: "William Defoe", _email: "william@example.com", _phone: "12312312", _address: "123 Street" },
+    { _id: "C002", _name: "Jane Smith", _email: "jane@example.com", _phone: "45645645", _address: "456 Avenue" },
+    { _id: "C003", _name: "Tom Hardy", _email: "tom@example.com", _phone: "78978978", _address: "789 Boulevard" },
+    { _id: "C004", _name: "Emily Blunt", _email: "emily@example.com", _phone: "11223344", _address: "112 Street" },
+    { _id: "C005", _name: "Scarlett Johansson", _email: "scarlett@example.com", _phone: "22334455", _address: "223 Avenue" },
+    { _id: "C006", _name: "Chris Hemsworth", _email: "chris@example.com", _phone: "33445566", _address: "334 Boulevard" },
+    { _id: "C007", _name: "Robert Downey", _email: "robert@example.com", _phone: "44556677", _address: "445 Road" },
+    { _id: "C008", _name: "Natalie Portman", _email: "natalie@example.com", _phone: "55667788", _address: "556 Lane" }
 ];
+
 
 export let users = [
     { id: "U001", username: "admin", email: "example.com", password: "admin" },
