@@ -13,6 +13,27 @@ $(document).ready(function() {
         clearFields(addUserFields);
         addUserFields.id.text(generateUserId()); // Set the generated ID // Set the generated ID
         UserAddModal.show();
+
+        $('#user-save').on('click', function() {
+            const newUser = new user(
+                addUserFields.id.text(),
+                addUserFields.username.val(),
+                addUserFields.email.val(),
+                addUserFields.password.val()
+            );
+            users.push(newUser);
+            displayUsers();
+            saveUsersToLocalStorage();
+            UserAddModal.hide();
+
+            // SweetAlert success message
+            Swal.fire({
+                icon: 'success',
+                title: 'User added successfully!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        });
     });
 
     // Event delegation for Edit User Button - Clear fields, load data, and show modal

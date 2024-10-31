@@ -40,20 +40,29 @@ $(document).on('click', '.order-view-btn', function () {
     Swal.fire({
         title: 'Order Details',
         html: `
-            <p>Invoice ID: ${selectedOrder._invoice_id}</p>
-            <p>User ID: ${selectedOrder._user_id}</p>
-            <p>Customer ID: ${selectedOrder._customer_id}</p>
-            <p>Order Date: ${selectedOrder._order_date}</p>
-            <p>Order Time: ${selectedOrder._order_time}</p>
-            <p>Payment Method: ${selectedOrder._payment_method}</p>
-            <p>Subtotal: $${selectedOrder._sub_total}</p>
-            <p>Service Tax: $${selectedOrder._service_tax}</p>
-            <p>Total Price: $${selectedOrder._total_price}</p>
+            <p>Invoice ID: <strong>${selectedOrder._invoice_id}</strong></p>
+            <p>User ID: <strong>${selectedOrder._user_id}</strong></p>
+            <p>Customer ID: <strong>${selectedOrder._customer_id}</strong></p>
+            <p>Order Date: <strong>${selectedOrder._order_date}</strong></p>
+            <p>Order Time: <strong>${selectedOrder._order_time}</strong></p>
+            <p>Payment Method: <strong>${selectedOrder._payment_method}</strong></p>
+            <p>Subtotal: <strong>$${selectedOrder._sub_total}</strong></p>
+            <p>Service Tax: <strong>$${selectedOrder._service_tax}</strong></p>
+            <p>Total Price: <strong>$${selectedOrder._total_price}</strong></p>
+            <p>Balance: <strong>$${selectedOrder._balance}</strong></p>
             <p>Products:</p>
             <ul>
                 ${orderItemsHTML}
             </ul>
         `,
-        confirmButtonText: 'Close'
+        confirmButtonText: 'Close',
+        customClass: {
+            popup: 'custom-popup',  // Custom class for styling
+            title: 'custom-title',   // Custom class for title
+            htmlContainer: 'custom-html-container', // Custom class for HTML container
+        },
+        background: '#f7f7f7', // Optional background color
+        width: '600px', // Optional width
     });
 });
+

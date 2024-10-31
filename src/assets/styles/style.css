@@ -408,6 +408,37 @@ section.login-page {
 }
 
 
+/* Custom styles for the SweetAlert modal */
+.custom-popup {
+    border-radius: 10px;
+    border: 2px solid #ffcc00; /* Gold border for emphasis */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+}
+
+.custom-title {
+    font-size: 24px; /* Larger title font */
+    color: #333; /* Dark text color for contrast */
+}
+
+.custom-html-container {
+    font-size: 16px; /* Adjust text size */
+    line-height: 1.5; /* Improve readability */
+    color: #555; /* Softer text color */
+}
+
+.custom-html-container p {
+    margin-bottom: 8px; /* Space between paragraphs */
+}
+
+.custom-html-container ul {
+    list-style-type: square; /* Change bullet points */
+    padding-left: 20px; /* Indent list */
+}
+
+.custom-html-container li {
+    margin-bottom: 5px; /* Space between list items */
+}
+
 /* Responsive Grid Layout for Cards */
 @media (max-width: 1200px) {
 

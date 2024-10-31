@@ -1,6 +1,7 @@
 import { resetCart } from './order_controller.js';
 import { bindProductAddEvents, unbindProductAddEvents } from './product_controller.js';
 import {bindCustomerEvents, unbindCustomerEvents} from './customer_controller.js';
+import {loadArrays} from "../db/database.js";
 ////////////////////////////////////////////////////// Sidebar Toggle //////////////////////////////////////////////////////////
 $(document).ready(function() {
     $('.nav-item').on('mouseover', function() {
@@ -138,6 +139,7 @@ $(document).ready(function () {
 
         button.on('click', function (event) {
             event.preventDefault();
+            loadArrays();
 
             // Check if the cart is empty before proceeding
             if (!isCartEmpty()) {

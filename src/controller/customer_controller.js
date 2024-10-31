@@ -10,7 +10,7 @@ console.log(`Customers : `,customers);
 // jQuery document ready function
 $(document).ready(function() {
     displayCustomers();
-    initializeCustomerModal();
+    // initializeCustomerModal();
     initializeCustomerEdit();
 });
 
@@ -33,28 +33,18 @@ function displayCustomers() {
     customerTableBody.append(rows);
 }
 
-// Initialize customer add modal functionality
-function initializeCustomerModal() {
-    const customerAddButton = $('#customer-add-btn');
-    const customerAddModalElement = $('.customer-form .modal').get(0);
-    const customerAddModal = customerAddModalElement ? new bootstrap.Modal(customerAddModalElement) : null;
 
-    if (!customerAddModal) {
-        console.warn("Customer add modal element not found.");
-        return;
-    }
-
-    customerAddButton.on('click', () => openCustomerModal(customerAddModal));
-    $('.modal .btn-close').on('click', () => customerAddModal.hide());
-    $('#customer-save').on('click', () => saveCustomer(customerAddModal));
-
-
-}
 
 function openCustomerModal(modal) {
     try {
         $('#customer-id2').text(generateNextCustomerId());
         modal.show();
+
+        $('#customer-save').off('click').on('click', (event) => {
+            event.preventDefault();
+            saveCustomer(modal);
+        });
+
         console.log("Modal opened successfully");
     } catch (error) {
         console.error("Error opening the modal:", error);
@@ -89,6 +79,7 @@ function saveCustomer(modal) {
 
     // Push the new customer to the customers array
     customers.push(newCustomer);
+    console.log('New customer added:', newCustomer); // Log the new customer
 
     // Save to local storage
     saveCustomersToLocalStorage();
@@ -96,19 +87,27 @@ function saveCustomer(modal) {
     // Display the updated customer list
     displayCustomers();
 
-    // Clear input fields
-    resetNewCustomerForm();
-
-    // Close the modal
-    modal.hide();
-
     // Show success message using SweetAlert
     Swal.fire(
         'Saved!',
         'The customer has been saved successfully.',
         'success'
-    );
+    ).then((result) => {
+        if (result.isConfirmed) {
+            // Ensure modal is hidden correctly
+            if (modal) {
+                modal.hide();  // Using the modal instance passed to this function
+                console.log("Modal hidden successfully"); // Debugging
+
+                // Clear input fields
+                resetNewCustomerForm(); // Reset the form fields
+            } else {
+                console.error("Modal instance is not defined"); // Debugging
+            }
+        }
+    });
 }
+
 
 // Generate next customer ID
 export function generateNextCustomerId() {
@@ -240,6 +239,8 @@ function updateCustomer() {
         text: 'The customer has been updated successfully.',
         icon: 'success',
         confirmButtonText: 'OK'
+    }).then(() => {
+        $('.customer-form-edit .modal').modal('hide'); // Correctly hide the modal
     });
 }
 
@@ -247,15 +248,11 @@ function updateCustomer() {
 export function bindCustomerEvents() {
 
     $('#customer-add-btn').off('click').on('click', (event) => {
+        const customerAddModalElement = $('.customer-form .modal').get(0);
+        const customerAddModal = customerAddModalElement ? new bootstrap.Modal(customerAddModalElement) : null;
         event.preventDefault();
         $('#customer-id2').text(generateNextCustomerId());
-        resetNewCustomerForm();
-        new bootstrap.Modal($('.customer-form .modal').get(0)).show();
-    });
-
-    $('#customer-save').off('click').on('click', (event) => {
-        event.preventDefault();
-        saveCustomer();
+        openCustomerModal(customerAddModal);
     });
 
     // row selection and edit form
@@ -294,7 +291,6 @@ export function bindCustomerEvents() {
 export function unbindCustomerEvents() {
     const customerTableBody = $('.customer-table tbody');
 
-    $('#customer-save').off('click');
     $('#customer-add-btn').off('click');
     customerTableBody.off('click', 'tr');
     $('.customer-table').off('click', '.btn-danger');

@@ -15,6 +15,11 @@ export let products = [
     { _code: "P012", _description: "Lemonade", _category: "Drink", _unitPrice: 1.75, _qtyOnHand: 20, _image: "https://fromfoodiewithlove.com/wp-content/uploads/2023/01/Fresh-Squeezed-Lemonade.jpg" },
     { _code: "P013", _description: "Iced Tea", _category: "Drink", _unitPrice: 1.50, _qtyOnHand: 15, _image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKWGOomQcO0wHDOFshx1LdtoiGvP9M6bVPtg&s" },
 
+    // Cookies
+    { _code: "P014", _description: "Ginger Bread Cookies", _category: "Cookie", _unitPrice: 1.00, _qtyOnHand: 80, _image: "https://theglutenfreeaustrian.com/wp-content/uploads/2022/12/gingerbreadcookie10-720x720.jpg" },
+    { _code: "P015", _description: "Crinkle Cookies", _category: "Cookie", _unitPrice: 1.25, _qtyOnHand: 60, _image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqkum53vE-mImZ-QZ9U3pZx7Ysx4QmMMLRRQ&s" }
+
+
 ];
 
 
@@ -38,21 +43,17 @@ export let users = [
 
 
 $(document).ready(function () {
-    if (localStorage.getItem('products') === null) {
-        localStorage.setItem('products', JSON.stringify(products));
-    } else {
-        products = JSON.parse(localStorage.getItem('products'));
-    }
-
-    if (localStorage.getItem('customers') === null) {
-        localStorage.setItem('customers', JSON.stringify(customers));
-    } else {
-        customers = JSON.parse(localStorage.getItem('customers'));
-    }
-
-    if (localStorage.getItem('users') === null) {
-        localStorage.setItem('users', JSON.stringify(users));
-    } else {
-        users = JSON.parse(localStorage.getItem('users'));
-    }
+    storeArrays();
 });
+
+function storeArrays() {
+    localStorage.setItem("products", JSON.stringify(products));
+    localStorage.setItem("customers", JSON.stringify(customers));
+    localStorage.setItem("users", JSON.stringify(users));
+}
+
+export function loadArrays() {
+    products = JSON.parse(localStorage.getItem("products"));
+    customers = JSON.parse(localStorage.getItem("customers"));
+    users = JSON.parse(localStorage.getItem("users"));
+}
