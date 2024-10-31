@@ -9,62 +9,62 @@ export default class product {
     }
 
     // get product code
-    getCode() {
+    get Code() {
         return this._code;
     }
 
     // get product description
-    getDescription() {
+    get Description() {
         return this._description;
     }
 
     // get product category
-    getCategory() {
+    get Category() {
         return this._category;
     }
 
     // get product image
-    getImage() {
+    get Image() {
         return this._image;
     }
 
     // get product unit price
-    getUnitPrice() {
+    get UnitPrice() {
         return this._unitPrice;
     }
 
     // get product quantity on hand
-    getQtyOnHand() {
+    get QtyOnHand() {
         return this._qtyOnHand;
     }
 
     // set product code
-    setCode(code) {
+    set Code(code) {
         this._code = code;
     }
 
     // set product description
-    setDescription(description) {
+    set Description(description) {
         this._description = description;
     }
 
     // set product category
-    setCategory(category) {
+    set Category(category) {
         this._category = category;
     }
 
     // set product image
-    setImage(image) {
+    set Image(image) {
         this._image = image;
     }
 
     // set product unit price
-    setUnitPrice(unitPrice) {
+    set UnitPrice(unitPrice) {
         this._unitPrice = unitPrice;
     }
 
     // set product quantity on hand
-    setQtyOnHand(qtyOnHand) {
+    set QtyOnHand(qtyOnHand) {
         this._qtyOnHand = qtyOnHand;
     }
 }

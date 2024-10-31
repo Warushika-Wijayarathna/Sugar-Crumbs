@@ -1,4 +1,3 @@
-import order from '../model/order_model.js';
 
 let orders = JSON.parse(localStorage.getItem('orders')) || [];
 

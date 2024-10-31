@@ -7,43 +7,43 @@ export default class user {
     }
 
     // get user id
-    getId() {
+    get Id() {
         return this._id;
     }
 
     // get user username
-    getUsername() {
+    get Username() {
         return this._username;
     }
 
     // get user email
-    getEmail() {
+    get Email() {
         return this._email;
     }
 
     // get user password
-    getPassword() {
+    get Password() {
         return this._password;
     }
 
     // set user id
-    setId(id) {
+    set Id(id) {
         this._id = id;
     }
 
     // set user username
-    setUsername(username) {
+    set Username(username) {
         this._username = username;
     }
 
     // set user email
 
-    setEmail(email) {
+    set Email(email) {
         this._email = email;
     }
 
     // set user password
-    setPassword(password) {
+    set Password(password) {
         this._password = password;
     }
 }

@@ -7,52 +7,52 @@ export default class customer {
         this._address = address;
     }
 
-    // get customer id
-    getId() {
+    // get customer_id
+    get Id() {
         return this._id;
     }
 
-    // get customer name
-    getName() {
+    // get customer_name
+    get Name() {
         return this._name;
     }
 
-    // get customer email
-    getEmail() {
+    // get customer_email
+    get Email() {
         return this._email;
     }
 
-    // get customer phone
-    getPhone() {
+    // get customer_phone
+    get Phone() {
         return this._phone;
     }
 
-    // get customer address
-    getAddress() {
+    // get customer_address
+    get Address() {
         return this._address;
     }
 
-    // set customer id
-    setId(id) {
+    // set customer_id
+    set Id(id) {
         this._id = id;
     }
 
-    // set customer name
-    setName(name) {
+    // set customer_name
+    set Name(name) {
         this._name = name;
     }
 
-    // set customer email
-    setEmail(email) {
+    // set customer_email
+    set Email(email) {
         this._email = email;
     }
 
-    // set customer phone
-    setPhone(phone) {
+    // set customer_phone
+    set Phone(phone) {
         this._phone = phone;
     }
 
-    // set customer address
+    // set customer_address
     setAddress(address) {
         this._address = address;
     }

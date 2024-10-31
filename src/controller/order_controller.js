@@ -159,7 +159,6 @@ $(document).ready(function() {
     generateProductCards();
     $('#invoice-id').text(generateNextInvoiceId());
     console.log(generateNextInvoiceId());
-    saveOrderToLocalStorage();
 });
 
 export function resetCart() {
@@ -351,7 +350,7 @@ function handleOrder() {
     }
 }
 
-//
+
 
 
 

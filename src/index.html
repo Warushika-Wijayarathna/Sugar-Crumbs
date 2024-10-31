@@ -477,44 +477,50 @@
         <form>
             <div class="dashboard-content">
                 <div class="row mb-4">
-                    <div class="summary-section">
-                        <div class="summary-item">
-                            <h5>Total Orders</h5>
-                            <p id="total-orders">0</p>
+                    <!-- Total Orders -->
+                    <div class="col-md-3 mb-3">
+                        <div class="card text-white bg-primary mb-3 equal-height-card" style="max-width: 18rem;">
+                            <div class="card-header">Total Orders</div>
+                            <div class="card-body">
+                                <h5 class="card-t" id="total-orders">65</h5>
+                                <p class="card-text">+2.1%</p>
+                            </div>
                         </div>
-                        <div class="summary-item">
-                            <h5>Total Customers</h5>
-                            <p id="total-customers">0</p>
+                    </div>
+                    <!-- Total Sales -->
+                    <div class="col-md-3 mb-3">
+                        <div class="card text-white bg-secondary mb-3 equal-height-card" style="max-width: 18rem;">
+                            <div class="card-header">Total Customers</div>
+                            <div class="card-body">
+                                <h5 class="card-t" id="total-customers">97,056</h5>
+                                <p class="card-text">+5.6%</p>
+                            </div>
                         </div>
-                        <div class="summary-item">
-                            <h5>Total Products</h5>
-                            <p id="total-products">0</p>
+                    </div>
+                    <!-- Total Revenue -->
+                    <div class="col-md-3 mb-3">
+                        <div class="card text-white bg-success mb-3 equal-height-card" style="max-width: 18rem;">
+                            <div class="card-header">Total Income</div>
+                            <div class="card-body">
+                                <h5 class="card-t" id="total-income">27,230</h5>
+                                <p class="card-text">+4.8%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Calendar Widget -->
+                    <div class="col-md-3 mb-3">
+                        <div class="calendar-widget">
+                            <div class="date">
+                                <div>Wednesday</div>
+                                <div class="day" id="current-day">1</div>
+                                <div class="month" id="current-month">November</div>
+                                <div class="year" id="current-date">2024</div>
+                            </div>
+                            <div class="decorative-circle circle1"></div>
+                            <div class="decorative-circle circle2"></div>
                         </div>
                     </div>
 
-                    <!-- Add New Item and Add New Customer (combined) -->
-                    <div class="col-md-3 mb-3" id="new-item">
-                        <div class="row h-100">
-                            <!-- Add New Item -->
-                            <div class="col-12 mb-3">
-                                <div class="card equal-height-half">
-                                    <div class="card-body d-flex align-items-center justify-content-center">
-                                        <i class="fa-solid fa-box fa-2x me-2"></i>
-                                        <h6 class="mt-2">Add New Item</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Add New Customer -->
-                            <div class="col-12" id="new -customer">
-                                <div class="card equal-height-half">
-                                    <div class="card-body d-flex align-items-center justify-content-center">
-                                        <i class="fa-solid fa-user fa-2x me-2"></i>
-                                        <h6 class="mt-2">Add New Customer</h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
 

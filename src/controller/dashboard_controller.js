@@ -1,6 +1,8 @@
 import product from "../model/product_model.js";
 
 let products = JSON.parse(localStorage.getItem('products')) || [];
+let customers = JSON.parse(localStorage.getItem('customers')) || [];
+let orders = JSON.parse(localStorage.getItem('orders')) || [];
 
 $(document).ready(function () {
     function initializeCharts() {
@@ -73,7 +75,10 @@ $(document).ready(function () {
     // Function to reload the charts when `products` data changes in localStorage
     function reloadCharts() {
         products = JSON.parse(localStorage.getItem('products')) || [];
+        customers = JSON.parse(localStorage.getItem('customers')) || [];
+        orders = JSON.parse(localStorage.getItem('orders')) || [];
         initializeCharts();
+        updateDashboard();
     }
 
     // Reload charts when the reload button is clicked
@@ -88,4 +93,51 @@ $(document).ready(function () {
             reloadCharts();
         }
     });
+
+    function updateDashboard() {
+        const totalOrders = orders.length; // Replace with actual logic to get total orders
+        const totalCustomers = customers.length;
+        const totalIncome = orders.reduce((total, order) => total + order._total_price, 0);
+
+        $('#total-orders').text(totalOrders);
+        $('#total-customers').text(totalCustomers);
+        $('#total-income').text(totalIncome.toFixed(2));
+    }
+
+    updateDashboard();
+
+    const main_content = $('.main-content');
+
+    $('#new-customer').on('click', function (event) {
+        // Hide all sections
+        main_content.children().hide();
+
+        // Clone the section instead of moving it
+        const sectionElement = $('.customer').clone();
+
+        // Append the cloned section to main_content
+        main_content.append(sectionElement);
+
+        // Show the cloned section
+        sectionElement.show();
+    });
+
+});
+
+// Function to format the current date
+$(document).ready(function() {
+    // Get current date
+    const currentDate = new Date();
+    const day = currentDate.getDate();
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"];
+    const month = monthNames[currentDate.getMonth()];
+    const year = currentDate.getFullYear();
+    const dayOfWeekNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const dayOfWeek = dayOfWeekNames[currentDate.getDay()];
+
+    // Update the calendar widget
+    $('#current-day').text(day);
+    $('#current-date').text(year);
+    $('#current-month').text(month);
 });

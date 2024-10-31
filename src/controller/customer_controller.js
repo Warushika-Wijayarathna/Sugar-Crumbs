@@ -34,7 +34,7 @@ function displayCustomers() {
 
 
 
-function openCustomerModal(modal) {
+export function openCustomerModal(modal) {
     try {
         $('#customer-id2').text(generateNextCustomerId());
         modal.show();
