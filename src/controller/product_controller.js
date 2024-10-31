@@ -2,18 +2,6 @@
 import Product from '../model/product_model.js';
 import { products as defaultProducts } from '../db/database.js';
 
-export function reattachAddProductClick() {
-    const addProductButton = $('#product-add-btn');
-    addProductButton.off('click', showProductModal()).on('click', showProductModal());
-
-}
-
-function showProductModal() {
-    $('#newProductCode').text(generateNextProductId());
-    resetNewProductForm();
-    new bootstrap.Modal($('.product-form-new .modal').get(0)).show();
-}
-
 // Load products from local storage or use default products if none found
 let products = JSON.parse(localStorage.getItem('products')) || defaultProducts;
 
@@ -27,6 +15,7 @@ function init() {
     displayProducts();
     setupProductModal();
     setupProductEdit();
+    localStorage.setItem('products', JSON.stringify(products)); // Update local storage
 }
 
 // Function to display all products
@@ -67,6 +56,12 @@ function setupProductModal() {
     initializeUploadBox(uploadBoxNew, fileInputNew);
 
     // Open modal and reset fields when adding a new product
+    $('#product-add-btn').on('click', (event) => {
+        event.preventDefault();
+        $('#newProductCode').text(generateNextProductId());
+        resetNewProductForm();
+        new bootstrap.Modal($('.product-form-new .modal').get(0)).show();
+    });
 
     // Save product when save button is clicked
     $('#product-save').on('click', (event) => {
@@ -255,50 +250,103 @@ function deleteProduct(productId) {
         confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
-            products.splice(index, 1);
+            products.splice(index, 1); // Remove the product from the array
             localStorage.setItem('products', JSON.stringify(products)); // Update local storage
-            displayProducts(); // Refresh product display
+            displayProducts(); // Refresh the product list
+
             Swal.fire('Deleted!', 'Your product has been deleted.', 'success');
 
-            $('.product-form-edit .modal').modal('hide'); // Correct way to hide the modal
+            $('.product-form-edit .modal').modal('hide'); // Hide the modal
         }
     });
 }
 
-// Handle deletion from the edit modal
-$('#product-delete').on('click', function () {
-    const productId = $('#editProductCode').text(); // Get the ID of the product to delete
-    deleteProduct(productId);
-});
+// Function to bind product add events
+export function bindProductAddEvents() {
+    const uploadBoxNew = $('#uploadBoxNew');
+    const fileInputNew = $('#fileInputNew');
 
-// Function to update products to local storage
+    initializeUploadBox(uploadBoxNew, fileInputNew); // Initialize upload box
 
-$('#product-update').on('click', function () {
-    const productId = $('#editProductCode').text();
-    const productDescription = $('#editProductDesc').val();
-    const productCategory = $('#editProductCategory').val();
-    const productImage = $('#imagePreviewEdit').attr('src');
-    const productUnitPrice = parseFloat($('#editProductUnitPrice').val());
-    const productQtyOnHand = parseInt($('#editProductQtyOnHand').val());
+    $('#product-add-btn').off('click').on('click', (event) => {
+        event.preventDefault();
+        $('#newProductCode').text(generateNextProductId());
+        resetNewProductForm();
+        new bootstrap.Modal($('.product-form-new .modal').get(0)).show();
+    });
 
-    if (!productDescription || !productCategory || !productImage || isNaN(productUnitPrice) || isNaN(productQtyOnHand)) {
-        Swal.fire("Error", "Please fill in all fields.", "error");
-        return;
-    }
+    $('#product-save').off('click').on('click', (event) => {
+        event.preventDefault();
+        saveProduct();
+    });
 
-    const index = products.findIndex(product => product._code === productId);
-    products[index]._description = productDescription;
-    products[index]._category = productCategory;
-    products[index]._image = productImage;
-    products[index]._unitPrice = productUnitPrice;
-    products[index]._qtyOnHand = productQtyOnHand;
+    // row selection and edit form
+    const productModalEdit = new bootstrap.Modal($('.product-form-edit .modal').get(0));
+    const productTableBody = $('.product-table tbody');
 
-    updateProductsToLocalStorage();
-    displayProducts();
-    Swal.fire("Success", "Product updated successfully!", "success");
-    //hide the modal
-    $('.product-form-edit .modal').modal('hide');
-});
-function updateProductsToLocalStorage() {
-    localStorage.setItem('products', JSON.stringify(products));
+    productTableBody.off('click').on('click', 'tr', function () {
+        populateEditForm($(this));
+        productModalEdit.show();
+    });
+
+    //delete product
+    $('.product-table').off('click').on('click', '.btn-danger', function () {
+        const productId = $(this).closest('tr').find('.row-id').text(); // Get the ID of the product to delete
+        deleteProduct(productId);
+    });
+
+    //delete product-with modal delete button
+    $('#product-delete').off('click').on('click', function () {
+        const productId = $('#editProductCode').text();
+        deleteProduct(productId);
+    });
+
+    //update product
+    $('#product-update').off('click').on('click', function () {
+        const productId = $('#editProductCode').text();
+        const productDescription = $('#editProductDesc').val();
+        const productCategory = $('#editProductCategory').val();
+        const productImage = $('#imagePreviewEdit').attr('src');
+        const productUnitPrice = parseFloat($('#editProductUnitPrice').val());
+        const productQtyOnHand = parseInt($('#editProductQtyOnHand').val());
+
+        if (!productDescription || !productCategory || !productImage || isNaN(productUnitPrice) || isNaN(productQtyOnHand)) {
+            Swal.fire("Error", "Please fill in all fields.", "error");
+            return;
+        }
+
+        const productIndex = products.findIndex(product => product._code === productId);
+        if (productIndex === -1) {
+            Swal.fire("Error", "Product not found.", "error");
+            return;
+        }
+
+        products[productIndex]._description = productDescription;
+        products[productIndex]._category = productCategory;
+        products[productIndex]._image = productImage;
+        products[productIndex]._unitPrice = productUnitPrice;
+        products[productIndex]._qtyOnHand = productQtyOnHand;
+
+        localStorage.setItem('products', JSON.stringify(products)); // Update local storage
+        displayProducts(); // Refresh displayed products
+
+        Swal.fire("Success", "Product updated successfully!", "success");
+        $('.product-form-edit .modal').modal('hide'); // Hide the modal
+    });
+}
+
+// Function to unbind product add events
+export function unbindProductAddEvents() {
+    const productTableBody = $('.product-table tbody');
+
+
+    $('#product-save').off('click');
+    $('#product-add-btn').off('click');
+    $('#uploadBoxNew').off('dragover dragleave drop'); // Unbind any drag-and-drop events
+    $('#fileInputNew').off('change'); // Unbind change event for file input
+    productTableBody.off('click', 'tr');
+    $('.product-table').off('click', '.btn-danger');
+    $('#product-delete').off('click');
+    $('#product-update').off('click');
+
 }
