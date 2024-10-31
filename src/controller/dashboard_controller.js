@@ -1,3 +1,25 @@
+import product from "../model/product_model.js";
+
+let products = JSON.parse(localStorage.getItem('products')) || [];
+
+// Function to update charts
+function updateCharts() {
+    products = JSON.parse(localStorage.getItem('products')) || [];
+
+    // Update Pie Chart data
+    let cakeCount = products.filter(product => product._category === 'Cake').length;
+    let cookieCount = products.filter(product => product._category === 'Cookie').length;
+    let drinkCount = products.filter(product => product._category === 'Drink').length;
+
+    pieChart.data.datasets[0].data = [cakeCount, cookieCount, drinkCount];
+    pieChart.update();
+
+    // Update Line Chart data (example: re-fetching data)
+    lineChart.data.datasets[0].data = [3000, 4000, 3500, 6000, 4500, 5000, 7000]; // Update with actual data
+    lineChart.data.datasets[1].data = [2000, 3000, 2500, 4000, 3500, 4200, 6000]; // Update with actual data
+    lineChart.update();
+}
+
 // Line Chart
 var ctxLine = $('#lineChart').get(0).getContext('2d');
 var lineChart = new Chart(ctxLine, {
@@ -23,23 +45,33 @@ var lineChart = new Chart(ctxLine, {
 });
 
 // Pie Chart
+let cakeCount = products.filter(product => product._category === 'Cake').length;
+let cookieCount = products.filter(product => product._category === 'Cookie').length;
+let drinkCount = products.filter(product => product._category === 'Drink').length;
+
 var ctxPie = $('#pieChart').get(0).getContext('2d');
 var pieChart = new Chart(ctxPie, {
     type: 'pie',
     data: {
-        labels: ['Cake', 'Cookie', 'Drinks', 'Others'],
+        labels: ['Cake', 'Cookie', 'Drinks'],
         datasets: [{
             label: 'Top Categories',
-            data: [43, 31, 15, 11],
+            data: [cakeCount, cookieCount, drinkCount],
             backgroundColor: [
                 'rgb(255, 99, 132)',
                 'rgb(54, 162, 235)',
                 'rgb(255, 206, 86)',
-                'rgb(75, 192, 192)'
             ]
         }]
     },
     options: {
         responsive: true
+    }
+});
+
+// Listen for storage changes
+window.addEventListener('storage', function(event) {
+    if (event.key === 'products') {
+        updateCharts();
     }
 });
