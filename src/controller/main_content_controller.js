@@ -163,6 +163,21 @@ $(document).ready(function () {
     function isCartEmpty() {
         return $("#cart").children().length === 0; // Check if the cart is empty
     }
+
+    $('#sign-out-btn').on('click', function() {
+        Swal.fire({
+            title: 'Are you sure you want to logout?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Logout',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Reload the index file
+                window.location.href = 'index.html';
+            }
+        });
+    });
 });
 
 
