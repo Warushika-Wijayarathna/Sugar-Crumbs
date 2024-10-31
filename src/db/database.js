@@ -47,9 +47,15 @@ $(document).ready(function () {
 });
 
 function storeArrays() {
-    localStorage.setItem("products", JSON.stringify(products));
-    localStorage.setItem("customers", JSON.stringify(customers));
-    localStorage.setItem("users", JSON.stringify(users));
+    if (!localStorage.getItem("products")) {
+        localStorage.setItem("products", JSON.stringify(products));
+    }
+    if (!localStorage.getItem("customers")) {
+        localStorage.setItem("customers", JSON.stringify(customers));
+    }
+    if (!localStorage.getItem("users")) {
+        localStorage.setItem("users", JSON.stringify(users));
+    }
 }
 
 export function loadArrays() {
