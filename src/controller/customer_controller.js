@@ -10,7 +10,6 @@ console.log(`Customers : `,customers);
 // jQuery document ready function
 $(document).ready(function() {
     displayCustomers();
-    // initializeCustomerModal();
     initializeCustomerEdit();
 });
 
