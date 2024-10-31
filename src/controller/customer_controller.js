@@ -1,14 +1,17 @@
 import customer from '../model/customer_model.js';
 import { validateEmail, validateMobile } from '../util/validation.js';
+import {customers as customer_array} from '../db/database.js';
+
 
 // Load customers from local storage or initialize an empty array
-let customers = JSON.parse(localStorage.getItem('customers')) || [];
+let customers = JSON.parse(localStorage.getItem('customers')) || customer_array;
 
 // jQuery document ready function
 $(document).ready(function() {
     displayCustomers();
     initializeCustomerModal();
     initializeCustomerEdit();
+    saveCustomersToLocalStorage();
 });
 
 // Display all customers
@@ -94,11 +97,7 @@ function saveCustomer(modal) {
     displayCustomers();
 
     // Clear input fields
-    $('#customer-id2').text('');
-    $('#customer-name2').val('');
-    $('#exampleInput').val('');
-    $('#customer-phone2').val('');
-    $('#customer-address2').val('');
+    resetNewCustomerForm();
 
     // Close the modal
     modal.hide();
@@ -133,49 +132,6 @@ function initializeCustomerEdit() {
         customerTableModal.show();
     });
 }
-
-// Update customer details
-$('#customer-update').on('click', function() {
-    console.log("Update button clicked"); // For debugging
-    const customerId = $('#customer-id').text();
-    const customerName = $('#customer-name').val();
-    const customerEmail = $('#customer-email').val();
-    const customerPhone = $('#customer-phone').val();
-    const customerAddress = $('#customer-address').val();
-
-    if (!customerName || !customerEmail || !customerPhone || !customerAddress) {
-        alert("Please fill in all fields.");
-        return;
-    }
-    if (!validateEmail(customerEmail)) {
-        alert("Please enter a valid email address.");
-        return;
-    }
-    if (!validateMobile(customerPhone)) {
-        alert("Please enter a valid phone number.");
-        return;
-    }
-
-    const customerIndex = customers.findIndex(customer => customer._id === customerId);
-    customers[customerIndex]._name = customerName;
-    customers[customerIndex]._email = customerEmail;
-    customers[customerIndex]._phone = customerPhone;
-    customers[customerIndex]._address = customerAddress;
-
-    // Save to local storage
-    saveCustomersToLocalStorage();
-
-    displayCustomers();
-    $('.customer-form-edit .modal').modal('hide'); // Correctly hide the modal
-
-    // Show success message using SweetAlert
-    Swal.fire({
-        title: 'Updated!',
-        text: 'The customer has been updated successfully.',
-        icon: 'success',
-        confirmButtonText: 'OK'
-    });
-});
 
 // Attach deleteCustomer function to the "Delete" button using event delegation
 $('.customer-table').on('click', '#delete-customer', function() {
@@ -237,4 +193,116 @@ $('#customer-delete').on('click', function() {
 function saveCustomersToLocalStorage() {
     localStorage.setItem('customers', JSON.stringify(customers));
 }
+
+function resetNewCustomerForm() {
+    $('#customer-name2').val('');
+    $('#exampleInput').val('');
+    $('#customer-phone2').val('');
+    $('#customer-address2').val('');
+}
+
+function updateCustomer() {
+    console.log("Update button clicked"); // For debugging
+    const customerId = $('#customer-id').text();
+    const customerName = $('#customer-name').val();
+    const customerEmail = $('#customer-email').val();
+    const customerPhone = $('#customer-phone').val();
+    const customerAddress = $('#customer-address').val();
+
+    if (!customerName || !customerEmail || !customerPhone || !customerAddress) {
+        alert("Please fill in all fields.");
+        return;
+    }
+    if (!validateEmail(customerEmail)) {
+        alert("Please enter a valid email address.");
+        return;
+    }
+    if (!validateMobile(customerPhone)) {
+        alert("Please enter a valid phone number.");
+        return;
+    }
+
+    const customerIndex = customers.findIndex(customer => customer._id === customerId);
+    customers[customerIndex]._name = customerName;
+    customers[customerIndex]._email = customerEmail;
+    customers[customerIndex]._phone = customerPhone;
+    customers[customerIndex]._address = customerAddress;
+
+    // Save to local storage
+    saveCustomersToLocalStorage();
+
+    displayCustomers();
+    $('.customer-form-edit .modal').modal('hide'); // Correctly hide the modal
+
+    // Show success message using SweetAlert
+    Swal.fire({
+        title: 'Updated!',
+        text: 'The customer has been updated successfully.',
+        icon: 'success',
+        confirmButtonText: 'OK'
+    });
+}
+
+// Function to bind customer events
+export function bindCustomerEvents() {
+
+    $('#customer-add-btn').off('click').on('click', (event) => {
+        event.preventDefault();
+        $('#customer-id2').text(generateNextCustomerId());
+        resetNewCustomerForm();
+        new bootstrap.Modal($('.customer-form .modal').get(0)).show();
+    });
+
+    $('#customer-save').off('click').on('click', (event) => {
+        event.preventDefault();
+        saveCustomer();
+    });
+
+    // row selection and edit form
+    const customerModalEdit = new bootstrap.Modal($('.customer-form-edit .modal').get(0));
+    const customerTableBody = $('.customer-table tbody');
+
+    customerTableBody.off('click').on('click', 'tr', function() {
+        const customerData = $(this).find('td');
+        $('#customer-id').text(customerData.eq(0).text());
+        $('#customer-name').val(customerData.eq(1).text());
+        $('#customer-email').val(customerData.eq(2).text());
+        $('#customer-phone').val(customerData.eq(3).text());
+        $('#customer-address').val(customerData.eq(4).text());
+
+        customerModalEdit.show();
+    });
+
+    // Delete customer functionality
+    $('.customer-table').off('click').on('click', '.btn-danger', function () {
+        const customerId = $(this).closest('tr').find('.row-id').text(); // Get the ID of the customer to delete
+        deleteCustomer(customerId);
+    });
+
+    // Additional event bindings for customer edit and delete buttons
+    $('#customer-delete').off('click').on('click', function () {
+        const customerId = $('#editCustomerCode').text();
+        deleteCustomer(customerId);
+    });
+
+    $('#customer-update').off('click').on('click', function () {
+        updateCustomer(); // Assuming you have an updateCustomer function
+    });
+}
+
+// Function to unbind customer events
+export function unbindCustomerEvents() {
+    const customerTableBody = $('.customer-table tbody');
+
+    $('#customer-save').off('click');
+    $('#customer-add-btn').off('click');
+    customerTableBody.off('click', 'tr');
+    $('.customer-table').off('click', '.btn-danger');
+    $('#customer-delete').off('click');
+    $('#customer-update').off('click');
+}
+
+;
+
+
 
