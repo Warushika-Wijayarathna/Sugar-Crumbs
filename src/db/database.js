@@ -42,11 +42,9 @@ export let users = [
 ];
 
 
-$(document).ready(function () {
-    storeArrays();
-});
 
-function storeArrays() {
+
+(function storeArrays() {
     if (!localStorage.getItem("products")) {
         localStorage.setItem("products", JSON.stringify(products));
     }
@@ -56,7 +54,7 @@ function storeArrays() {
     if (!localStorage.getItem("users")) {
         localStorage.setItem("users", JSON.stringify(users));
     }
-}
+})();
 
 export function loadArrays() {
     products = JSON.parse(localStorage.getItem("products"));

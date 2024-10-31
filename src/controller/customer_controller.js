@@ -61,15 +61,48 @@ function saveCustomer(modal) {
 
     // Validate customer data
     if (!customerName || !customerEmail || !customerPhone || !customerAddress) {
-        alert("Please fill in all fields.");
+        Swal.fire({
+            title: 'Error',
+            text: 'Please fill in all fields.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
         return;
     }
     if (!validateEmail(customerEmail)) {
-        alert("Please enter a valid email address.");
+        Swal.fire({
+            title: 'Error',
+            text: 'Please enter a valid email address.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
         return;
     }
     if (!validateMobile(customerPhone)) {
-        alert("Please enter a valid phone number.");
+        Swal.fire({
+            title: 'Error',
+            text: 'Please enter a valid phone number.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+        return;
+    }
+    if (customers.find(customer => customer._email === customerEmail)) {
+        Swal.fire({
+            title: 'Error',
+            text: 'A customer with this email already exists.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+        return;
+    }
+    if (customers.find(customer => customer._phone === customerPhone)) {
+        Swal.fire({
+            title: 'Error',
+            text: 'A customer with this phone number already exists.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
         return;
     }
 
@@ -207,16 +240,54 @@ function updateCustomer() {
     const customerPhone = $('#customer-phone').val();
     const customerAddress = $('#customer-address').val();
 
+    // Validate customer data
     if (!customerName || !customerEmail || !customerPhone || !customerAddress) {
-        alert("Please fill in all fields.");
+        Swal.fire({
+            title: 'Error',
+            text: 'Please fill in all fields.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
         return;
     }
+
     if (!validateEmail(customerEmail)) {
-        alert("Please enter a valid email address.");
+        Swal.fire({
+            title: 'Error',
+            text: 'Please enter a valid email address.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
         return;
     }
+
     if (!validateMobile(customerPhone)) {
-        alert("Please enter a valid phone number.");
+        Swal.fire({
+            title: 'Error',
+            text: 'Please enter a valid phone number.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+        return;
+    }
+
+    if (customers.find(customer => customer._email === customerEmail && customer._id !== customerId)) {
+        Swal.fire({
+            title: 'Error',
+            text: 'A customer with this email already exists.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+        return;
+    }
+
+    if (customers.find(customer => customer._phone === customerPhone && customer._id !== customerId)) {
+        Swal.fire({
+            title: 'Error',
+            text: 'A customer with this phone number already exists.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
         return;
     }
 
