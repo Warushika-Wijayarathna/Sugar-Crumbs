@@ -3,7 +3,7 @@ import Product from '../model/product_model.js';
 import { products as defaultProducts } from '../db/database.js';
 
 // Load products from local storage or use default products if none found
-let products = JSON.parse(localStorage.getItem('products')) || defaultProducts;
+let products = JSON.parse(localStorage.getItem('products'));
 
 // Initialize on document ready
 $(document).ready(function () {
@@ -15,7 +15,6 @@ function init() {
     displayProducts();
     setupProductModal();
     setupProductEdit();
-    localStorage.setItem('products', JSON.stringify(products)); // Update local storage
 }
 
 // Function to display all products

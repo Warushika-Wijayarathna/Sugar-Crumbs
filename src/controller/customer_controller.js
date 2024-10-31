@@ -4,14 +4,13 @@ import {customers as customer_array} from '../db/database.js';
 
 
 // Load customers from local storage or initialize an empty array
-let customers = JSON.parse(localStorage.getItem('customers')) || customer_array;
+let customers = JSON.parse(localStorage.getItem('customers'));
 
 // jQuery document ready function
 $(document).ready(function() {
     displayCustomers();
     initializeCustomerModal();
     initializeCustomerEdit();
-    saveCustomersToLocalStorage();
 });
 
 // Display all customers
@@ -111,7 +110,7 @@ function saveCustomer(modal) {
 }
 
 // Generate next customer ID
-function generateNextCustomerId() {
+export function generateNextCustomerId() {
     const lastCustomer = customers[customers.length - 1];
     const lastIdNumber = lastCustomer ? parseInt(lastCustomer._id.slice(1), 10) : 0;
     return `C${(lastIdNumber + 1).toString().padStart(3, '0')}`;
@@ -302,7 +301,7 @@ export function unbindCustomerEvents() {
     $('#customer-update').off('click');
 }
 
-;
+
 
 
 

@@ -1,3 +1,5 @@
+export let user_id;
+
 // Retrieve users from localStorage
 function getUsersFromLocalStorage() {
     const storedUsers = JSON.parse(localStorage.getItem('users'));
@@ -22,7 +24,8 @@ function login(event) {
         $('#header').show();
         $('#aside').show();
         $('#main-content').show();
-
+        $('#user-text').text(`${user._username}`);
+        user_id = user._id;
         // Load the dashboard
         loadDashboard();
 

@@ -83,7 +83,7 @@
         <div class="aside-navigation">
             <div class="profile-picture">
                 <img src="assets/images/profile.jpeg" alt="Profile Image">
-                <span>John Doe</span>
+                <span id="user-text">John Doe</span>
             </div>
             <div class="card text-center">
                 <ul class="nav nav-pills card-header-pills">
@@ -346,10 +346,10 @@
                                 <div class="container">
                                     <form class="d-flex" role="search">
                                         <div>
-                                            <input class="form-control me-2" type="search" placeholder="Search by Customer Phone Number" aria-label="Search by Phone Number">
+                                            <input class="form-control me-2" type="search" placeholder="Search by Customer Phone Number" aria-label="Search by Phone Number" id="search-mobile">
                                         </div>
                                         <div>
-                                            <button class="btn btn-outline-info" type="submit">Search</button>
+                                            <button class="btn btn-outline-info" type="submit" id="search-mobile-btn">Search</button>
                                         </div>
                                         <div>
                                             <button type="button" class="btn btn-primary" id="customer-add-btn-reg">+ Add Customer</button>
@@ -379,8 +379,8 @@
                     <div id="bill" class="col-md-4 p-4">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">William Defoe</h5>
-                                <p class="card-text">#12312312</p>
+                                <h5 class="card-title" id="customer-tag"></h5>
+                                <p class="card-text" id="invoice-id"></p>
 
                                 <h6>Your Order:</h6>
                                 <ul id="cart" class="list-group mb-3">
@@ -396,13 +396,24 @@
                                     <label for="paymentMethod" class="form-label">Payment Method</label>
                                     <select class="form-select" id="paymentMethod">
                                         <option selected>Cash</option>
+                                        <!-- Add other payment options as needed -->
                                     </select>
                                 </div>
 
-                                <button class="btn btn-primary w-100">Make Order</button>
+                                <!-- Cash Amount Input -->
+                                <div class="mb-3">
+                                    <label for="cashAmount" class="form-label">Cash Amount</label>
+                                    <input type="number" class="form-control" id="cashAmount" placeholder="Enter cash amount" min="0" step="0.01">
+                                </div>
+
+                                <!-- Balance Display -->
+                                <h6 id="balance">Balance: $0.00</h6>
+
+                                <button class="btn btn-primary w-100" id="makeOrderBtn">Make Order</button>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
             <!-- POS Layout End -->
