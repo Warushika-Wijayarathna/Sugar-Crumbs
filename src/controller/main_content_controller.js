@@ -1,4 +1,4 @@
-import { resetCart } from './order_controller.js';
+import {generateProductCards, resetCart} from './order_controller.js';
 import { bindProductAddEvents, unbindProductAddEvents } from './product_controller.js';
 import {bindCustomerEvents, unbindCustomerEvents} from './customer_controller.js';
 import {loadArrays} from "../db/database.js";

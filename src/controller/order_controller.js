@@ -23,7 +23,7 @@ const serviceTaxRate = 0.06; // Example service tax rate of 6%
 let serviceTax = 0; // Track service tax
 
 // Function to generate product cards
-function generateProductCards() {
+export function generateProductCards() {
     productList.empty(); // Clear existing product cards
     $.each(products, function(index, product) {
         console.log("Adding product:", product); // Debug: Log each product object
@@ -47,6 +47,13 @@ function generateProductCards() {
     productList.off("click", ".product-card", handleProductCardClick); // Remove previous listeners
     productList.on("click", ".product-card", handleProductCardClick);
     console.log("Event listeners reattached to product cards"); // Debug: Log reattachment
+}
+
+// Function to update product cards
+export function updateProductCards(newProducts) {
+    products = newProducts;
+    localStorage.setItem('products', JSON.stringify(products));
+    generateProductCards();
 }
 
 // Function to handle product card click

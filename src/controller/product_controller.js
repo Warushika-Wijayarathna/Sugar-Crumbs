@@ -1,6 +1,8 @@
 // Import necessary modules
 import Product from '../model/product_model.js';
 import { products as defaultProducts } from '../db/database.js';
+import {validatePrice, validateQuantity} from "../util/validation.js";
+import {updateProductCards} from "./order_controller.js";
 
 // Load products from local storage or use default products if none found
 let products = JSON.parse(localStorage.getItem('products'));
@@ -15,6 +17,7 @@ function init() {
     displayProducts();
     setupProductModal();
     setupProductEdit();
+    setDate();
 }
 
 // Function to display all products
@@ -147,17 +150,40 @@ function saveProduct() {
     const productUnitPrice = parseFloat($('#newProductUnitPrice').val());
     const productQtyOnHand = parseInt($('#newProductQtyOnHand').val());
 
-    if (!productDescription || !productCategory || !productImage || isNaN(productUnitPrice) || isNaN(productQtyOnHand)) {
+    // Print all the values with labels
+    console.log(productId);
+    console.log(productDescription);
+    console.log(productCategory);
+    console.log(productImage);
+    console.log(productUnitPrice);
+    console.log(productQtyOnHand);
+
+    if (!productDescription || !productCategory || !productImage || $('#newProductUnitPrice').val() === '' || $('#newProductQtyOnHand').val() === '') {
         Swal.fire("Error", "Please fill in all fields.", "error");
         return;
+    }
+
+    //validate price
+    if (!validatePrice(productUnitPrice)) {
+        Swal.fire("Error", "Please enter a valid price.", "error");
+        return;
+    }
+
+    //validate quantity
+    if (productQtyOnHand < 0||!validateQuantity(productQtyOnHand)) {
+        Swal.fire("Error", "Please enter a valid quantity.", "error");
+        return
     }
 
     const newProduct = new Product(productId, productDescription, productCategory, productImage, productUnitPrice, productQtyOnHand);
     products.push(newProduct);
     localStorage.setItem('products', JSON.stringify(products)); // Update local storage
     displayProducts(); // Refresh displayed products
+    updateProductCards(products);
 
-    Swal.fire("Success", "Product saved successfully!", "success");
+    Swal.fire("Success", "Product saved successfully!", "success").then(() => {
+        $('.product-form-new .modal').modal('hide'); // Hide the modal
+    });
 }
 
 // Function to set up the product edit modal
@@ -252,6 +278,7 @@ function deleteProduct(productId) {
             products.splice(index, 1); // Remove the product from the array
             localStorage.setItem('products', JSON.stringify(products)); // Update local storage
             displayProducts(); // Refresh the product list
+            updateProductCards(products);
 
             Swal.fire('Deleted!', 'Your product has been deleted.', 'success');
 
@@ -348,4 +375,15 @@ export function unbindProductAddEvents() {
     $('#product-delete').off('click');
     $('#product-update').off('click');
 
+}
+
+function setDate() {
+    const dateElement = $("#cash-date");
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+    dateElement.text(`Date: ${formattedDate}`);
 }

@@ -359,7 +359,7 @@
                             </nav>
                         </div>
                         <h5>Let's do your best today 🚀</h5>
-                        <p>Date: December 18, 2023</p>
+                        <p id="cash-date">Date: December 18, 2023</p>
 
                         <!-- Categories -->
                         <div class="mb-4">
@@ -482,8 +482,7 @@
                         <div class="card text-white bg-primary mb-3 equal-height-card" style="max-width: 18rem;">
                             <div class="card-header">Total Orders</div>
                             <div class="card-body">
-                                <h5 class="card-t" id="total-orders">65</h5>
-                                <p class="card-text">+2.1%</p>
+                                <h5 class="card-t" id="total-orders" style="font-size: 3rem;">65</h5>
                             </div>
                         </div>
                     </div>
@@ -492,8 +491,7 @@
                         <div class="card text-white bg-secondary mb-3 equal-height-card" style="max-width: 18rem;">
                             <div class="card-header">Total Customers</div>
                             <div class="card-body">
-                                <h5 class="card-t" id="total-customers">97,056</h5>
-                                <p class="card-text">+5.6%</p>
+                                <h5 class="card-t" id="total-customers" style="font-size: 3rem;">97,056</h5>
                             </div>
                         </div>
                     </div>
@@ -502,8 +500,7 @@
                         <div class="card text-white bg-success mb-3 equal-height-card" style="max-width: 18rem;">
                             <div class="card-header">Total Income</div>
                             <div class="card-body">
-                                <h5 class="card-t" id="total-income">27,230</h5>
-                                <p class="card-text">+4.8%</p>
+                                <h5 class="card-t" id="total-income" style="font-size: 3rem;">27,230</h5>
                             </div>
                         </div>
                     </div>
@@ -750,7 +747,12 @@
                             </div>
                             <div class="mb-3">
                                 <label for="newProductCategory" class="form-label">Category:</label>
-                                <input id="newProductCategory" class="form-control" type="text">
+                                <select id="newProductCategory" class="form-control">
+                                    <option value="cakes">Cakes</option>
+                                    <option value="cookies">Cookies</option>
+                                    <option value="drinks">Drinks</option>
+                                    <!-- Add more categories as needed -->
+                                </select>
                             </div>
                             <div class="upload-container">
                                 <div class="upload-box" id="uploadBoxNew">
@@ -800,7 +802,12 @@
                             </div>
                             <div class="mb-3">
                                 <label for="editProductCategory" class="form-label">Category:</label>
-                                <input id="editProductCategory" class="form-control" type="text">
+                                <select id="editProductCategory" class="form-control">
+                                    <option value="cakes">Cakes</option>
+                                    <option value="cookies">Cookies</option>
+                                    <option value="drinks">Drinks</option>
+                                    <!-- Add more categories as needed -->
+                                </select>
                             </div>
                             <div class="upload-container">
                                 <div class="upload-box" id="uploadBoxEdit">
