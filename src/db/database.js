@@ -36,3 +36,23 @@ export let users = [
     { _id: "U003", _username: "manager", _email: "example.com", _password: "manager" }
 ];
 
+
+$(document).ready(function () {
+    if (localStorage.getItem('products') === null) {
+        localStorage.setItem('products', JSON.stringify(products));
+    } else {
+        products = JSON.parse(localStorage.getItem('products'));
+    }
+
+    if (localStorage.getItem('customers') === null) {
+        localStorage.setItem('customers', JSON.stringify(customers));
+    } else {
+        customers = JSON.parse(localStorage.getItem('customers'));
+    }
+
+    if (localStorage.getItem('users') === null) {
+        localStorage.setItem('users', JSON.stringify(users));
+    } else {
+        users = JSON.parse(localStorage.getItem('users'));
+    }
+});

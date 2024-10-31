@@ -5,6 +5,7 @@ import {customers as customer_array} from '../db/database.js';
 
 // Load customers from local storage or initialize an empty array
 let customers = JSON.parse(localStorage.getItem('customers'));
+console.log(`Customers : `,customers);
 
 // jQuery document ready function
 $(document).ready(function() {

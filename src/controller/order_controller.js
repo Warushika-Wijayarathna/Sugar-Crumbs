@@ -13,7 +13,9 @@ console.log("Products from localStorage:", products); // Debug: check if product
 let customers = JSON.parse(localStorage.getItem('customers'));
 console.log("Customers from localStorage:", customers); // Debug: check if customers are loaded correctly
 
-let orders = JSON.parse(localStorage.getItem('orders'));
+// Retrieve orders from localStorage, initialize as an empty array if null
+let orders = JSON.parse(localStorage.getItem('orders')) || [];
+console.log("Orders from localStorage:", orders); // Debug: check if orders are loaded correctly
 
 
 let subtotal = 0; // Track subtotal
@@ -220,6 +222,7 @@ let customer_id;
 $("#search-mobile-btn").on("click", function(event) {
     event.preventDefault();
     const searchInput = $("#search-mobile").val();
+    customers = JSON.parse(localStorage.getItem('customers'));
 
     console.log("Searching for phone number:", searchInput); // Debug: Log search input
 
@@ -266,13 +269,8 @@ function generateNextInvoiceId() {
     return nextInvoiceId;
 }
 
-function saveOrderToLocalStorage(newOrder) {
-    if (orders === null) {
-        orders = [];
-    }
-    orders.push(newOrder);
-    localStorage.setItem('orders', JSON.stringify(orders));
-    console.log("Order saved to localStorage:", newOrder); // Debug: Log saved order
+function saveOrderToLocalStorage() {
+    localStorage.setItem('orders', JSON.stringify(orders || []));
 }
 
 // Event listener for Enter key on Cash Amount input
@@ -334,7 +332,12 @@ function handleOrder() {
             balance_amount
         );
 
-        saveOrderToLocalStorage(newOrder);
+        console.log("New Order:", newOrder); // Debug: Log new order object
+
+        //add new order to orders array by pushing
+        orders.push(newOrder);
+
+        saveOrderToLocalStorage();
 
         resetCart(); // Reset the cart after successful order
     } else {
