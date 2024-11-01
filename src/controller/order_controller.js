@@ -3,6 +3,8 @@ import order from '../model/order_model.js';
 import {customers as customer_array, products as default_product} from '../db/database.js';
 import {generateNextCustomerId} from "./customer_controller.js";
 import {user_id} from "./sign_in_controller.js";
+import {validatePhoneNumber} from "../utils/validation.js";
+import {validatePrice} from "../util/validation";
 
 // Display all products when the page loads
 const productList = $("#product-list");
@@ -228,6 +230,20 @@ let customer_id;
 $("#search-mobile-btn").on("click", function(event) {
     event.preventDefault();
     const searchInput = $("#search-mobile").val();
+
+    //valid input mobile number
+    if (!validatePhoneNumber(searchInput)) {
+        Swal.fire({
+            title: "Invalid Phone Number",
+            text: "Please enter a valid phone number.",
+            icon: "error",
+            confirmButtonText: "OK"
+        });
+        // Clear search input
+        $("#search-mobile").val('');
+        return;
+    }
+
     customers = JSON.parse(localStorage.getItem('customers'));
 
     console.log("Searching for phone number:", searchInput); // Debug: Log search input
@@ -294,7 +310,21 @@ $("#makeOrderButton").on("click", function(event) {
 
 // Function to handle order processing
 function handleOrder() {
-    const cashAmount = parseFloat($("#cashAmount").val()); // Get cash amount input
+    const cashAmount = parseFloat($("#cashAmount").val());
+
+    //valid input cash amount
+    if (isNaN(cashAmount) || cashAmount <= 0||!validatePrice(cashAmount)) {
+        Swal.fire({
+            title: "Invalid Cash Amount",
+            text: "Please enter a valid cash amount.",
+            icon: "error",
+            confirmButtonText: "OK"
+        });
+        // Clear cash amount input
+        $("#cashAmount").val('');
+        return;
+    }
+
     const totalPayment = parseFloat($("#total-payment").text().replace("Total Payment: $", "")); // Get total payment
 
     if (!isNaN(cashAmount) && cashAmount >= totalPayment) {

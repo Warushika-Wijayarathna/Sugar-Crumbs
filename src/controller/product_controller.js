@@ -336,14 +336,28 @@ export function bindProductAddEvents() {
         const productUnitPrice = parseFloat($('#editProductUnitPrice').val());
         const productQtyOnHand = parseInt($('#editProductQtyOnHand').val());
 
-        if (!productDescription || !productCategory || !productImage || isNaN(productUnitPrice) || isNaN(productQtyOnHand)) {
+        // validate
+        if (!productDescription || !productCategory || !productImage || $('#editProductUnitPrice').val() === '' || $('#editProductQtyOnHand').val() === '') {
             Swal.fire("Error", "Please fill in all fields.", "error");
             return;
         }
 
+        //validate price
+        if (!validatePrice(productUnitPrice)) {
+            Swal.fire("Error", "Please enter a valid price.", "error");
+            return;
+        }
+
+        //validate quantity
+        if (productQtyOnHand < 0||!validateQuantity(productQtyOnHand)) {
+            Swal.fire("Error", "Please enter a valid quantity.", "error");
+            return;
+        }
+
         const productIndex = products.findIndex(product => product._code === productId);
+
         if (productIndex === -1) {
-            Swal.fire("Error", "Product not found.", "error");
+            Swal.fire("Error", "Product not found!", "error");
             return;
         }
 

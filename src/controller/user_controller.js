@@ -21,6 +21,26 @@ $(document).ready(function() {
                 addUserFields.email.val(),
                 addUserFields.password.val()
             );
+            // validate email
+            if (!validateEmail(newUser._email)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops!',
+                    text: 'Invalid email address.'
+                });
+                return;
+            }
+
+            // email already exists
+            if (users.some(user => user._email === newUser._email)) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops!',
+                    text: 'Email already exists.'
+                });
+                return;
+            }
+
             users.push(newUser);
             displayUsers();
             saveUsersToLocalStorage();
