@@ -67,6 +67,7 @@ function saveCustomer(modal) {
             icon: 'error',
             confirmButtonText: 'OK'
         });
+
         return;
     }
     if (!validateEmail(customerEmail)) {
@@ -76,6 +77,10 @@ function saveCustomer(modal) {
             icon: 'error',
             confirmButtonText: 'OK'
         });
+
+        //clear the email field
+        $('#exampleInput').val('');
+
         return;
     }
     if (!validateMobile(customerPhone)) {
@@ -85,6 +90,10 @@ function saveCustomer(modal) {
             icon: 'error',
             confirmButtonText: 'OK'
         });
+
+        //clear the phone field
+        $('#customer-phone2').val('');
+
         return;
     }
     if (customers.find(customer => customer._email === customerEmail)) {
@@ -94,6 +103,10 @@ function saveCustomer(modal) {
             icon: 'error',
             confirmButtonText: 'OK'
         });
+
+        //clear the email field
+        $('#exampleInput').val('');
+
         return;
     }
     if (customers.find(customer => customer._phone === customerPhone)) {
@@ -103,6 +116,10 @@ function saveCustomer(modal) {
             icon: 'error',
             confirmButtonText: 'OK'
         });
+
+        //clear the phone field
+        $('#customer-phone2').val('');
+
         return;
     }
 
@@ -258,6 +275,10 @@ function updateCustomer() {
             icon: 'error',
             confirmButtonText: 'OK'
         });
+
+        //clear the email field
+        $('#customer-email').val('');
+
         return;
     }
 
@@ -268,6 +289,10 @@ function updateCustomer() {
             icon: 'error',
             confirmButtonText: 'OK'
         });
+
+        //clear the phone field
+        $('#customer-phone').val('');
+
         return;
     }
 
@@ -278,6 +303,10 @@ function updateCustomer() {
             icon: 'error',
             confirmButtonText: 'OK'
         });
+
+        //clear the email field
+        $('#customer-email').val('');
+
         return;
     }
 
@@ -288,6 +317,10 @@ function updateCustomer() {
             icon: 'error',
             confirmButtonText: 'OK'
         });
+
+        //clear the phone field
+        $('#customer-phone').val('');
+
         return;
     }
 
@@ -367,6 +400,37 @@ export function unbindCustomerEvents() {
     $('#customer-delete').off('click');
     $('#customer-update').off('click');
 }
+
+$(document).ready(function() {
+    let debounceTimeout;
+
+    $('#customer-search').on('input', function(event) {
+        clearTimeout(debounceTimeout);
+
+        debounceTimeout = setTimeout(() => {
+            const searchQuery = $(this).val().toLowerCase();
+            let hasResults = false;
+
+            $('.customer-table tbody tr').each(function() {
+                const rowText = $(this).text().toLowerCase();
+                const isVisible = rowText.includes(searchQuery);
+                $(this).toggle(isVisible);
+                if (isVisible) hasResults = true;
+            });
+
+            // Show or hide the "No results found" message
+            if (!hasResults) {
+                $('.no-customer-results').show();
+            } else {
+                $('.no-customer-results').hide();
+            }
+        }, 300); // Adjust delay as needed
+    });
+
+    // Initially hide the "No results found" message
+    $('.no-customer-results').hide();
+});
+
 
 
 

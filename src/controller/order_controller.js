@@ -3,8 +3,8 @@ import order from '../model/order_model.js';
 import {customers as customer_array, products as default_product} from '../db/database.js';
 import {generateNextCustomerId} from "./customer_controller.js";
 import {user_id} from "./sign_in_controller.js";
-import {validatePhoneNumber} from "../utils/validation.js";
-import {validatePrice} from "../util/validation";
+import {validateMobile, validatePrice} from "../util/validation.js";
+
 
 // Display all products when the page loads
 const productList = $("#product-list");
@@ -232,7 +232,7 @@ $("#search-mobile-btn").on("click", function(event) {
     const searchInput = $("#search-mobile").val();
 
     //valid input mobile number
-    if (!validatePhoneNumber(searchInput)) {
+    if (!validateMobile(searchInput)) {
         Swal.fire({
             title: "Invalid Phone Number",
             text: "Please enter a valid phone number.",

@@ -65,3 +65,33 @@ $(document).on('click', '.order-view-btn', function () {
     });
 });
 
+$(document).ready(function() {
+    let debounceTimeout;
+
+    $('#invoice-search').on('input', function(event) {
+        clearTimeout(debounceTimeout);
+
+        debounceTimeout = setTimeout(() => {
+            const searchQuery = $(this).val().toLowerCase();
+            let hasResults = false;
+
+            $('.invoice-table tbody tr').each(function() {
+                const rowText = $(this).text().toLowerCase();
+                const isVisible = rowText.includes(searchQuery);
+                $(this).toggle(isVisible);
+                if (isVisible) hasResults = true;
+            });
+
+            // Show or hide the "No results found" message
+            if (!hasResults) {
+                $('.no-invoice-results').show();
+            } else {
+                $('.no-invoice-results').hide();
+            }
+        }, 300); // Adjust delay as needed
+    });
+
+    // Initially hide the "No results found" message
+    $('.no-invoice-results').hide();
+});
+

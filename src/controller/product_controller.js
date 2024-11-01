@@ -166,12 +166,20 @@ function saveProduct() {
     //validate price
     if (!validatePrice(productUnitPrice)) {
         Swal.fire("Error", "Please enter a valid price.", "error");
+
+        //reset the price field
+        $('#newProductUnitPrice').val('');
+
         return;
     }
 
     //validate quantity
     if (productQtyOnHand < 0||!validateQuantity(productQtyOnHand)) {
         Swal.fire("Error", "Please enter a valid quantity.", "error");
+
+        //reset the quantity field
+        $('#newProductQtyOnHand').val('');
+
         return
     }
 
@@ -345,12 +353,20 @@ export function bindProductAddEvents() {
         //validate price
         if (!validatePrice(productUnitPrice)) {
             Swal.fire("Error", "Please enter a valid price.", "error");
+
+            //reset the price field
+            $('#editProductUnitPrice').val('');
+
             return;
         }
 
         //validate quantity
         if (productQtyOnHand < 0||!validateQuantity(productQtyOnHand)) {
             Swal.fire("Error", "Please enter a valid quantity.", "error");
+
+            //reset the quantity field
+            $('#editProductQtyOnHand').val('');
+
             return;
         }
 
@@ -401,3 +417,34 @@ function setDate() {
     });
     dateElement.text(`Date: ${formattedDate}`);
 }
+
+$(document).ready(function() {
+    let debounceTimeout;
+
+    $('#product-search').on('input', function(event) {
+        clearTimeout(debounceTimeout);
+
+        debounceTimeout = setTimeout(() => {
+            const searchQuery = $(this).val().toLowerCase();
+            let hasResults = false;
+
+            $('.product-table tbody tr').each(function() {
+                const rowText = $(this).text().toLowerCase();
+                const isVisible = rowText.includes(searchQuery);
+                $(this).toggle(isVisible);
+                if (isVisible) hasResults = true;
+            });
+
+            // Show or hide the "No results found" message
+            if (!hasResults) {
+                $('.no-results').show();
+            } else {
+                $('.no-results').hide();
+            }
+        }, 300); // Adjust delay as needed
+    });
+
+    // Initially hide the "No results found" message
+    $('.no-results').hide();
+});
+

@@ -1,5 +1,6 @@
 import user from '../model/user_model.js';
 import { users } from '../db/database.js';
+import {validateEmail} from "../util/validation.js";
 
 $(document).ready(function() {
     loadUsersFromLocalStorage();
@@ -179,3 +180,33 @@ function generateUserId() {
     const newUserId = parseInt(lastUserId.substr(1)) + 1;
     return `U${newUserId.toString().padStart(3, '0')}`; // Pads with zeros, e.g., U001
 }
+
+$(document).ready(function() {
+    let debounceTimeout;
+
+    $('#user-search').on('input', function(event) {
+        clearTimeout(debounceTimeout);
+
+        debounceTimeout = setTimeout(() => {
+            const searchQuery = $(this).val().toLowerCase();
+            let hasResults = false;
+
+            $('.user-table tbody tr').each(function() {
+                const rowText = $(this).text().toLowerCase();
+                const isVisible = rowText.includes(searchQuery);
+                $(this).toggle(isVisible);
+                if (isVisible) hasResults = true;
+            });
+
+            // Show or hide the "No results found" message
+            if (!hasResults) {
+                $('.no-user-results').show();
+            } else {
+                $('.no-user-results').hide();
+            }
+        }, 300); // Adjust delay as needed
+    });
+
+    // Initially hide the "No results found" message
+    $('.no-user-results').hide();
+});
