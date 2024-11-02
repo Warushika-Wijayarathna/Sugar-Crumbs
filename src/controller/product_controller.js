@@ -21,7 +21,7 @@ function init() {
 }
 
 // Function to display all products
-function displayProducts() {
+export function displayProducts() {
     const productTableBody = $('.product-table tbody');
     productTableBody.empty(); // Clear existing rows
 

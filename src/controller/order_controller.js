@@ -1,9 +1,8 @@
-import product from '../model/product_model.js';
 import order from '../model/order_model.js';
-import {customers as customer_array, products as default_product} from '../db/database.js';
 import {generateNextCustomerId} from "./customer_controller.js";
 import {user_id} from "./sign_in_controller.js";
 import {validateMobile, validatePrice} from "../util/validation.js";
+import {displayProducts} from "./product_controller.js";
 
 
 // Display all products when the page loads
@@ -372,6 +371,23 @@ function handleOrder() {
 
         //add new order to orders array by pushing
         orders.push(newOrder);
+        console.log(`order items`,order_items);
+
+        // reduce the quantity of products in the inventory
+        products.forEach((product) => {
+            order_items.forEach((item) => {
+                if (product._code === item.id) {
+                    product._qtyOnHand -= item.quantity;
+                }
+            });
+        });
+
+        // Update products in localStorage
+        localStorage.setItem('products', JSON.stringify(products));
+
+        setTimeout(function() {
+            displayProducts();
+        }, 1000);
 
         saveOrderToLocalStorage();
 
