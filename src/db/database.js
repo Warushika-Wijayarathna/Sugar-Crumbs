@@ -60,4 +60,5 @@ export function loadArrays() {
     products = JSON.parse(localStorage.getItem("products"));
     customers = JSON.parse(localStorage.getItem("customers"));
     users = JSON.parse(localStorage.getItem("users"));
+    orders = JSON.parse(localStorage.getItem("orders")) || [];
 }
