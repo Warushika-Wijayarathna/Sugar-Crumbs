@@ -3,7 +3,6 @@ import {generateNextCustomerId} from "./customer_controller.js";
 import {user_id} from "./sign_in_controller.js";
 import {validateMobile, validatePrice} from "../util/validation.js";
 import {displayProducts} from "./product_controller.js";
-import {loadArrays} from "../db/database.js";
 
 
 // Display all products when the page loads
