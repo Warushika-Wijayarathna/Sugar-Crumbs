@@ -1,6 +1,5 @@
 // Import necessary modules
 import Product from '../model/product_model.js';
-import { products as defaultProducts } from '../db/database.js';
 import {validatePrice, validateQuantity} from "../util/validation.js";
 import {updateProductCards} from "./order_controller.js";
 
@@ -22,10 +21,13 @@ function init() {
 
 // Function to display all products
 export function displayProducts() {
+    console.log("display products");
+    let product_ = JSON.parse(localStorage.getItem('products'));
     const productTableBody = $('.product-table tbody');
     productTableBody.empty(); // Clear existing rows
 
-    products.forEach(product => {
+    product_.forEach(product => {
+        console.log(product);
         const row = createProductRow(product);
         productTableBody.append(row);
     });

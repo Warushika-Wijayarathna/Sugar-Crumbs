@@ -1,12 +1,13 @@
-
-let orders = JSON.parse(localStorage.getItem('orders')) || [];
+let orders = JSON.parse(localStorage.getItem('orders'));
 
 // Display all orders
-function displayOrders() {
+export function displayOrders() {
+    console.log("call displayOrders function");
+    let order_ = JSON.parse(localStorage.getItem('orders'));
     const orderTable = $('.invoice-table tbody');
     orderTable.empty();
 
-    orders.forEach((order, index) => {
+    order_.forEach((order, index) => {
         orderTable.append(`
             <tr>
                 <td>${order._invoice_id}</td>
@@ -14,7 +15,7 @@ function displayOrders() {
                 <td>${order._order_date}</td>
                 <td>$${order._total_price}</td>
                 <td>
-                    <button class="btn btn-warning order-view-btn" data-index="${index}">View</button>
+                    <button class="btn btn-warning order-view-btn" data-id="I001">View</button>
                 </td>
             </tr>
         `);
@@ -27,9 +28,15 @@ $(document).ready(function () {
 
 // Event delegation to handle dynamically added "View" buttons
 $(document).on('click', '.order-view-btn', function () {
-    const index = $(this).data('index');
-    const selectedOrder = orders[index];
+    console.log("click view button");
+    const invoiceId = $(this).data('id');
+    console.log("Clicked button invoice ID:", invoiceId);
 
+    const selectedOrder = orders.find(order => order._invoice_id === invoiceId);
+    console.log("Selected Order:", selectedOrder);
+
+    // show order items
+    console.log(selectedOrder._order_items);
     // Generate HTML for order items
     const orderItemsHTML = selectedOrder._order_items.map(item =>
         `<li>${item.title} - $${item.price} x ${item.quantity} = $${item.totalPrice}</li>`

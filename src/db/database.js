@@ -57,6 +57,7 @@ export let users = [
 })();
 
 export function loadArrays() {
+    console.log("load arrays");
     products = JSON.parse(localStorage.getItem("products"));
     customers = JSON.parse(localStorage.getItem("customers"));
     users = JSON.parse(localStorage.getItem("users"));

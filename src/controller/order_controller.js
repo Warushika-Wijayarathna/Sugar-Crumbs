@@ -3,7 +3,8 @@ import {generateNextCustomerId} from "./customer_controller.js";
 import {user_id} from "./sign_in_controller.js";
 import {validateMobile, validatePrice} from "../util/validation.js";
 import {displayProducts} from "./product_controller.js";
-
+import {loadArrays} from "../db/database.js";
+import {displayOrders} from "./invoice_controller.js";
 
 // Display all products when the page loads
 const productList = $("#product-list");
@@ -291,7 +292,8 @@ function generateNextInvoiceId() {
 }
 
 function saveOrderToLocalStorage() {
-    localStorage.setItem('orders', JSON.stringify(orders || []));
+    console.log("Saving orders to localStorage"); // Debug: Check if the method is called
+    localStorage.setItem('orders', JSON.stringify(orders));
 }
 
 // Event listener for Enter key on Cash Amount input
@@ -302,7 +304,7 @@ $("#cashAmount").on("keypress", function(event) {
 });
 
 // Event listener for Make Order button
-$("#makeOrderButton").on("click", function(event) {
+$("#makeOrderBtn").on("click", function(event) {
     event.preventDefault(); // Prevent default form submission
     handleOrder();
 });
@@ -370,6 +372,7 @@ function handleOrder() {
         console.log("New Order:", newOrder); // Debug: Log new order object
 
         //add new order to orders array by pushing
+        console.log(`orders`,orders);
         orders.push(newOrder);
         console.log(`order items`,order_items);
 
@@ -383,17 +386,15 @@ function handleOrder() {
         });
 
         // Update products in localStorage
+        localStorage.setItem('orders', JSON.stringify(orders));
         localStorage.setItem('products', JSON.stringify(products));
+        displayProducts();
+        displayOrders();
 
-        setTimeout(function() {
-            displayProducts();
-        }, 1000);
 
-        saveOrderToLocalStorage();
 
         resetCart(); // Reset the cart after successful order
 
-        loadArrays();
     } else {
         // Display error SweetAlert if cash amount is insufficient
         Swal.fire({
