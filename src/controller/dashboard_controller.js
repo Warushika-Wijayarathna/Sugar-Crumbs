@@ -14,25 +14,50 @@ $(document).ready(function () {
             window.lineChart.destroy();
         }
 
+        // Compute daily sales from orders
+        const dailySales = orders.reduce((sales, order) => {
+            const date = new Date(order._order_date).toLocaleDateString(); // Format date
+            sales[date] = (sales[date] || 0) + order._total_price;
+            return sales;
+        }, {});
+
+        // Extract dates and sales into separate arrays
+        const labels = Object.keys(dailySales).sort(); // Sorted dates
+        const data = labels.map(date => dailySales[date]);
+
         window.lineChart = new Chart(ctxLine, {
             type: 'line',
             data: {
-                labels: ['Oct 11', 'Oct 15', 'Oct 19', 'Oct 25', 'Nov 1', 'Nov 5', 'Nov 11'],
+                labels: labels, // Use dynamic dates
                 datasets: [{
-                    label: 'Selected Period',
-                    data: [3000, 4000, 3500, 6000, 4500, 5000, 7000],
+                    label: 'Daily Sales',
+                    data: data, // Use computed daily sales
                     borderColor: 'rgb(75, 192, 192)',
                     tension: 0.1
-                },
-                    {
-                        label: 'Comparison',
-                        data: [2000, 3000, 2500, 4000, 3500, 4200, 6000],
-                        borderColor: 'rgb(255, 99, 132)',
-                        tension: 0.1
-                    }]
+                }]
             },
             options: {
-                responsive: true
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Sales Amount'
+                        },
+                        beginAtZero: true
+                    }
+                }
             }
         });
 

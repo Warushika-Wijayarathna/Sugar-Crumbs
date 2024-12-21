@@ -1,5 +1,5 @@
 let orders = JSON.parse(localStorage.getItem('orders'));
-
+import order from '../model/order_model.js';
 // Display all orders
 export function displayOrders() {
     console.log("call displayOrders function");
@@ -15,7 +15,7 @@ export function displayOrders() {
                 <td>${order._order_date}</td>
                 <td>$${order._total_price}</td>
                 <td>
-                    <button class="btn btn-warning order-view-btn" data-id="I001">View</button>
+                    <button class="btn btn-warning order-view-btn" data-id="${order._invoice_id}">View</button>
                 </td>
             </tr>
         `);
